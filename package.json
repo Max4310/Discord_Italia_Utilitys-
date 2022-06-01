@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "discord.js": "^13.7.0"
+  },
+  "name": "er_ciccio_massimo",
+  "version": "1.0.0",
+  "description": "foca finocchio",
+  "main": "code.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "/mute"
+  },
+  "author": "QUER FIGO DE MAX",
+  "license": "ISC"
+}
