@@ -7,22 +7,22 @@ const internal = require("stream");
 const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MESSAGES","GUILD_WEBHOOKS","GUILD_INTEGRATIONS","GUILD_MEMBERS"]}
 )
-client.login("OTc3NTAzNDI4NTQyNjE1NTUy.GRvi4v.P7ayMtLwA7GjeMwBLjfE-Il4R-7pm-aOxmBX9w")
+client.login("OTgxNjU1Mjg1Mjg4NTQyMjM4.GpAj4m.ng8DJMPeZvUXOQgpb0UYUM1l-hEKBukzVW-wYs")
 
 
 
-const abitante="951188354370764910" /*cambia con il ruolo abitante*/
-const mutato="951188059754467389" /*cambiare con il ruolo mutato*/
-const stella1=""                   /*mettere il ruolo prima stella*/ //SCOMMENTA NELLA FUNZIONE DI RIPRISTINA 
-const stella2="957301782130856046" //mettere il ruolo 2 stella
-const stella3="957301787919020132" //mettere il ruolo 3 stella
+const abitante="895325493237272647" /*cambia con il ruolo abitante*/
+const mutato="978669080196308992" /*cambiare con il ruolo mutato*/
+const stella1="923227838524575794" /*mettere il ruolo prima stella*/ //SCOMMENTA NELLA FUNZIONE DI RIPRISTINA 
+const stella2="923228316541010011" //mettere il ruolo 2 stella
+const stella3="923228263814422599" //mettere il ruolo 3 stella
 
-const log="957328086251221042" /*cambiare con il canale log*/
-const info="957328059030183936" /*cambiare con la chat della polizia*/
-const presentazioni="957328105842810881" //cambiare con quello di presentazioni 
+const log="928669343535988736" /*cambiare con il canale log*/
+const info="947597992238673940" /*cambiare con la chat della polizia*/
+const presentazioni="902903625586720798" //cambiare con quello di presentazioni 
 
-const tempo_mute=10*1000//*60*60*5;
-const tempo_reset=60*2*1000//*60*60*60*24;
+const tempo_mute=60*60*5;
+const tempo_reset=60*60*60*24;
 const mute_totale=10;
 var i=0;
 var inizio_nute=false;
@@ -39,8 +39,8 @@ function ripristina(membro, comando){
     role=comando.guild.roles.cache.get(mutato)
     membro.roles.remove(role) //gli levo il ruolo mutato
     
-    /*role=comando.guild.roles.cache.get(stella1)
-    membro.roles.remove(role) //gli levo prima stella*/
+    role=comando.guild.roles.cache.get(stella1)
+    membro.roles.remove(role) //gli levo prima stella
 }
 
 function is_mute(membro)
