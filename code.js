@@ -162,7 +162,9 @@ client.on("messageCreate", message =>{
 
         message.channel.send("🚨 La <@&911923177314201640> Sarà Presto Qui! 🚨")
     }
-    else if(message.content=="888" && message.channel.id==RICCHI) //comano yakuza
+    
+    console.log(message.channelId)
+    if(message.content=="888" && message.channelId==RICCHI) //comano yakuza
     {
         message.delete()
 
