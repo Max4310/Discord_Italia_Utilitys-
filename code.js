@@ -7,7 +7,7 @@ const internal = require("stream");
 const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MESSAGES","GUILD_WEBHOOKS","GUILD_INTEGRATIONS","GUILD_MEMBERS"]}
 )
-client.login("OTgxNjU1Mjg1Mjg4NTQyMjM4.GpAj4m.ng8DJMPeZvUXOQgpb0UYUM1l-hEKBukzVW-wYs")
+client.login("")
 
 
 
