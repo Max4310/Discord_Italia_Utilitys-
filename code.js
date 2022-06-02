@@ -7,7 +7,7 @@ const internal = require("stream");
 const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MESSAGES","GUILD_WEBHOOKS","GUILD_INTEGRATIONS","GUILD_MEMBERS"]}
 )
-client.login("")
+client.login("OTgxNjU1Mjg1Mjg4NTQyMjM4.G9hkM0.hspgz--898pHr576VoGMWbfQi2d4-O79kVtb4c")
 
 
 const abitante="895325493237272647" /*cambia con il ruolo abitante*/
@@ -169,7 +169,7 @@ client.on("messageCreate", message =>{
         message.channel.send("💀 **ATTENZIONE!** La <@&970721741615824926> Sarà Presto Qui! 💀")
     }
 
-    if (message.mentions.members.first() != undefined)
+    /*if (message.mentions.members.first() != undefined)
     {
         membro=message.mentions.members.first()
 
@@ -186,7 +186,7 @@ client.on("messageCreate", message =>{
 
         if(is_supremo==true)
             message.channel.send("")
-    }
+    }*/
 
 })
  
