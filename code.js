@@ -7,7 +7,7 @@ const internal = require("stream");
 const client = new Discord.Client(
     {intents: ["GUILDS", "GUILD_MESSAGES","GUILD_WEBHOOKS","GUILD_INTEGRATIONS","GUILD_MEMBERS"]}
 )
-client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GNE5Pk.jGgXDK3zma2MyAugayeXqk2mfMRcv4Uc_WmU2Q")
+client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXuufmQ")
 
 
 const abitante="895325493237272647" /*cambia con il ruolo abitante*/
