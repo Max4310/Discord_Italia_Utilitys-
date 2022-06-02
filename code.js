@@ -169,7 +169,7 @@ client.on("messageCreate", message =>{
         message.channel.send("💀 **ATTENZIONE!** La <@&970721741615824926> Sarà Presto Qui! 💀")
     }
 
-    /*if (message.mentions.members.first() != undefined)
+    if (message.mentions.members.first() != undefined)
     {
         membro=message.mentions.members.first()
 
@@ -185,8 +185,8 @@ client.on("messageCreate", message =>{
         }
 
         if(is_supremo==true)
-            message.channel.send("")
-    }*/
+            message.channel.send("Complimenti Hai Trovato Un Easter Egg")
+    }
 
 })
  
