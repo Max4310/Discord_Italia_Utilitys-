@@ -15,6 +15,7 @@ const mutato="978669080196308992" /*cambiare con il ruolo mutato*/
 const stella1="923227838524575794" /*mettere il ruolo prima stella*/ //SCOMMENTA NELLA FUNZIONE DI RIPRISTINA 
 const stella2="923228316541010011" //mettere il ruolo 2 stella
 const stella3="923228263814422599" //mettere il ruolo 3 stella
+const assistenza = "893561541302054973";
 
 const log="928669343535988736" /*cambiare con il canale log*/
 const info="947597992238673940" /*cambiare con la chat della polizia*/
@@ -169,7 +170,7 @@ client.on("messageCreate", message =>{
         message.channel.send("💀 **ATTENZIONE!** La <@&970721741615824926> Sarà Presto Qui! 💀")
     }
 
-    if (message.mentions.members.first() != undefined)
+    /*if (message.mentions.members.first() != undefined)
     {
         membro=message.mentions.members.first()
 
@@ -186,7 +187,7 @@ client.on("messageCreate", message =>{
 
         if(is_supremo==true)
             message.channel.send("Complimenti Hai Trovato Un Easter Egg")
-    }
+    }*/
 
 })
  
