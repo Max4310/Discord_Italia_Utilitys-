@@ -93,6 +93,46 @@ client.on("ready",()=>{
     client.guilds.cache.forEach(guild=>{ 
 
         guild.commands.create({
+           name : "grado",
+           description : "sistema il grando di un utente",
+           options : [
+               {//argomento utente 
+                   name : "target",
+                   description : "utente a cui sistemare il grando",
+                   type : "USER",
+                   required : true
+               }
+           ],
+           name : "stella" , 
+           description : "dai la stella ad un utente",
+           options : [
+               {//utente
+                   name : "target" ,
+                   description : "utente a cui assegnare la stella",
+                   type : "USER",
+                   required : true
+               }
+           ],
+           name : "verifica" ,
+           description : "verifica un Utente",
+           options: [
+               { //argomento utente
+                   name: "target", 
+                   description: "L'utente Da Verificare",
+                   type: "USER",
+                   required: true
+               },
+           ],
+           name : "delete",
+           description : "Elimina Un Messaggio In Presentazioni",
+           options: [
+               {
+                   name : "message",
+                   description : "Id messaggio da eliminare",
+                   type: "STRING",
+                   required : true
+               }
+           ],
            name : "mute",
            description : "Muta Un Utente",
            options: [
@@ -109,47 +149,6 @@ client.on("ready",()=>{
                     required: true
                }
            ],
-           name : "delete",
-           description : "Elimina Un Messaggio In Presentazioni",
-           options: [
-               {
-                   name : "message",
-                   description : "Id messaggio da eliminare",
-                   type: "STRING",
-                   required : true
-               }
-           ],
-           name : "verifica" ,
-           description : "verifica un Utente",
-           options: [
-               { //argomento utente
-                   name: "target", 
-                   description: "L'utente Da Verificare",
-                   type: "USER",
-                   required: true
-               },
-           ],
-           name : "stella" , 
-           description : "dai la stella ad un utente",
-           options : [
-               {//utente
-                   name : "target" ,
-                   description : "utente a cui assegnare la stella",
-                   type : "USER",
-                   required : true
-               }
-           ],
-           name : "grado",
-           description : "sistema il grando di un utente",
-           options : [
-               {//argomento utente 
-                   name : "target",
-                   description : "utente a cui sistemare il grando",
-                   type : "USER",
-                   required : true
-               }
-           ],
-           
         })
     })
 
