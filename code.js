@@ -837,7 +837,7 @@ client.on("interactionCreate", (comando)=>{
         
         var messaggio = new Discord.MessageEmbed()
             .setTitle("DISCORD ITALIA")
-            .setDescription("**Per Entrare In Discord Italia Riscrivere:** `"+codice_random+" ` **Nel Canale Entro 1 Minuto**\n\n *Non Utilizzare Spazi Usa Le Lettere Maiuscole!*\n───────────────────────────────────────")
+            .setDescription("**Per Entrare In Discord Italia Riscrivere:** `"+codice_random+" ` **Nel Canale**\n\n *Non Utilizzare Spazi Usa Le Lettere Maiuscole!*\n───────────────────────────────────────")
             .setColor("DARK_BLUE")
             .setFooter("Contatta L'assistenza In Caso Di Problemi")
         comando.reply({embeds : [messaggio], ephemeral : true})
