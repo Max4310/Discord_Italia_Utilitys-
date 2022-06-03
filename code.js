@@ -1,5 +1,6 @@
 const { channel } = require("diagnostics_channel");
 const Discord=require("discord.js");
+const { randomInt } = require("crypto");
 const { cp } = require("fs");
 const { Server } = require("http");
 const { type } = require("os");
@@ -9,25 +10,28 @@ const client = new Discord.Client(
 )
 client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXuufmQ")
 
+const er_supremo = "598498238336729088" 
 
-const abitante="895325493237272647" /*cambia con il ruolo abitante*/
-const mutato="978669080196308992" /*cambiare con il ruolo mutato*/
-const stella1="923227838524575794" /*mettere il ruolo prima stella*/ //SCOMMENTA NELLA FUNZIONE DI RIPRISTINA 
-const stella2="923228316541010011" //mettere il ruolo 2 stella
-const stella3="923228263814422599" //mettere il ruolo 3 stella
+const abitante="895325493237272647" 
+const mutato="978669080196308992" 
+const stella1="923227838524575794"  
+const stella2="923228316541010011" 
+const stella3="923228263814422599" 
 const assistenza = "893561541302054973";
 
-const log="928669343535988736" /*cambiare con il canale log*/
-const info="947597992238673940" /*cambiare con la chat della polizia*/
-const presentazioni="902903625586720798" //cambiare con quello di presentazioni 
+const log="928669343535988736" 
+const info="947597992238673940" 
+const presentazioni="902903625586720798"  
+const RICCHI = "895991422187098122" 
 
 const stelle = ["923227838524575794","923228316541010011","923228263814422599","923228260161167380","923228267224371280","923228308466966608","923228320768876596","923228312900370473","923228296601305118","923228325592305664"]
-//cambiare con gli id delle stelle  IN ORDINE SENNO SI SBALLA TUTTO
 const gradi = ["946120997881380964","946130972901011466","946131519230070925","946131628558778379","946131754215964753","946131907568082965"]
-//cambiare con gli id dei gradi
-const gold = "893851166239252530" //cambia con l'utente gold 
-const vip = "893844096957952017" //cambia con l'utente vip 
+const gold = "893851166239252530"  
+const vip = "893844096957952017" 
 
+const verifica = "899264083604418601" //"899264083604418601" 
+const BotId = "981930082568372254"  
+const log_verifica = "894610389407502366"  
 
 //const abitante="951188354370764910" /*cambia con il ruolo abitante*/
 //const mutato="951188059754467389" /*cambiare con il ruolo mutato*/
@@ -51,12 +55,32 @@ const tempo_reset=1000*60*60*24;
 const mute_totale=10;
 var i=0;
 var inizio_nute=false;
+var code = []
+var UtenteVerifica = [] 
+var cont_verifica = 0
+var verificato = false
 
-const RICCHI = "895991422187098122" //GIA CAMBIATO
 
 function cont()
 {
     i=0;
+}
+
+function is_verificato(membro)
+{
+    is=false;
+
+    j=0
+    while(membro._roles[j] != undefined && is==false)
+    {
+        if(membro._roles[j] == abitante)
+            is=true
+
+        j++
+    }
+
+    
+    return is;
 }
 
 function ripristina(membro, comando){
@@ -87,6 +111,39 @@ function is_mute(membro)
     return is;
 }
 
+function gen_code(conta)
+{
+    caratteri = ["A", "B", "C", "D","E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X","Y", "Z"]
+    i=0
+    codice=""
+    code[conta] = ""
+
+    while(i<6)
+    {
+        indice = randomInt(26)
+        codice = codice+ " " + caratteri[indice]  
+        code[conta] = code[conta] + caratteri[indice] 
+        i++;
+    }
+
+    return codice
+}
+
+function A_seconda_Autor(utente)
+{
+    var val = undefined
+    i=0
+
+    while(UtenteVerifica[i] != undefined && val == undefined)
+    {
+        if(UtenteVerifica[i]==utente)
+            val = i
+        
+        i++
+    }
+
+    return val 
+}
 
 client.on("ready",()=>{
     
@@ -163,7 +220,6 @@ client.on("messageCreate", message =>{
         message.channel.send("🚨 La <@&911923177314201640> Sarà Presto Qui! 🚨")
     }
     
-    console.log(message.channelId)
     if(message.content=="888" && message.channelId==RICCHI) //comano yakuza
     {
         message.delete()
@@ -190,6 +246,82 @@ client.on("messageCreate", message =>{
             message.channel.send("Complimenti Hai Trovato Un Easter Egg")
     }*/
 
+    if(message.channelId == verifica)
+    {
+        if(message.author.id != BotId )
+        {    
+            setTimeout(function() {
+                message.delete()
+            },1000)
+        }
+       
+        if(message.content=="di.verifica" && message.author.id == er_supremo)
+        {
+            ver = true
+
+            var emebed = new Discord.MessageEmbed()
+                .setTitle("DISCORD ITALIA")
+                .setDescription("───────────────────────────────────────\nClicca Sul Pulsante `🤖 Verifica` Per Entrare In **Discord Italia**\n\n*Richiedi <#893589753222545438> In Caso Di Problemi*")
+                .setColor("DARK_BLUE")
+            
+            var button = new Discord.MessageButton()
+                .setLabel("Verifica")
+                .setEmoji("🤖")
+                .setStyle("SUCCESS")
+                .setCustomId("P_verifica")
+            
+            var riga = new Discord.MessageActionRow()
+                .addComponents(button)
+
+            message.channel.send({embeds: [emebed], components: [riga]})
+
+            return
+        }
+
+        if(message.content==code[A_seconda_Autor(message.author.id)] && message.author.id == UtenteVerifica[A_seconda_Autor(message.author.id)] && message.author.bot == false)
+        {
+            verificato=true
+            membro = message.guild.members.cache.get(message.author.id)
+            a = message.guild.roles.cache.get(abitante)
+            stella = message.guild.roles.cache.get(stella1)
+
+            membro.roles.add(a)
+            membro.roles.add(stella)
+
+            message.channel.permissionOverwrites.delete(message.guild.members.cache.get(message.author.id))
+
+            var verifica_log = message.guild.channels.cache.get(log_verifica)
+            
+            verifica_log.send({
+                "content": null,
+                "embeds": [
+                  {
+                    "title": "DISCORD ITALIA",
+                    "description": "───────────────────────────────────────\n<@"+message.author.id+"> Si È Verificato",
+                    "color": 18431
+                  }
+                ],
+                "attachments": []
+            })
+        }
+        
+        if(message.content != code[A_seconda_Autor(message.author.id)] && message.author.id != BotId)
+        {
+            var No = new Discord.MessageEmbed()
+                .setTitle("DISCORD ITALIA")
+                .setColor("DARK_AQUA")
+                .setDescription("───────────────────────────────────────\nCodice Errato Per Favore Riprovare")
+                .setFooter("Controlla Le Maiuscole!")
+
+            ver = true
+            message.reply({embeds : [No]}).then(messaggino =>{
+                setTimeout(function(){
+                    messaggino.delete()
+                },1000*5)  
+            })
+
+        }
+    }
 })
  
 client.on("interactionCreate", (comando)=>{
@@ -692,6 +824,52 @@ client.on("interactionCreate", (comando)=>{
     if((comando.commandName=="stella" || comando.commandName=="verifica" || comando.commandName=="grado") && comando.channel.parentId != assistenza)
     {
         comando.reply({content : "Non Puoi Fare Questo Comando Fuori Da Un Ticket", ephemeral: true})
+        return
+    }
+
+    if(comando.customId == "P_verifica" && comando.member.user.bot==false)
+    {
+        comando.channel.permissionOverwrites.edit(comando.member,{SEND_MESSAGES : true})
+
+        codice_random=gen_code(cont_verifica)
+
+        UtenteVerifica[cont_verifica]=comando.member.id
+        cont_verifica++
+        
+        var messaggio = new Discord.MessageEmbed()
+            .setTitle("DISCORD ITALIA")
+            .setDescription("**Per Entrare In Discord Italia Riscrivere:** `"+codice_random+" ` **Nel Canale Entro 1 Minuto**\n\n *Non Utilizzare Spazi Usa Le Lettere Maiuscole!*\n───────────────────────────────────────")
+            .setColor("DARK_BLUE")
+            .setFooter("Contatta L'assistenza In Caso Di Problemi")
+        comando.reply({embeds : [messaggio], ephemeral : true})
+
+
+        setTimeout(function (){
+            if(verificato == false)
+            {
+                
+                var messaggio = new Discord.MessageEmbed()
+                    .setTitle("DISCORD ITALIA")
+                    .setDescription("───────────────────────────────────────\n<@"+comando.member.id+"> Tempo Scaduto **Riprovare**")
+                    .setColor("DARK_BLUE")
+                    .setFooter("Contatta L'assistenza In Caso Di Problemi")
+
+                comando.channel.send({content : "<@"+comando.member.id+">" , embeds : [messaggio]}).then(messaggino =>{
+                    setTimeout(function(){
+                        messaggino.delete()
+                    },1000*5)  
+                })
+
+                comando.channel.permissionOverwrites.delete(comando.guild.members.cache.get(comando.member.id))
+            }
+            else
+                verificato=false
+        },60*1000);  //resetto il tutto in caso non abbia superato la verifica
+       
+        
+        if(cont_verifica > 100)
+            cont_verifica=0;
+        
         return
     }
 })
