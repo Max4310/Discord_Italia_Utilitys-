@@ -862,7 +862,7 @@ client.on("interactionCreate", (comando)=>{
                     },1000*5)  
                 })
 
-                UtenteVerifica[A_seconda_Autor(message.author.id)] = undefined
+                UtenteVerifica[A_seconda_Autor(comando.member.id)] = undefined
                 comando.channel.permissionOverwrites.delete(comando.guild.members.cache.get(comando.member.id))
             }
             else
