@@ -46,8 +46,8 @@ const vip = "893844096957952017" //cambia con l'utente vip
 //const info="957328059030183936" /*cambiare con la chat della polizia*/
 //const presentazioni="957328105842810881" //cambiare con quello di presentazioni 
 
-const tempo_mute=1000*60*60*5;
-const tempo_reset=1000*60*60*60*24;
+const tempo_mute=1000*60*5;
+const tempo_reset=1000*60*60*24;
 const mute_totale=10;
 var i=0;
 var inizio_nute=false;
