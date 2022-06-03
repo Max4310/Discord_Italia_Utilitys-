@@ -134,7 +134,7 @@ function A_seconda_Autor(utente)
     var val = undefined
     i=0
 
-    while(UtenteVerifica[i] != undefined && val == undefined)
+    while(i<100 && val == undefined)
     {
         if(UtenteVerifica[i]==utente)
             val = i
@@ -306,16 +306,13 @@ client.on("messageCreate", message =>{
 
             UtenteVerifica[A_seconda_Autor(message.author.id)] = undefined
         }
-        
-        if(message.content != code[A_seconda_Autor(message.author.id)] && message.author.id != BotId)
+        else if(message.content != code[A_seconda_Autor(message.author.id)] && message.author.id != BotId)
         {
             var No = new Discord.MessageEmbed()
                 .setTitle("DISCORD ITALIA")
                 .setColor("DARK_AQUA")
                 .setDescription("───────────────────────────────────────\nCodice Errato Per Favore Riprovare")
                 .setFooter("Controlla Le Maiuscole!")
-
-            ver = true
             message.reply({embeds : [No]}).then(messaggino =>{
                 setTimeout(function(){
                     messaggino.delete()
@@ -844,31 +841,6 @@ client.on("interactionCreate", (comando)=>{
             .setColor("DARK_BLUE")
             .setFooter("Contatta L'assistenza In Caso Di Problemi")
         comando.reply({embeds : [messaggio], ephemeral : true})
-
-
-        setTimeout(function (){
-            if(verificato == false)
-            {
-                
-                var messaggio = new Discord.MessageEmbed()
-                    .setTitle("DISCORD ITALIA")
-                    .setDescription("───────────────────────────────────────\n<@"+comando.member.id+"> Tempo Scaduto **Riprovare**")
-                    .setColor("DARK_BLUE")
-                    .setFooter("Contatta L'assistenza In Caso Di Problemi")
-
-                comando.channel.send({content : "<@"+comando.member.id+">" , embeds : [messaggio]}).then(messaggino =>{
-                    setTimeout(function(){
-                        messaggino.delete()
-                    },1000*5)  
-                })
-
-                UtenteVerifica[A_seconda_Autor(comando.member.id)] = undefined
-                comando.channel.permissionOverwrites.delete(comando.guild.members.cache.get(comando.member.id))
-            }
-            else
-                verificato=false
-        },60*1000);  //resetto il tutto in caso non abbia superato la verifica
-       
         
         if(cont_verifica > 100)
             cont_verifica=0;
