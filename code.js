@@ -303,6 +303,8 @@ client.on("messageCreate", message =>{
                 ],
                 "attachments": []
             })
+
+            UtenteVerifica[A_seconda_Autor(message.author.id)] = undefined
         }
         
         if(message.content != code[A_seconda_Autor(message.author.id)] && message.author.id != BotId)
@@ -860,6 +862,7 @@ client.on("interactionCreate", (comando)=>{
                     },1000*5)  
                 })
 
+                UtenteVerifica[A_seconda_Autor(message.author.id)] = undefined
                 comando.channel.permissionOverwrites.delete(comando.guild.members.cache.get(comando.member.id))
             }
             else
