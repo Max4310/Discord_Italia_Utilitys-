@@ -312,7 +312,7 @@ client.on("messageCreate", message =>{
                 .setTitle("DISCORD ITALIA")
                 .setColor("DARK_AQUA")
                 .setDescription("───────────────────────────────────────\nCodice Errato Per Favore Riprovare")
-                .setFooter("Controlla Le Maiuscole!")
+                //.setFooter("Controlla Le Maiuscole!")
             message.reply({embeds : [No]}).then(messaggino =>{
                 setTimeout(function(){
                     messaggino.delete()
