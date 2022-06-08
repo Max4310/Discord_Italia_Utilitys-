@@ -623,7 +623,7 @@ client.on("interactionCreate", (comando)=>{
             {
 
                 comando.reply({ //contatto il governo 
-                    "content": "<@892866382729977896>",
+                    "content": "<@&892866382729977896>",
                     "embeds": [
                     {
                         "title": "Discord Italia",
