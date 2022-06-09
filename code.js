@@ -52,19 +52,13 @@ const log_verifica = "894610389407502366"
 
 const tempo_mute=1000*60*5;
 const tempo_reset=1000*60*60*24;
-const mute_totale=10;
+const mute_totale = 10;
 var i=0;
 var inizio_nute=false;
 var code = []
 var UtenteVerifica = [] 
 var cont_verifica = 0
-var verificato = false
 
-
-function cont()
-{
-    i=0;
-}
 
 function is_verificato(membro)
 {
@@ -400,12 +394,12 @@ client.on("interactionCreate", (comando)=>{
                 inizio_nute=true //dico di non entrare piu qui dentro perche gia c'è stato un altro mute
                 
                 setTimeout(function () {
-                    cont();
+                    i = 0
                 },tempo_reset); //resetta il cont dei mute fatti dopo un gionro
                 
             }
 
-            if(i<mute_totale) //verifico se si hanno ancora i mute giornalieri
+            if(i < mute_totale) //verifico se si hanno ancora i mute giornalieri
             {
                 if(is_mute(membro)==false)
                 {
