@@ -401,15 +401,18 @@ client.on("interactionCreate", (comando)=>{
 
             if(i < mute_totale) //verifico se si hanno ancora i mute giornalieri
             {
-                if(is_mute(membro)==false)
+                i++
+                membro.timeout(1000 * 60 * 60)
+                
+                /*if(is_mute(membro)==false)
                 {
                     i++ //gli incremento il numero dei mute fatti
                     console.log(i)
 
-                    var role=comando.guild.roles.cache.get(abitante)
+                    /*var role=comando.guild.roles.cache.get(abitante)
                     membro.roles.remove(role) //gli levo abitante
                     role=comando.guild.roles.cache.get(mutato)
-                    membro.roles.add(role) //gli metto il ruolo mutato
+                    membro.roles.add(role) //gli metto il ruolo mutato*/
                     
                     
 
@@ -421,7 +424,7 @@ client.on("interactionCreate", (comando)=>{
                     
                     
                     client.users.fetch(utente.id, false).then((utente) => {
-                        utente.send(`**Sei Stato Mutato Da Un Moderatore Per 5 Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
+                        utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
                     }); //comunico al'untente mutato che è stato mutato per 5 minuti per una reason passata dal poliziotto... ricordo inoltre che è possibile fare denuncia aprendo un ricorso
 
                     var campare=comando.guild.channels.cache.get(log)
@@ -444,18 +447,18 @@ client.on("interactionCreate", (comando)=>{
                     campare.send("utente mutato \nrimangono "+(mute_totale-i)+" mute per la giornata di oggi") 
                     //comunico alla polizia che è stato fatto un mute e quindi ne rimandono uno in meno (questo comando non tagga i membri della polizia)
 
-                    setTimeout(function (){
+                    /*setTimeout(function (){
                         ripristina(membro , comando);
-                    },tempo_mute);  //resetto il tutto
+                    },tempo_mute);  //resetto il tutto*/
                     
-                }
-                else
+                
+                /*else
                 {
                     var risposta = new Discord.MessageEmbed()
                     .setTitle("**DISCORD ITALIA**\n\n")
                     .setColor("#0b39db")
                     .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Utente Gia Mutato**")
-                }
+                }*/
                 
                     
                 
