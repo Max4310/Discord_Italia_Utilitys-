@@ -1429,15 +1429,14 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
 
 client.on("messageDelete", (message)=>{
     try{
-        if(message.author.bot == false)
-        {
-            message.guild.fetchAuditLogs({
-                limit: 1,
-                type: "MESSAGE_DELETE",
-            })
-            .then (autore => {
-                var { executor, target } = autore.entries.first()
-                if(executor.id != message.author.id)
+        message.guild.fetchAuditLogs({
+            limit: 1,
+            type: "MESSAGE_DELETE",
+        })
+        .then (autore => {
+            var { executor, target } = autore.entries.first()
+            try{
+                if(executor.id != message.author.id && autore.entries.first().extra.channel.id == message.channelId && target.id == message.author.id && message.channelId != "991451005843689482")
                 {
                     message.guild.members.fetch(executor.id)
                     .then(membro =>{
@@ -1470,14 +1469,12 @@ client.on("messageDelete", (message)=>{
                             {   
                                 if(message.content == "")
                                     notifica.description=notifica.description.replace("\n**Contenuto Del Messaggio:** ", "")
-
                                 notifica = new Discord.MessageEmbed()
                                     .setTitle("Messaggio Eliminato Da: "+executor.username+"#"+executor.discriminator)
                                     .setImage(message.attachments.first().url)
                                     .setDescription(notifica.description + "\n**↓↓↓↓↓↓↓↓Immagine↓↓↓↓↓↓↓**")
                                     .setFooter("Motivo Non Fornito")
                                     .setColor("RANDOM")
-
                                 message.guild.channels.cache.get(info).send({embeds : [notifica], components : [riga]})
                             }
                             else
@@ -1488,9 +1485,12 @@ client.on("messageDelete", (message)=>{
                         }   
                     })
                 }
-                
-            })
-        }
+  
+            }catch{
+                return
+            }
+            
+        })
     }catch{
             message.guild.members.fetch("598498238336729088").then(member =>{
                 member.user.send("max il coso dei messaggi eliminati ha fallito cabbo fai")
