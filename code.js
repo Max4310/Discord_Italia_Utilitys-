@@ -1337,7 +1337,7 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
                 .setCustomId("numerostelle")
                 .setStyle("SHORT")
             const recensione = new TextInputComponent()
-                .setLabel("Scrivi Di Seguito La Tua Recenzione")
+                .setLabel("Scrivi Di Seguito La Tua Recensione")
                 .setCustomId("recensione")
                 .setStyle("PARAGRAPH")
     
