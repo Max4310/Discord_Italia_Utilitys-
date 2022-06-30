@@ -1036,7 +1036,7 @@ client.on("interactionCreate", (interaction) => {
                 .setThumbnail(member.user.displayAvatarURL())
                 .addField("Ping", `${member.user}`)
                 .addField("Ruoli", `${pingroles}`)
-                .addField("Joinato Discord Italia Developers", `<t:${Math.floor(joined / 1000)}:R>`)
+                .addField("Joinato Discord Italia", `<t:${Math.floor(joined / 1000)}:R>`)
                 .addField("Joinato Discord", `<t:${Math.floor(member.user.createdTimestamp / 1000)}:R>`)
             
             interaction.reply({embeds: [embed]})
