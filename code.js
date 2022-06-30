@@ -567,8 +567,8 @@ client.on("interactionCreate", (comando)=>{
                             "content": null,
                             "embeds": [
                             {
-                                "title": "Discord Italia",
-                                "description": "───────────────────────────────────────\n**Utente è Verificato**",
+                                "title": "**"+membro.user.tag+" è Verificato**",
+                                "description": "",
                                 "color": 15871
                             }
                             ],
