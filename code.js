@@ -55,6 +55,7 @@ var code = []
 var UtenteVerifica = [] 
 var cont_verifica = 0
 var compare;
+var ultima_recensione
 
 
 function is_verificato(membro)
@@ -136,7 +137,7 @@ function parole_bannate(testo)
     return trovato
 }
 
-var report = new Discord.MessageButton() //pulsante del report tu dici "perche globale" e io perche no? 
+const report = new Discord.MessageButton() //pulsante del report tu dici "perche globale" e io perche no? 
     .setEmoji("👮‍♂️")
     .setStyle("DANGER")
     .setCustomId("report")
@@ -1089,6 +1090,10 @@ client.on("interactionCreate", (interaction) => {
                         var recensione = new Discord.MessageActionRow()
                             .addComponents(Nuova)
                             .addComponents(report)
+
+
+                        /*console.log(ultima_recensione.embeds[0],"---------")
+                        ultima_recensione.edit(ultima_recensione.embeds[0],null)*/
     
                         interaction.channel.send({embeds: [embed], components : [recensione]})
     
@@ -1133,12 +1138,12 @@ client.on("interactionCreate", (interaction) => {
                     interaction.reply({embeds : [risposta] , components : [recensione],ephemeral :true })
                 }
             }catch{
-                interaction.guild.members.fetch("598498238336729088").then(member =>{
+                /*interaction.guild.members.fetch("598498238336729088").then(member =>{
                     member.user.send("max il modulo recensioni ha fallito cabbo fai")
                 
                 })  
         
-                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})*/
         
                 return
             }
@@ -1326,7 +1331,8 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
         interaction.reply({embeds : [risp], ephemeral : true})
     }
     if(interaction.customId == "recensione"){ //crea il modulo del recenzione
-        try{
+        //try{
+            ultima_recensione = interaction.message
             const {MessageActionRow, Modal, TextInputComponent} = require("discord.js")
         
             const modal = new Modal()
@@ -1343,19 +1349,20 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
     
             const stellerecensionerow = new MessageActionRow().addComponents(stellerecensione)
             const recensionerow = new MessageActionRow().addComponents(recensione)
+
             
             modal.addComponents(stellerecensionerow, recensionerow)
             await interaction.showModal(modal)
-        }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
+        //}catch{
+            /*interaction.guild.members.fetch("598498238336729088").then(member =>{
                 member.user.send("max il Pulsante Della recensione ha fallito cabbo fai")
             
-            })  
+            })*/  
     
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+            //interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
     
             return
-        }
+        //}
 
         
     }
@@ -1587,11 +1594,6 @@ client.on('messageReactionAdd', async (reaction, user) => {
             }
         }
     }catch{
-        message.guild.members.fetch("598498238336729088").then(member =>{
-            member.user.send("max il coso di gabbo ha fallito cabbo fai")
-        
-        })  
-
         return
     }
     
