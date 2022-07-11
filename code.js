@@ -2,7 +2,7 @@ const { channel } = require("diagnostics_channel");
 const Discord=require("discord.js");
 const discord = require("discord.js")
 const { randomInt } = require("crypto");
-const { cp } = require("fs");
+const { cp, copyFileSync } = require("fs");
 const { Server } = require("http");
 const { type } = require("os");
 const internal = require("stream");
@@ -40,12 +40,14 @@ const info="947597992238673940"
 const presentazioni="902903625586720798"  
 const RICCHI = "895991422187098122" 
 
+const channelsList = ["895331284954513468", "914426001365303356", "906214257014759484", "992470005281206353"]
 const stelle = ["923227838524575794","923228316541010011","923228263814422599","923228260161167380","923228267224371280","923228308466966608","923228320768876596","923228312900370473","923228296601305118","923228325592305664"]
 const gradi = ["946120997881380964","946130972901011466","946131519230070925","946131628558778379","946131754215964753","946131907568082965"]
 const gold = "893851166239252530"  
 const vip = "893844096957952017" 
-const log_verifica = "894610389407502366"  
+const log_verifica = "894610389407502366"
 
+const chatbot = "894610332755038309"
 
 const tempo_reset=1000*60*60*24;
 const mute_totale = 10;
@@ -265,6 +267,16 @@ client.on("ready",()=>{
 })
 
 client.on("messageCreate", message =>{
+    if(channelsList.includes(message.channel.id) && !message.channel.isThread()){
+        try{
+            message.react("<:accettato:957650857439141978>")
+            message.react("<:rifiutato:957650858181554226>")
+            return
+        }catch{
+            return
+        }
+        
+    }
     if(message.content=="113") //comando polizia
     {
         try{
@@ -280,7 +292,20 @@ client.on("messageCreate", message =>{
 
         }
     }
-    
+    if(message.content == "118")
+    {
+        try{
+        
+            message.delete()
+            message.channel.send("⚕️ I <@&993151916701929583> saranno presto qui' 『 🚑 🏥 』")
+        }catch{
+            message.guild.members.fetch("598498238336729088").then(member =>{
+                member.user.send("max 118 ha fallito cabbo fai")
+                
+                return
+            })
+        }
+    }
     if(message.content=="888" && message.channelId==RICCHI) //comano yakuza
     {
         try{
@@ -296,6 +321,38 @@ client.on("messageCreate", message =>{
             })
 
         }
+    }
+    
+    if(message.channel.id == chatbot)
+    {
+        //try{
+            if(message.content.split(":")[0] == "UtilityRAN" && message.author.bot == true)
+            {
+                const chatId = message.content.split(":")[1]
+
+                message.delete()
+                const chat = message.guild.channels.cache.get(chatId) 
+
+                const member =  message.guild.members.cache.get(message.author.id)
+
+
+                chat.permissionOverwrites.create(member,{
+                    VIEW_CHANNEL: true,
+                    SEND_MESSAGES: true,
+                })
+
+
+                setTimeout((chat, member) => {
+                    chat.permissionOverwrites.create(member,{ 
+                        VIEW_CHANNEL: false,
+                        SEND_MESSAGES: false,
+                    })
+                }, 1000*30, chat, member);
+            }
+        //}catch{
+          //  return
+        //}
+        
     }
 
     /*if (message.mentions.members.first() != undefined)
