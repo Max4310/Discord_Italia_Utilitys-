@@ -325,7 +325,7 @@ client.on("messageCreate", message =>{
     
     if(message.channel.id == chatbot)
     {
-        //try{
+        try{
             if(message.content.split(":")[0] == "UtilityRAN" && message.author.bot == true)
             {
                 const chatId = message.content.split(":")[1]
@@ -349,9 +349,9 @@ client.on("messageCreate", message =>{
                     })
                 }, 1000*30, chat, member);
             }
-        //}catch{
-          //  return
-        //}
+        }catch{
+            return
+        }
         
     }
 
