@@ -1498,8 +1498,9 @@ client.on("messageDelete", (message)=>{
             type: "MESSAGE_DELETE",
         })
         .then (autore => {
-            var { executor, target } = autore.entries.first()
             try{
+                var { executor, target } = autore.entries.first()
+            
                 if(executor.id != message.author.id && autore.entries.first().extra.channel.id == message.channelId && target.id == message.author.id && message.channelId != "991451005843689482")
                 {
                     message.guild.members.fetch(executor.id)
