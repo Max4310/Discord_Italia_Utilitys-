@@ -1013,7 +1013,7 @@ client.on("interactionCreate", (interaction) => {
             {
                 interaction.member.roles.add(interaction.guild.roles.cache.get(abitante))
                 interaction.member.roles.add(interaction.guild.roles.cache.get(stella1))
-                interaction.deferUpdate()
+                interaction.reply({content : "Sei Verificato", ephemeral : true})
     
                 var message_log = new Discord.MessageEmbed()
                     .setTitle("DISCORD ITALIA")
