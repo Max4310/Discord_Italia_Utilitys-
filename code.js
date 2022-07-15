@@ -1006,16 +1006,14 @@ client.on("interactionCreate", (comando)=>{
 })
 
 client.on("interactionCreate", (interaction) => {
-    if(interaction.customId == "cd_verifica")
+    if(interaction.customId.split(",")[0] == "cd_verifica")
     {
         try{
-            var We_we = A_seconda_Autor(interaction.member.user.id)
-            if(interaction.fields.getTextInputValue("verifica_testo") == code[We_we])
+            if(interaction.fields.getTextInputValue("verifica_testo") == interaction.customId.split(",")[1])
             {
                 interaction.member.roles.add(interaction.guild.roles.cache.get(abitante))
                 interaction.member.roles.add(interaction.guild.roles.cache.get(stella1))
-                interaction.deferReply()
-                interaction.deleteReply()
+                
     
                 var message_log = new Discord.MessageEmbed()
                     .setTitle("DISCORD ITALIA")
@@ -1026,7 +1024,6 @@ client.on("interactionCreate", (interaction) => {
             }
             else
             {
-                UtenteVerifica[We_we] = null
                 var risposta = new Discord.MessageEmbed()
                     .setTitle("DISCORD ITALIA")
                     .setDescription("**Il Codice Risulta Essere Sbagliato**\n\n*Ricordo Che Non Bisogna Mettere Spazi, Ma Scrivere Semplicemente Il Risultato.*")
@@ -1036,13 +1033,6 @@ client.on("interactionCreate", (interaction) => {
                 interaction.reply({embeds : [risposta], ephemeral : true})
             }
         }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max la Verifica ha fallito cabbo fai")
-            
-            })  
-    
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
             return
         }
         
@@ -1353,30 +1343,22 @@ client.on("interactionCreate", (interaction) => {
 
 client.on("interactionCreate", async (interaction) => { //codici di interezione
     if(interaction.customId == "P_verifica" && interaction.member.user.bot==false)
-    {
+    {  
         try{
-            if(cont_verifica >= 100)
-                cont_verifica=0
-    
-            
             numero1 = Math.round(Math.random() * 30)
-            
+        
             if(numero1 <= 10 )
                 numero2 = Math.round(Math.random() * 30)
             else if(numero1 <= 20)
                 numero2 = Math.round(Math.random() * 20)
             else 
                 numero2 = Math.round(Math.random() * 10)
-    
-            code[cont_verifica] = numero1 + numero2
-            UtenteVerifica[cont_verifica] = interaction.member.user.id
-            cont_verifica++
             
             const {MessageActionRow, Modal, TextInputComponent} = require("discord.js")
                 
             const titolo = new Modal()
                 .setTitle("Fai Questa Somma Eseguire La Verifica")
-                .setCustomId("cd_verifica")
+                .setCustomId(`cd_verifica,${numero1+numero2}`)
             
             const testo = new TextInputComponent()
                 .setLabel("Scrivi Il Risultato: " + numero1 + "+" + numero2)
@@ -1387,15 +1369,9 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
             titolo.addComponents(somma_verifica)
             await interaction.showModal(titolo)
         }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max il Pulsante Della Verifica ha fallito cabbo fai")
-            
-            })  
-    
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
             return
         }
+       
     }
     else if(interaction.customId == "P_verifica")
     {
