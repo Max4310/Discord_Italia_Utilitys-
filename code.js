@@ -303,12 +303,7 @@ client.on("messageCreate", message =>{
             message.channel.send("🚨 La <@&911923177314201640> Sarà Presto Qui! 🚨")
         }
         catch{
-            message.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max 113 ha fallito cabbo fai")
-                
-                return
-            })
-
+            return
         }
     }
     if(message.content == "118")
@@ -317,12 +312,8 @@ client.on("messageCreate", message =>{
         
             message.delete()
             message.channel.send("⚕️ I <@&993151916701929583> saranno presto qui' 『 🚑 🏥 』")
-        }catch{
-            message.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max 118 ha fallito cabbo fai")
-                
-                return
-            })
+        }catch{        
+            return
         }
     }
     if(message.content=="888" && message.channelId==RICCHI) //comano yakuza
@@ -333,12 +324,7 @@ client.on("messageCreate", message =>{
             message.channel.send("💀 **ATTENZIONE!** La <@&970721741615824926> Sarà Presto Qui! 💀")
         }
         catch{
-            message.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max 888 ha fallito cabbo fai")
-                
-                return
-            })
-
+            return
         }
     }
     
@@ -1028,22 +1014,26 @@ client.on("interactionCreate", (interaction) => {
                 .setColor("BLURPLE")
             interaction.reply({embeds: [embed]})
         }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max /regole ha fallito cabbo fai")
-            
-            })  
-    
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
-            return 
+            try{
+                interaction.guild.members.fetch("598498238336729088").then(member =>{
+                    member.user.send("max /regole ha fallito cabbo fai")
+                
+                })  
+        
+                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+        
+                return 
+            }catch{
+                return
+            }
         }
         
     }
     if(interaction.commandName == "prefissi"){
         const embed = new discord.MessageEmbed()
-        .setTitle("BOT DELLA MUSICA")
-        .setDescription("**-)**<@866956216420007946> Prefix `di.`\n**-)**<@239631525350604801> Prefix `p!`\n**-)**<@282859044593598464> Prefix `.`\n**-)**<@159985870458322944> Prefix `!`\n\n**────────────────────────────────────────**\n**ACTIVITY RANK**\n\n**-)**`/top members server`\n(Visualizza la top generale del server)\n\n**-)**`/top members server -> Period: Week`\n(Visualizza la top settimanale del server)\n\n**-)** `/top members server -> Period: Day`\n(Visualizza la top giornaliera del server)")
-        .setColor("BLURPLE")
+            .setTitle("BOT DELLA MUSICA")
+            .setDescription("**-)**<@866956216420007946> Prefix `di.`\n**-)**<@239631525350604801> Prefix `p!`\n**-)**<@282859044593598464> Prefix `.`\n**-)**<@159985870458322944> Prefix `!`\n\n**────────────────────────────────────────**\n**ACTIVITY RANK**\n\n**-)**`/top members server`\n(Visualizza la top generale del server)\n\n**-)**`/top members server -> Period: Week`\n(Visualizza la top settimanale del server)\n\n**-)** `/top members server -> Period: Day`\n(Visualizza la top giornaliera del server)")
+            .setColor("BLURPLE")
         interaction.reply({embeds: [embed], ephemeral: true})
     } 
     if(interaction.commandName == "info"){
@@ -1077,14 +1067,18 @@ client.on("interactionCreate", (interaction) => {
             
             interaction.reply({embeds: [embed]})
         }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max /regole ha fallito cabbo fai")
-            
-            })  
-    
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
-            return
+            try{
+                interaction.guild.members.fetch("598498238336729088").then(member =>{
+                    member.user.send("max /info ha fallito cabbo fai")
+                
+                })  
+        
+                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+        
+                return 
+            }catch{
+                return
+            }
         }
     }
     if(interaction.isModalSubmit()){ // codice modal recenzioni
@@ -1173,14 +1167,18 @@ client.on("interactionCreate", (interaction) => {
                     interaction.reply({embeds : [risposta] , components : [recensione],ephemeral :true })
                 }
             }catch{
-                /*interaction.guild.members.fetch("598498238336729088").then(member =>{
-                    member.user.send("max il modulo recensioni ha fallito cabbo fai")
-                
-                })  
-        
-                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})*/
-        
-                return
+                try{
+                    interaction.guild.members.fetch("598498238336729088").then(member =>{
+                        member.user.send("max modulo recensioni ha fallito cabbo fai")
+                    
+                    })  
+            
+                    interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+            
+                    return 
+                }catch{
+                    return
+                }
             }
             
         }
@@ -1210,14 +1208,18 @@ client.on("interactionCreate", (interaction) => {
     
                 interaction.deferUpdate()
             }catch{
-                interaction.guild.members.fetch("598498238336729088").then(member =>{
-                    member.user.send("max il modulo recensioni ha fallito cabbo fai")
-                
-                })  
-        
-                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-        
-                return
+                try{
+                    interaction.guild.members.fetch("598498238336729088").then(member =>{
+                        member.user.send("max modulo report ha fallito cabbo fai")
+                    
+                    })  
+            
+                    interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+            
+                    return 
+                }catch{
+                    return
+                }
             }
             
         }
@@ -1305,14 +1307,18 @@ client.on("interactionCreate", (interaction) => {
     
                 interaction.message.delete() 
             }catch{
-                interaction.guild.members.fetch("598498238336729088").then(member =>{
-                    member.user.send("max il pulsante dell'eliminazione non ha funzionano ha fallito cabbo fai")
-                
-                })  
-        
-                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-        
-                return
+                try{
+                    interaction.guild.members.fetch("598498238336729088").then(member =>{
+                        member.user.send("max no rece ha fallito cabbo fai")
+                    
+                    })  
+            
+                    interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+            
+                    return 
+                }catch{
+                    return
+                }
             }
             
         }
@@ -1327,14 +1333,18 @@ client.on("interactionCreate", (interaction) => {
     
             interaction.deferUpdate()
         }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max la modifica del embed dei messaggi eliminati ha fallito cabbo fai")
-            
-            })  
-    
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
-            return
+            try{
+                interaction.guild.members.fetch("598498238336729088").then(member =>{
+                    member.user.send("max il modal del motivo ha fallito cabbo fai")
+                
+                })  
+        
+                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+        
+                return 
+            }catch{
+                return
+            }
         }
         
     }
@@ -1383,7 +1393,7 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
         interaction.reply({embeds : [risp], ephemeral : true})
     }
     if(interaction.customId == "recensione"){ //crea il modulo del recenzione
-        //try{
+        try{
             ultima_recensione = interaction.message
             const {MessageActionRow, Modal, TextInputComponent} = require("discord.js")
         
@@ -1405,16 +1415,20 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
             
             modal.addComponents(stellerecensionerow, recensionerow)
             await interaction.showModal(modal)
-        //}catch{
-            /*interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max il Pulsante Della recensione ha fallito cabbo fai")
-            
-            })*/  
-    
-            //interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
-            return
-        //}
+        }catch{
+            try{
+                interaction.guild.members.fetch("598498238336729088").then(member =>{
+                    member.user.send("max il modulo recensione ha fallito cabbo fai")
+                
+                })  
+        
+                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+        
+                return 
+            }catch{
+                return
+            }
+        }
 
         
     }
@@ -1435,14 +1449,18 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
             await interaction.showModal(modal)
             compare =  interaction.message
         }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max il Pulsante Del report ha fallito cabbo fai")
-            
-            })  
-    
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
-            return
+            try{
+                interaction.guild.members.fetch("598498238336729088").then(member =>{
+                    member.user.send("max il report ha fallito cabbo fai")
+                
+                })  
+        
+                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+        
+                return 
+            }catch{
+                return
+            }
         }
         
         
@@ -1471,14 +1489,18 @@ client.on("interactionCreate", async (interaction) => { //codici di interezione
             else
                 interaction.reply({content : "❌ Non Hai Eliminato Tu Il Messaggio", ephemeral : true})
         }catch{
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max il Pulsante Del reason del messaggio ha fallito cabbo fai")
-            
-            })  
-    
-            interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
-    
-            return
+            try{
+                interaction.guild.members.fetch("598498238336729088").then(member =>{
+                    member.user.send("max il modal motivo ha fallito cabbo fai")
+                
+                })  
+        
+                interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
+        
+                return 
+            }catch{
+                return
+            }
         }
         
         
@@ -1552,14 +1574,18 @@ client.on("messageDelete", (message)=>{
             
         })
     }catch{
-            message.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max il coso dei messaggi eliminati ha fallito cabbo fai")
+        try{
+            message.channel.guild.members.fetch("598498238336729088").then(member =>{
+                member.user.send("max il message delete ha fallito cabbo fai")
             
             })  
     
             //interaction.reply({content : "Qualcosa è Andato Storto", ephemeral : true})
     
+            return 
+        }catch{
             return
+        }
     }    
 })
 
