@@ -3,6 +3,11 @@ const path = require("path")
 const variabili = require(path.join(__dirname,"../../../variabili.json"))
 const fs = require("fs")
 
+function sleep(s){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + (s*1000)){ /* non faccio niente */ } 
+}
+
 const Capo= 15 
 const Commissari = 10
 const Ispettori = 6
@@ -51,21 +56,23 @@ function mute (comando){
             {
                 variabili.inizio_nute=true //dico di non entrare piu qui dentro perche gia c'è stato un altro mute
                 
-                setTimeout(() => {
-                    variabili.ContCapo = 0,
-                    variabili.ContCommissari = 0,
-                    variabili.ContIspettori = 0,
-                    variabili.ContAgenti = 0
-                    variabili.inizio_nute = false
+                var data = JSON.stringify(variabili)
+                fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
+                    if(err) console.log('error', err);
+                });
 
-                    var data = JSON.stringify(variabili)
-                    fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
-                        if(err) console.log('error', err);
-                    });
+                sleep(86400)
+                
+                variabili.ContCapo = 0,
+                variabili.ContCommissari = 0,
+                variabili.ContIspettori = 0,
+                variabili.ContAgenti = 0
+                variabili.inizio_nute = false
 
-                },tempo_reset); //resetta il cont dei mute fatti dopo un gionro
-                
-                
+                var data = JSON.stringify(variabili)
+                fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
+                    if(err) console.log('error', err);
+                });
             }
 
             switch (grado(comando.member._roles))
@@ -254,12 +261,12 @@ function mute (comando){
                 }
             }
         }
-        //il comando è eseguibile in qualisiasi chat e i messaggio mandati NON DI LOG vengono inviati in maniera effimera quindi visulizzabile solo al polizotto
-
         var data = JSON.stringify(variabili)
         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
             if(err) console.log('error', err);
         });
+
+
         return
     }catch (err){
         console.log(err)

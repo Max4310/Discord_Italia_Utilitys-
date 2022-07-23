@@ -1,8 +1,9 @@
 const path = require("path")
 const variabili = require(path.join(__dirname,"../variabili.json"))
 const fs = require("fs")
+const { Client } = require("discord.js")
 
-function menager (interaction)
+function menager (interaction,client)
 {
     if(interaction.isCommand())
     {
@@ -25,7 +26,7 @@ function menager (interaction)
         {
             const elimina = require (path.join(__dirname,"/comandi/staff/delete.js"))
 
-            elimina.elimina(interaction)
+            elimina.elimina(interaction,client)
         }
         else if(interaction.commandName=="mute") //mute.js
         {
@@ -55,6 +56,12 @@ function menager (interaction)
         {
             interaction.reply({content : "❌ Non Puoi Fare Questo Comando Fuori Da Un Ticket", ephemeral: true})
             return
+        }
+        else if(interaction.commandName == "pattuglie") // comandi / staff /pattuglie.js
+        {
+            const pattuglie = require (path.join(__dirname,"/comandi/staff/pattuglie.js"))
+
+            pattuglie.pattuglie(interaction)
         }
     }
     else if(interaction.isModalSubmit()){ 
@@ -111,6 +118,12 @@ function menager (interaction)
             const reason_messaggio_eliminato = require (path.join(__dirname,"/recensioni/report/reason/pulsante.js"))
 
             reason_messaggio_eliminato.pulsante(interaction)
+        }
+        else if(interaction.customId.split(",")[0] == "pulaLevaSI") 
+        {
+            const pulaLevaSI = require (path.join(__dirname,"/comandi/staff/pulaLevaSI.js"))
+
+            pulaLevaSI.pulaLevaSI(interaction)
         }
     }
 }
