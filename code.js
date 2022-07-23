@@ -6,7 +6,14 @@ client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXu
 const fs = require("fs")
 const path = require("path")
 
+
 client.on("ready",()=>{    
+    try{
+        const reset = require (path.join(__dirname,"/codici/reset.js"))
+        reset.reset()
+    }catch(err){
+        console.log(err)
+    }
     
     console.log("bot online")
 })
