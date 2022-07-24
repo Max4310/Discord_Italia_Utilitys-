@@ -37,6 +37,7 @@ function grado (ruoli)
 
 function mute (comando){
     try{
+        console.log("ciaooo")
         var utente= comando.options.getUser("user"); //prendo l'utente passato dall'operatore
         var reason= comando.options.getString("motivo");
         var membro = comando.guild.members.cache.get(utente.id); //prendo il membro passato dall'operatore

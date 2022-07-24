@@ -22,7 +22,7 @@ function pattuglie (interaction)
         const fs = require("fs")
         if(interaction.options.getString("azione") == "+") //aggiungere nelle pattuglie 
         {
-            var pattugli = interaction.options.getInteger("pattuglia")
+            var pattugli = interaction.options.getInteger("pattuglia") 
             if(pattugli == 6 && interaction.member.user.id != "624589515096457217") return interaction.reply({content : "❌ Non Sei Autorizzato A Modificare Questa Pattuglia", ephemeral : true}) 
 
             if(pattugli != null && pattugli != undefined)
