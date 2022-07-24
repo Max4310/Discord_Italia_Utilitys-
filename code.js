@@ -8,10 +8,13 @@ const path = require("path")
 
 //ciaooo
 
-client.on("ready",()=>{    
+client.on("ready",()=>{   
     try{
         const reset = require (path.join(__dirname,"/codici/reset.js"))
+        console.log(reset)
         reset.reset()
+
+        console.log("ciaooo")
     }catch(err){
         console.log(err)
     }

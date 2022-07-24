@@ -54,17 +54,17 @@ async function menager (reaction, user){
               reaction.message.fetch()
                 .then(message => {
                   if (!message.member.roles.cache.some(role => role.id == variabili.BIGBRAIN)){  
-                    message.guild.roles.fetch(BIGBRAIN).then(role => {
+                    message.guild.roles.fetch(variabili.BIGBRAIN).then(role => {
                       message.member.roles.add(role)
                     })
                     counter1 = true
                   }
                   if (message.member.roles.cache.some(role => role.id == variabili.STELLA7)) {
                     counter = true
-                    message.guild.roles.fetch(STELLA8).then(role => { 
+                    message.guild.roles.fetch(variabili.STELLA8).then(role => { 
                       message.member.roles.add(role)
                     })
-                    message.guild.roles.fetch(STELLA7).then(role => { 
+                    message.guild.roles.fetch(variabili.STELLA7).then(role => { 
                       message.member.roles.remove(role)
                     })
                   }
