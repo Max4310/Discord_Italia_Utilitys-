@@ -6,6 +6,7 @@ client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXu
 const fs = require("fs")
 const path = require("path")
 
+//ciaooo
 
 client.on("ready",()=>{    
     try{
