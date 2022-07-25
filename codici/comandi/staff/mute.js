@@ -37,7 +37,7 @@ function grado (ruoli)
 
 function mute (comando){
     try{
-        console.log("ciaooo")
+        /*console.log("ciaooo")
         var utente= comando.options.getUser("user"); //prendo l'utente passato dall'operatore
         var reason= comando.options.getString("motivo");
         var membro = comando.guild.members.cache.get(utente.id); //prendo il membro passato dall'operatore
@@ -52,30 +52,8 @@ function mute (comando){
             
         }
         else
-        {
-            if(variabili.inizio_nute==false) //verifico che sia il primo mute della giornata
-            {
-                variabili.inizio_nute=true //dico di non entrare piu qui dentro perche gia c'è stato un altro mute
-                
-                var data = JSON.stringify(variabili)
-                fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
-                    if(err) console.log('error', err);
-                });
-
-                sleep(86400)
-                
-                variabili.ContCapo = 0,
-                variabili.ContCommissari = 0,
-                variabili.ContIspettori = 0,
-                variabili.ContAgenti = 0
-                variabili.inizio_nute = false
-
-                var data = JSON.stringify(variabili)
-                fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
-                    if(err) console.log('error', err);
-                });
-            }
-
+        {   
+            console.log(grado(comando.member._roles))
             switch (grado(comando.member._roles))
             {
                 case 0:
@@ -262,13 +240,32 @@ function mute (comando){
                 }
             }
         }
+
+        if(variabili.inizio_nute==false) //verifico che sia il primo mute della giornata
+        {
+            variabili.inizio_nute=true 
+            sleep(86400)
+            
+            variabili.ContCapo = 0,
+            variabili.ContCommissari = 0,
+            variabili.ContIspettori = 0,
+            variabili.ContAgenti = 0
+            variabili.inizio_nute = false
+
+            var data = JSON.stringify(variabili)
+            fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
+                if(err) console.log('error', err);
+            });
+        }
+
+        console.log("je sto")
+        sleep(2)
         var data = JSON.stringify(variabili)
         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
             if(err) console.log('error', err);
         });
-
-
-        return
+        return*/
+        comando.reply("❌ Comando In Fase Di Testing")
     }catch (err){
         console.log(err)
         try{
