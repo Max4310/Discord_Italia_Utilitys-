@@ -22,19 +22,18 @@ function menager (interaction,client)
 
             info.info(interaction)
         }
-        /*if(interaction.commandName=="delete") //delete.js
+        else if(interaction.commandName=="delete") //delete.js
         {
             const elimina = require (path.join(__dirname,"/comandi/staff/delete.js"))
 
             elimina.elimina(interaction,client)
         }
-        
-        if(interaction.commandName=="mute") //mute.js
+        else if(interaction.commandName=="mute") //mute.js
         {
             const mute = require (path.join(__dirname,"/comandi/staff/mute.js"))
 
             mute.mute(interaction)
-        }*/
+        }
         else if(interaction.commandName=="verifica" && interaction.channel.parentId==variabili.assistenza) //verifica.js 
         {
             const verifica = require (path.join(__dirname,"/comandi/staff/verifica.js"))

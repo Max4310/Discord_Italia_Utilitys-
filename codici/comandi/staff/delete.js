@@ -36,15 +36,17 @@ function elimina (interaction,client){
                         if(err) console.log('error', err);
                     });
                     
-                    sleep(86400)
-                    variabili.entroDelete=true
-                    variabili.ContDelete = 0
-
-
-                    var data = JSON.stringify(variabili)
-                    fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
-                        if(err) console.log('error', err);
-                    });
+                    setTimeout((x)=>{
+                        x.entroDelete=true
+                        x.ContDelete = 0
+                        console.log("delete ripristinato")
+    
+                        var data = JSON.stringify(x)
+                        fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
+                            if(err) console.log('error', err);
+                        });
+                    },86400*1000, variabili)
+                    
                 }
 
                 variabili.ContDelete++

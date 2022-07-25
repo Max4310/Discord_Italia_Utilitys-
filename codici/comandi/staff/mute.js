@@ -243,22 +243,23 @@ function mute (comando){
         if(variabili.inizio_nute==false) //verifico che sia il primo mute della giornata
         {
             variabili.inizio_nute=true 
-            sleep(86400)
             
-            variabili.ContCapo = 0,
-            variabili.ContCommissari = 0,
-            variabili.ContIspettori = 0,
-            variabili.ContAgenti = 0
-            variabili.inizio_nute = false
+            setTimeout((x)=>{
+                x.ContCapo = 0,
+                x.ContCommissari = 0,
+                x.ContIspettori = 0,
+                x.ContAgenti = 0
+                x.inizio_nute = false
 
-            var data = JSON.stringify(variabili)
-            fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
-                if(err) console.log('error', err);
-            });
+                console.log("mute ripristinato")
+
+                var data = JSON.stringify(x)
+                fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
+                    if(err) console.log('error', err);
+                });
+            }, 86400*1000, variabili)
         }
 
-        console.log("je sto")
-        sleep(2)
         var data = JSON.stringify(variabili)
         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
             if(err) console.log('error', err);
