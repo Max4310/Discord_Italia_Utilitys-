@@ -37,7 +37,6 @@ function grado (ruoli)
 
 function mute (comando){
     try{
-        /*console.log("ciaooo")
         var utente= comando.options.getUser("user"); //prendo l'utente passato dall'operatore
         var reason= comando.options.getString("motivo");
         var membro = comando.guild.members.cache.get(utente.id); //prendo il membro passato dall'operatore
@@ -264,8 +263,8 @@ function mute (comando){
         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
             if(err) console.log('error', err);
         });
-        return*/
-        comando.reply("❌ Comando In Fase Di Testing")
+        return
+        
     }catch (err){
         console.log(err)
         try{
