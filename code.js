@@ -235,7 +235,7 @@ client.on("ready",()=>{
     console.log("bot online")
 })
 
-/*client.on("guildMemberAdd", (member) => { //guildMemberAdd.js
+client.on("guildMemberAdd", (member) => { //guildMemberAdd.js
     try{
         const guildMemberAdd = require (path.join(__dirname,"/codici/guildMemberAdd.js"))
         guildMemberAdd.menager(member)
@@ -252,7 +252,7 @@ client.on("messageCreate", message =>{ // messageCreate.js
     }catch(err){
         console.log(err)
     }
-})*/
+})
 
 client.on("interactionCreate", (interaction) => { //interactionCreate.js
     try{
@@ -263,7 +263,7 @@ client.on("interactionCreate", (interaction) => { //interactionCreate.js
     }
 })
 
-/*client.on("messageDelete", (message)=>{ //messageDelete.js
+client.on("messageDelete", (message)=>{ //messageDelete.js
     try{
         const messageDelete = require (path.join(__dirname,"/codici/messageDelete.js"))
         messageDelete.menager(message,client)
@@ -279,4 +279,4 @@ client.on('messageReactionAdd', (reaction, user) => { //messageReactionAdd.js
     }catch(err){
         console.log(err)
     }
-});*/
+});

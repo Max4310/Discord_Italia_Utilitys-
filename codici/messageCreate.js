@@ -2,7 +2,7 @@ const Discord=require("discord.js");
 const path = require("path")
 const variabili = require(path.join(__dirname,"../variabili.json"))
 
-var menager = function (message) {
+function menager (message) {
     if(variabili.channelsList.includes(message.channel.id) && !message.channel.isThread()){
         try{
             message.react("<:accettato:957650857439141978>")
