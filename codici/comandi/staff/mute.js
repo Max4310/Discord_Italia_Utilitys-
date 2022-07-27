@@ -75,7 +75,7 @@ function mute (comando){
                         variabili.ContCapo++
                         membro.timeout(1000 * 60 * 60)
 
-                        var data = JSON.stringify(x)
+                        var data = JSON.stringify(variabili)
                         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
                             if(err) console.log('error', err);
                         });
@@ -157,7 +157,7 @@ function mute (comando){
                         variabili.ContCommissari++
                         membro.timeout(1000 * 60 * 60)
 
-                        var data = JSON.stringify(x)
+                        var data = JSON.stringify(variabili)
                         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
                             if(err) console.log('error', err);
                         });
@@ -236,7 +236,7 @@ function mute (comando){
                     {
                         variabili.ContIspettori++
                         membro.timeout(1000 * 60 * 60)
-                        var data = JSON.stringify(x)
+                        var data = JSON.stringify(variabili)
                         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
                             if(err) console.log('error', err);
                         });
@@ -318,7 +318,7 @@ function mute (comando){
                         variabili.ContAgenti++
                         membro.timeout(1000 * 60 * 60)
                         
-                        var data = JSON.stringify(x)
+                        var data = JSON.stringify(variabili)
                         fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
                             if(err) console.log('error', err);
                         });
