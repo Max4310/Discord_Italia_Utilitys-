@@ -32,7 +32,7 @@ function menager (interaction,client)
         {
             const mute = require (path.join(__dirname,"/comandi/staff/mute.js"))
 
-            mute.mute(interaction)
+            mute.mute(interaction,client)
         }
         else if(interaction.commandName=="verifica" && interaction.channel.parentId==variabili.assistenza) //verifica.js 
         {

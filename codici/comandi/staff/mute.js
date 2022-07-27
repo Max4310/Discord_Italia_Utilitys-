@@ -50,7 +50,7 @@ function grado (ruoli)
     return null
 }
 
-function mute (comando){
+function mute (comando,client){
     try{
         var utente= comando.options.getUser("user"); 
         var reason= comando.options.getString("motivo");
