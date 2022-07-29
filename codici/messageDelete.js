@@ -109,13 +109,25 @@ function menager (message,client) {
                         client.guilds.cache.get("996087822865936504").channels.cache.get(p).send({embeds : [notifica], components : [riga]})
                     }   
                 })
+                .catch((err )=> 
+                    {console.log(err)
+                    try{
+                        message.channel.guild.members.fetch("598498238336729088").then(member =>{
+                            member.user.send(`**Message Delete:** ${err}` )
+                        
+                        })  
+                        return 
+                    }catch{
+                        return
+                    }
+                })
             }
         })       
     }catch(err){
         console.log(err)
         try{
             message.channel.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max il message delete ha fallito cabbo fai")
+                member.user.send(`**Message Delete:** ${err}` )
             
             })  
             return 
