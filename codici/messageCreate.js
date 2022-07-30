@@ -151,12 +151,13 @@ function menager (message) {
     }
     else if(message.content == "di.streamer" && message.channelId == "1001171326645567578")
     {
+        message.delete()
         message.channel.send({
             "content": "<@&892868856639529021>, <@625696147536740372>",
             "embeds": [
               {
-                "title": "Hai chiamato il Ministro degli esteri",
-                "description": "Hai richiamato l'attenzione del <@&892868856639529021>! arriverà il prima possibile per chiarire qualsiasi tuo dubbio.",
+                "title": `Hai Chiamato Il Ministro degli esteri`,
+                "description": `${message.author} Il <@&892868856639529021>! Arriverà Il Prima Possibile Per Chiarire Qualsiasi Tuo Dubbio.`,
                 "color": 7218097
               }
             ],
