@@ -152,7 +152,7 @@ function menager (message) {
     else if(message.content == "di.streamer" && message.channelId == "1001171326645567578")
     {
         message.channel.send({
-            "content": "<@&892868856639529021>",
+            "content": "<@&892868856639529021>, <@625696147536740372>",
             "embeds": [
               {
                 "title": "Hai chiamato il Ministro degli esteri",
