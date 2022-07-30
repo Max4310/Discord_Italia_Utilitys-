@@ -156,7 +156,7 @@ function menager (message) {
             "content": "<@&892868856639529021>, <@625696147536740372>",
             "embeds": [
               {
-                "title": `Hai Chiamato Il Ministro degli esteri`,
+                "title": `Hai Chiamato Il Ministro Degli Esteri`,
                 "description": `${message.author} Il <@&892868856639529021>! Arriverà Il Prima Possibile Per Chiarire Qualsiasi Tuo Dubbio.`,
                 "color": 7218097
               }
