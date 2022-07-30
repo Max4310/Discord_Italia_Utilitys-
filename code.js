@@ -5,6 +5,7 @@ const client = new Discord.Client(
 client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXuufmQ")
 const fs = require("fs")
 const path = require("path")
+var infoTickets = []
 
 client.on("ready",()=>{   
 
@@ -13,7 +14,6 @@ client.on("ready",()=>{
         description: "mostra tutti i prefissi",
         options: null,
     })
-
     client.guilds.cache.get("891739229846118461").commands.create({
         name: "info",
         description: "member info",
@@ -86,7 +86,6 @@ client.on("ready",()=>{
             }
         ],
     })
-            ///////////////////////////////////////////
     client.guilds.cache.get("891739229846118461").commands.create({
         name : "grado",
         description : "sistema il grando di un utente",
@@ -224,6 +223,42 @@ client.on("ready",()=>{
             }
         ],
     })
+    client.guilds.cache.get("891739229846118461").commands.create({ 
+        name: "add",
+        description: "Aggiunge un Utente al Ticket",
+        options: [
+            {
+                name: "utente",
+                type: "USER",
+                description: "Utente da Aggiungere al Ticket",
+                required: true
+            }
+        ]
+    })
+    client.guilds.cache.get("891739229846118461").commands.create({ 
+        name: "remove",
+        description: "Rimuove un Utente al Ticket",
+        options: [
+            {
+                name: "utente",
+                type: "USER",
+                description: "Utente da Rimuovere dal Ticket",
+                required: true
+            }
+        ]
+    })
+    client.guilds.cache.get("891739229846118461").commands.create({
+        name: "close",
+        description: "Chiude il Ticket",
+        options: [
+          {
+              name: "reason",
+              type: "STRING",
+              description: "the reason",
+              required: true
+          }
+        ]
+    })
     
     try{
         const reset = require (path.join(__dirname,"/codici/reset.js"))
@@ -234,6 +269,8 @@ client.on("ready",()=>{
     
     console.log("bot online")
 })
+
+
 
 client.on("guildMemberAdd", (member) => { //guildMemberAdd.js
     try{
@@ -257,11 +294,12 @@ client.on("messageCreate", message =>{ // messageCreate.js
 client.on("interactionCreate", (interaction) => { //interactionCreate.js
     try{
         const interactionCreate = require (path.join(__dirname,"/codici/interactionCreate.js"))
-        interactionCreate.menager(interaction,client)
+        interactionCreate.menager(interaction,client,infoTickets)
     }catch(err){
         console.log(err)
     }
 })
+
 
 client.on("messageDelete", (message)=>{ //messageDelete.js
     try{
@@ -280,3 +318,13 @@ client.on('messageReactionAdd', (reaction, user) => { //messageReactionAdd.js
         console.log(err)
     }
 });
+
+client.on("guildMemberRemove", member => {
+    //guildMemberRemove.js
+    try{
+        const guildMemberRemove = require (path.join(__dirname,"/codici/guildMemberRemove.js"))
+        guildMemberRemove.menager(member,infoTickets)
+    }catch(err){
+        console.log(err)
+    }
+})

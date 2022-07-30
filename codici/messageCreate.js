@@ -120,6 +120,35 @@ function menager (message) {
 
         message.channel.send ({ embeds : [embed], components : [recensione]})
     }
+    else  if(message.content == "di.panel" && message.author.id == "598498238336729088")
+    {
+        const EmbedTicketTool = new Discord.MessageEmbed()
+        .setTitle("Assistenza di Discord Italia")
+        .setColor("#2f3136")
+        .setDescription("━━━━━━━━━━━━━━━━━\n\n**Per Ricevere Assistenza ⇨ 📩\n\nPer Segnalare Un Utente ⇨ 🚔\n\nPer Assistenza Acquisti ⇨ 💳**\n\n━━━━━━━━━━━━━━━━━")
+
+        const rorow = new Discord.MessageActionRow()
+        .addComponents(
+            new Discord.MessageButton()
+            .setLabel("Assistenza")
+            .setEmoji('📩')
+            .setCustomId("assistenzanormale")
+            .setStyle("DANGER"),
+            new Discord.MessageButton()
+            .setLabel("Ricorsi")
+            .setEmoji('🚔')
+            .setCustomId("ricorsi")
+            .setStyle("PRIMARY"),
+            new Discord.MessageButton()
+            .setLabel("Acquisti")
+            .setEmoji('💳')
+            .setCustomId("acquisti")
+            .setStyle("SUCCESS"),
+        )
+
+        message.delete()
+        message.channel.send({embeds: [EmbedTicketTool], components: [rorow]})    
+    }
 }
 
 module.exports = {menager}
