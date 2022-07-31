@@ -149,21 +149,6 @@ function menager (message) {
         message.delete()
         message.channel.send({embeds: [EmbedTicketTool], components: [rorow]})    
     }
-    else if(message.content == "di.streamer" && message.channelId == "1001171326645567578")
-    {
-        message.delete()
-        message.channel.send({
-            "content": "<@&892868856639529021>, <@625696147536740372>",
-            "embeds": [
-              {
-                "title": `Hai Chiamato Il Ministro Degli Esteri`,
-                "description": `${message.author} Il <@&892868856639529021>! Arriverà Il Prima Possibile Per Chiarire Qualsiasi Tuo Dubbio.`,
-                "color": 7218097
-              }
-            ],
-            "attachments": []
-        })
-    }
 }
 
 module.exports = {menager}

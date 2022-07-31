@@ -81,7 +81,7 @@ function operatore(interaction,infoTickets)
       }
     embed.setFooter({text:"Passaggio a ticket con operatore"})
     interaction.guild.channels.cache.get(TRANSCRIPTSID).send({embeds: [embed]})
-    infoTickets.splice(index)
+    infoTickets.splice(index,1)
   }catch(err){
     console.log(err)
     try{

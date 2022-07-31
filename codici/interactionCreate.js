@@ -246,5 +246,14 @@ function menager (interaction,client,infoTickets)
             close.close(interaction)
         }
     }
+    else if(interaction.isSelectMenu())
+    {
+        if(interaction.customId.split(":")[0] == "profilo") //gestisce il profilo
+        {
+            const profilo = require("./profilo.js")
+
+            profilo.profilo(interaction)
+        }
+    }
 }
 module.exports = {menager}
