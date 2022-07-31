@@ -110,8 +110,10 @@ async function menager (message,client) {
                             break;
                     }
                     client.guilds.cache.get("996087822865936504").channels.cache.get(p).send({embeds : [notifica], components : [riga]})
-                }   
+                }
+                   
             })
+            .catch((err) => console.log(err))
         }       
     }catch(err){
         console.log(err)

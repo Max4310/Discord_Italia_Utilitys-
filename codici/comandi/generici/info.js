@@ -34,10 +34,11 @@ function info(interaction){
         interaction.reply({embeds: [embed]})
 
 
-    }catch{
+    }catch(err){
+        console.log(err)
         try{
             interaction.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max /info ha fallito cabbo fai")
+                member.user.send(`**/info **${err}`)
             
             })  
     
