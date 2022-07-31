@@ -50,7 +50,11 @@ async function close (interaction)
 
       interaction.guild.channels.cache.get(TRANSCRIPTSID).send({embeds: [transcriptEmbed], files: [attachment]})
       setTimeout(() =>{
-        interaction.channel.delete()
+        try{
+          interaction.channel.delete()
+        }catch{
+          return
+        }
       },1000*5)
     }
     else
