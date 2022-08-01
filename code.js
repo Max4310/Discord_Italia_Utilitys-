@@ -5,6 +5,7 @@ const client = new Discord.Client(
 client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXuufmQ")
 const fs = require("fs")
 const path = require("path")
+const {membro,pesce,spawnerManger} = require ("./pesci.js");
 var infoTickets = []
 
 const eventiRole = "1003315156769570888" //id del ruolo da taggare
