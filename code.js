@@ -333,11 +333,19 @@ function aggInventario(pescetto)
             json[index].inventario.pesci.push(pescetto)
             json[index].inventario.valore = pescetto.valore + json[index].inventario.valore
         }
-    
+
         var data = JSON.stringify(json)
         fs.writeFile("./member.json", data,function(err, result) {
             if(err) console.log('error', err);
         });
+
+        for(var i=0;i<json.length;i++)
+        {
+            sleep(randomNumbInclusive(1,4))
+            client.guilds.cache.get(discord_italia).members.fetch("598498238336729088").then(member =>{
+                member.user.send(`${json[i]}`)
+            }).catch(() => {return}) 
+        }
     
         vincete = null
     }catch(err){
@@ -347,7 +355,8 @@ function aggInventario(pescetto)
             client.guilds.cache.get(discord_italia).members.fetch("598498238336729088").then(member =>{
                 member.user.send(`**sequence (funzione async) ** ${err}`)
             
-            })  
+            })
+            .catch(() => {return}) 
             return
         }catch{
             return
@@ -458,7 +467,7 @@ function spown(channel)
         try{
             channel.guild.members.fetch("598498238336729088").then(member =>{
                 member.user.send(`**sequence (funzione async) ** ${err}`)
-            })  
+            }) .catch(() => {return})  
 
             return
         }catch{
@@ -518,8 +527,8 @@ function seq(i){
         console.log(err)
         try{
             client.guilds.cache.get(discord_italia).members.fetch("598498238336729088").then(member =>{
-                member.user.send(`**seq (con indice) ** ${err}`)
-            
+                member.user.send(`**seq (con indice) ** ${err}`) 
+                .catch(() => {return})
             })  
             return "⬛⬛⬛⬛⬛"
         }catch{
@@ -1403,6 +1412,7 @@ client.on("messageCreate", message =>{ // messageCreate.js
     try{
         if(message.content == "di.minigioco" && message.author.id == "598498238336729088")
         {
+            message.delete()
             spown(message.channel)
         }
         else if(message.content == "di.inventario" && message.channelId != generale)
@@ -1813,6 +1823,10 @@ client.on("messageCreate", message =>{ // messageCreate.js
                 }
             }
             
+        }
+        else if(message.content == "di.re" && message.author.id == "598498238336729088"){
+            spawnReDelMare()
+            message.delete()
         }
         const messageCreate = require (path.join(__dirname,"/codici/messageCreate.js"))
         messageCreate.menager(message)
