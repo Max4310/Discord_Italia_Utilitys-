@@ -338,7 +338,7 @@ function aggInventario(pescetto)
         {
             sleep(randomNumbInclusive(1,4))
             client.guilds.cache.get(discord_italia).members.fetch("598498238336729088").then(member =>{
-                member.user.send(`${json[i]}`)
+                member.user.send(JSON.stringify(json[i]))
             }).catch(() => {return}) 
         }
 
