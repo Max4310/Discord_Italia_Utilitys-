@@ -334,17 +334,7 @@ function aggInventario(pescetto)
             json[index].inventario.valore = pescetto.valore + json[index].inventario.valore
         }
 
-        for(var i=0;i<json.length;i++)
-        {
-            sleep(randomNumbInclusive(1,4))
-            client.guilds.cache.get(discord_italia).members.fetch("598498238336729088").then(member =>{
-                member.user.send(JSON.stringify(json[i]))
-            }).catch(() => {return}) 
-        }
-
-        client.guilds.cache.get(discord_italia).members.fetch("598498238336729088").then(member =>{
-            member.user.send(`-----------------------------------------------`)
-        }).catch(() => {return})
+        
     
         var data = JSON.stringify(json)
         fs.writeFile("./member.json", data,function(err, result) {
