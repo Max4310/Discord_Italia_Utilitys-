@@ -334,11 +334,6 @@ function aggInventario(pescetto)
             json[index].inventario.valore = pescetto.valore + json[index].inventario.valore
         }
 
-        var data = JSON.stringify(json)
-        fs.writeFile("./member.json", data,function(err, result) {
-            if(err) console.log('error', err);
-        });
-
         for(var i=0;i<json.length;i++)
         {
             sleep(randomNumbInclusive(1,4))
@@ -351,6 +346,10 @@ function aggInventario(pescetto)
             member.user.send(`-----------------------------------------------`)
         }).catch(() => {return})
     
+        var data = JSON.stringify(json)
+        fs.writeFile("./member.json", data,function(err, result) {
+            if(err) console.log('error', err);
+        });
         vincete = null
     }catch(err){
         vincete =  null
