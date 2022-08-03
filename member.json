@@ -1,1 +1,12 @@
-[]
+[
+    {"id":"790144710068273203","inventario":{"pesci":[{"valore":120,"tipo":"Fail","rarita":"bot<33"}],"valore":120}},
+    {"id":"921878392628973578","inventario":{"pesci":[{"valore":82,"tipo":"Fail","rarita":"bot<33"}],"valore":82}},
+    {"id":"773303982809415695","inventario":{"pesci":[{"valore":74,"tipo":"Fail","rarita":"bot<33"}],"valore":74}},
+    {"id":"700695024932880474","inventario":{"pesci":[{"valore":68,"tipo":"Fail","rarita":"bot<33"}],"valore":68}},
+    {"id":"625696147536740372","inventario":{"pesci":[{"valore":52,"tipo":"Fail","rarita":"bot<33"}],"valore":52}},
+    {"id":"598498238336729088","inventario":{"pesci":[{"valore":49,"tipo":"Fail","rarita":"bot<33"}],"valore":49}},
+    {"id":"795624602495221772","inventario":{"pesci":[{"valore":25,"tipo":"Fail","rarita":"bot<33"}],"valore":25}},
+    {"id":"549332648569339944","inventario":{"pesci":[{"valore":25,"tipo":"Fail","rarita":"bot<33"}],"valore":25}},
+    {"id":"465261514438213643","inventario":{"pesci":[{"valore":21,"tipo":"Fail","rarita":"bot<33"}],"valore":21}},
+    {"id":"660099723973099520","inventario":{"pesci":[{"valore":20,"tipo":"Fail","rarita":"bot<33"}],"valore":20}}
+]
