@@ -1381,7 +1381,7 @@ client.on("ready",()=>{
         reset.reset()
 
         var valore = randomNumbInclusive(15,30)*1000*60
-        tempo(valore)
+        //tempo(valore)
     }catch(err){
         console.log(err)
     }
