@@ -363,6 +363,7 @@ function aggInventario(pescetto)
 function spown(channel)
 {
     try{
+        vincete = null
         if(lastMessage != null)
         {
             if(lastMessage.embeds[0].title == null)
