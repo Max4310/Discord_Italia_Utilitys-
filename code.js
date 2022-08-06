@@ -456,19 +456,23 @@ function spown(channel)
                 lastMessage = msg
 
                 setTimeout((message)=> {
-                    if(lastMessage != null)
-                    {
-                        if(lastMessage.embeds[0].title == null)
+                    try{
+                        if(message != null)
                         {
-                            if(lastMessage.deletable == true)
-                                lastMessage.delete()
+                            if(message.embeds[0].title == null)
+                            {
+                                if(message.deletable == true)
+                                    message.delete()
+                            }
+                            else if(message.embeds[0].title.includes("Ha Vinto Il Minigame") == false)
+                            {
+                                if(message.deletable == true)
+                                    message.delete()
+                            }
+                            
                         }
-                        else if(lastMessage.embeds[0].title.includes("Ha Vinto Il Minigame") == false)
-                        {
-                            if(lastMessage.deletable == true)
-                                lastMessage.delete()
-                        }
-                        
+                    }catch{
+                        return
                     }
                 },1000*60*10 ,msg)
             })
