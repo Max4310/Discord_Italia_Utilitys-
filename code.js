@@ -454,8 +454,27 @@ function spown(channel)
                 sto = 0
                 giochetto(msg,0)
                 lastMessage = msg
+
+                setTimeout((message)=> {
+                    if(lastMessage != null)
+                    {
+                        if(lastMessage.embeds[0].title == null)
+                        {
+                            if(lastMessage.deletable == true)
+                                lastMessage.delete()
+                        }
+                        else if(lastMessage.embeds[0].title.includes("Ha Vinto Il Minigame") == false)
+                        {
+                            if(lastMessage.deletable == true)
+                                lastMessage.delete()
+                        }
+                        
+                    }
+                },1000*60*10 ,msg)
             })
             .catch(() => {return})
+
+        
     }catch(err){
         console.log(err)
         try{
