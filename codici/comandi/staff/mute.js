@@ -52,7 +52,6 @@ function mute (comando){
         }
         else
         {   
-            console.log(grado(comando.member._roles))
             switch (grado(comando.member._roles))
             {
                 case 0:
@@ -238,26 +237,6 @@ function mute (comando){
                     comando.reply({embeds : [embed], ephemeral : true})
                 }
             }
-        }
-
-        if(variabili.inizio_nute==false) //verifico che sia il primo mute della giornata
-        {
-            variabili.inizio_nute=true 
-            
-            setTimeout((x)=>{
-                x.ContCapo = 0,
-                x.ContCommissari = 0,
-                x.ContIspettori = 0,
-                x.ContAgenti = 0
-                x.inizio_nute = false
-
-                console.log("mute ripristinato")
-
-                var data = JSON.stringify(x)
-                fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
-                    if(err) console.log('error', err);
-                });
-            }, 86400*1000, variabili)
         }
 
         var data = JSON.stringify(variabili)

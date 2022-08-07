@@ -149,6 +149,47 @@ function menager (message) {
         message.delete()
         message.channel.send({embeds: [EmbedTicketTool], components: [rorow]})    
     }
+    else if(message.mentions.users.first())
+    {
+        try{
+            var users = message.guild.members.cache.get(message.mentions.users.first().id)
+            if(users._roles.includes("893851166239252530") || users._roles.includes("893844096957952017") )
+                message.react("👑")
+        }catch{
+            return
+        }
+    }
+    try{
+        if(
+            message.content.toLocaleLowerCase().includes("security") == true ||
+            message.content.toLocaleLowerCase().includes("cyber") == true||
+            message.content.toLocaleLowerCase().includes("sicurezza") == true||
+            message.content.toLocaleLowerCase().includes("privacy") == true||
+            message.content.toLocaleLowerCase().includes("vpn") == true||
+            message.content.toLocaleLowerCase().includes("internet") == true||
+            message.content.toLocaleLowerCase().includes("web") == true||
+            message.content.toLocaleLowerCase().includes("proteggi") == true||
+            message.content.toLocaleLowerCase().includes("sponsor") == true||
+            message.content.toLocaleLowerCase().includes("affiliazione") == true||
+            message.content.toLocaleLowerCase().includes("password") == true||
+            message.content.toLocaleLowerCase().includes("virus") == true)
+            {
+                var embed = new Discord.MessageEmbed()
+                    .setTitle("NordVPN")
+                    .setURL("https://go.nordvpn.net/aff_c?offer_id=615&aff_id=74241&url_id=14831")
+                    .setDescription(
+                        "**Serve una VPN? Apposto! NordVPN x Discord Italia!**\n\n"+
+                        "*<a:manss:976501011302711457> Ogni Mese di NordVPN = 1 Mese di* <@&893851166239252530> *su Discord Italia!*\n"+
+                        "*<a:manss:976501011302711457> Badge Esclusivo* <@&1002543691526836224>*!*\n"+
+                        "*<a:manss:976501011302711457> Icona del Ruolo Esclusiva!*"
+                    )
+                    .setImage("https://www.informarea.it/wp-content/uploads/2020/09/recensione-nordVPN.jpg")
+        
+                message.reply({embeds : [embed]})
+            }
+    }catch{
+        return
+    }
 }
 
 module.exports = {menager}
