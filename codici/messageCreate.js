@@ -170,6 +170,7 @@ function menager (message) {
             fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
                 if(err) console.log('error', err);
             });
+            
             if(
             message.content.toLocaleLowerCase().includes("security") == true ||
             message.content.toLocaleLowerCase().includes("cyber") == true||
@@ -200,6 +201,7 @@ function menager (message) {
                 .then(msg => {
                     setTimeout(() => {
                         variabili.vpn = true
+
                         var data = JSON.stringify(variabili)
                         fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
                             if(err) console.log('error', err);
