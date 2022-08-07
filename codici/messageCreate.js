@@ -187,6 +187,7 @@ function menager (message) {
                         "*<a:manss:976501011302711457> Icona del Ruolo Esclusiva!*"
                     )
                     .setImage("https://www.informarea.it/wp-content/uploads/2020/09/recensione-nordVPN.jpg")
+                    .setColor("#fdf9f9")
         
                 message.reply({embeds : [embed]})
             }

@@ -16,9 +16,10 @@ function reset (client)
                 "*<a:manss:976501011302711457> Icona del Ruolo Esclusiva!*"
             )
             .setImage("https://www.informarea.it/wp-content/uploads/2020/09/recensione-nordVPN.jpg")
+            .setColor("#fdf9f9")
             
         client.guilds.cache.get("891739229846118461").channels.cache.get("894195379418058774").send({embeds : [embed]})
-        
+
         variabili.inizio_nute = false
         variabili.entroDelete = true
         variabili.ContCapo = 0
