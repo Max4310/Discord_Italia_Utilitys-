@@ -170,7 +170,7 @@ function menager (message) {
             fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
                 if(err) console.log('error', err);
             });
-            
+
             if(
             message.content.toLocaleLowerCase().includes("security") == true ||
             message.content.toLocaleLowerCase().includes("cyber") == true||
@@ -207,6 +207,9 @@ function menager (message) {
                             if(err) console.log('error', err);
                         });
                     },1000*60*30)
+                })
+                .catch(() => {
+                    return
                 })
             }    
         }
