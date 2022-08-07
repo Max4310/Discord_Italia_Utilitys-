@@ -1402,7 +1402,7 @@ client.on("ready",()=>{
     
     try{
         const reset = require (path.join(__dirname,"/codici/reset.js"))
-        //reset.reset(client)
+        reset.reset(client)
         
         var valore = randomNumbInclusive(15,30)*1000*60
         tempo(valore)
