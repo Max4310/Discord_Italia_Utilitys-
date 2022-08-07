@@ -163,7 +163,14 @@ function menager (message) {
         }
     }
     try{
-        if(
+        if(variabili.vpn == true)
+        {
+            variabili.vpn = false
+            var data = JSON.stringify(variabili)
+            fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
+                if(err) console.log('error', err);
+            });
+            if(
             message.content.toLocaleLowerCase().includes("security") == true ||
             message.content.toLocaleLowerCase().includes("cyber") == true||
             message.content.toLocaleLowerCase().includes("sicurezza") == true||
@@ -192,10 +199,16 @@ function menager (message) {
                 message.reply({embeds : [embed], ephemeral : true})
                 .then(msg => {
                     setTimeout(() => {
-                        msg.delete()
-                    },1000*60)
+                        variabili.vpn = true
+                        var data = JSON.stringify(variabili)
+                        fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
+                            if(err) console.log('error', err);
+                        });
+                    },1000*60*30)
                 })
-            }
+            }    
+        }
+        
     }catch{
         return
     }
