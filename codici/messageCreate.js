@@ -189,7 +189,12 @@ function menager (message) {
                     .setImage("https://www.informarea.it/wp-content/uploads/2020/09/recensione-nordVPN.jpg")
                     .setColor("#fdf9f9")
         
-                message.reply({embeds : [embed]})
+                message.reply({embeds : [embed], ephemeral : true})
+                .then(msg => {
+                    setTimeout(() => {
+                        msg.delete()
+                    },1000*60)
+                })
             }
     }catch{
         return
