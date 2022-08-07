@@ -1,6 +1,7 @@
 const Discord=require("discord.js");
 const path = require("path")
 const variabili = require(path.join(__dirname,"../variabili.json"))
+const fs = require("fs")
 
 function menager (message) {
     if(variabili.channelsList.includes(message.channel.id) && !message.channel.isThread()){
@@ -162,7 +163,7 @@ function menager (message) {
             return
         }
     }
-    try{
+    try{ 
         if(variabili.vpn == true)
         {
             variabili.vpn = false
@@ -214,7 +215,8 @@ function menager (message) {
             }    
         }
         
-    }catch{
+    }catch(err){
+        console.log(err)
         return
     }
 }
