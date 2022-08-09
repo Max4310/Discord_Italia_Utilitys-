@@ -474,7 +474,7 @@ function spown(channel)
                     }catch{
                         return
                     }
-                },1000*60*10 ,msg)
+                },1000*60*5 ,msg)
             })
             .catch(() => {return})
 
