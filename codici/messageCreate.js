@@ -3,16 +3,64 @@ const path = require("path")
 const variabili = require(path.join(__dirname,"../variabili.json"))
 const fs = require("fs")
 
+
 function menager (message) {
-    if(variabili.channelsList.includes(message.channel.id) && !message.channel.isThread()){
+    if(variabili.vpn == true)
+    {
+        console.log("sono dentro")
         try{
-            message.react("<:accettato:957650857439141978>")
-            message.react("<:rifiutato:957650858181554226>")
-            return
-        }catch{
+            if(
+            message.content.toLocaleLowerCase().includes("security") == true ||
+            message.content.toLocaleLowerCase().includes("cyber") == true||
+            message.content.toLocaleLowerCase().includes("sicurezza") == true||
+            message.content.toLocaleLowerCase().includes("privacy") == true||
+            message.content.toLocaleLowerCase().includes("vpn") == true||
+            message.content.toLocaleLowerCase().includes("internet") == true||
+            message.content.toLocaleLowerCase().includes("web") == true||
+            message.content.toLocaleLowerCase().includes("proteggi") == true||
+            message.content.toLocaleLowerCase().includes("sponsor") == true||
+            message.content.toLocaleLowerCase().includes("affiliazione") == true||
+            message.content.toLocaleLowerCase().includes("password") == true||
+            message.content.toLocaleLowerCase().includes("virus") == true )
+            {
+                variabili.vpn = false
+
+                var data = JSON.stringify(variabili)
+                fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
+                    if(err) console.log('error', err);
+                });
+
+                var embed = new Discord.MessageEmbed()
+                    .setTitle("NordVPN")
+                    .setURL("https://go.nordvpn.net/aff_c?offer_id=615&aff_id=74241&url_id=14831")
+                    .setDescription(
+                        "**Serve una VPN? Apposto! NordVPN x Discord Italia!**\n\n"+
+                        "*<a:manss:976501011302711457> Ogni Mese di NordVPN = 1 Mese di* <@&893851166239252530> *su Discord Italia!*\n"+
+                        "*<a:manss:976501011302711457> Badge Esclusivo* <@&1002543691526836224>*!*\n"+
+                        "*<a:manss:976501011302711457> Icona del Ruolo Esclusiva!*"
+                    )
+                    .setImage("https://www.informarea.it/wp-content/uploads/2020/09/recensione-nordVPN.jpg")
+                    .setColor("#fdf9f9")
+        
+                message.reply({embeds : [embed], ephemeral : true})
+                .then(msg => {
+                    setTimeout(() => {
+                        variabili.vpn = true
+                        var data = JSON.stringify(variabili)
+                        fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
+                            if(err) console.log('error', err);
+                        });
+                    },1000*60*30)
+                })
+                .catch((err) => {
+                    console.log(err)
+                    return
+                })
+            }    
+        }catch(err){
+            console.log(err)
             return
         }
-        
     }
     else if(message.content=="113") //comando polizia
     {
@@ -163,61 +211,15 @@ function menager (message) {
             return
         }
     }
-    try{ 
-        if(variabili.vpn == true)
-        {
-            variabili.vpn = false
-            var data = JSON.stringify(variabili)
-            fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
-                if(err) console.log('error', err);
-            });
-
-            if(
-            message.content.toLocaleLowerCase().includes("security") == true ||
-            message.content.toLocaleLowerCase().includes("cyber") == true||
-            message.content.toLocaleLowerCase().includes("sicurezza") == true||
-            message.content.toLocaleLowerCase().includes("privacy") == true||
-            message.content.toLocaleLowerCase().includes("vpn") == true||
-            message.content.toLocaleLowerCase().includes("internet") == true||
-            message.content.toLocaleLowerCase().includes("web") == true||
-            message.content.toLocaleLowerCase().includes("proteggi") == true||
-            message.content.toLocaleLowerCase().includes("sponsor") == true||
-            message.content.toLocaleLowerCase().includes("affiliazione") == true||
-            message.content.toLocaleLowerCase().includes("password") == true||
-            message.content.toLocaleLowerCase().includes("virus") == true)
-            {
-                var embed = new Discord.MessageEmbed()
-                    .setTitle("NordVPN")
-                    .setURL("https://go.nordvpn.net/aff_c?offer_id=615&aff_id=74241&url_id=14831")
-                    .setDescription(
-                        "**Serve una VPN? Apposto! NordVPN x Discord Italia!**\n\n"+
-                        "*<a:manss:976501011302711457> Ogni Mese di NordVPN = 1 Mese di* <@&893851166239252530> *su Discord Italia!*\n"+
-                        "*<a:manss:976501011302711457> Badge Esclusivo* <@&1002543691526836224>*!*\n"+
-                        "*<a:manss:976501011302711457> Icona del Ruolo Esclusiva!*"
-                    )
-                    .setImage("https://www.informarea.it/wp-content/uploads/2020/09/recensione-nordVPN.jpg")
-                    .setColor("#fdf9f9")
-        
-                message.reply({embeds : [embed], ephemeral : true})
-                .then(msg => {
-                    setTimeout(() => {
-                        variabili.vpn = true
-
-                        var data = JSON.stringify(variabili)
-                        fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
-                            if(err) console.log('error', err);
-                        });
-                    },1000*60*30)
-                })
-                .catch(() => {
-                    return
-                })
-            }    
+    else if(variabili.channelsList.includes(message.channel.id) && !message.channel.isThread()){
+        try{
+            message.react("<:accettato:957650857439141978>")
+            message.react("<:rifiutato:957650858181554226>")
+            return
+        }catch{
+            return
         }
         
-    }catch(err){
-        console.log(err)
-        return
     }
 }
 
