@@ -72,7 +72,7 @@ function menager (message) {
             return
         }
     }
-    else if(message.content == "118")
+    /*else if(message.content == "118")
     {
         try{
         
@@ -81,7 +81,7 @@ function menager (message) {
         }catch{
             return
         }
-    }
+    }*/
     else if(message.content=="888" && message.channelId==variabili.RICCHI) //comano yakuza
     {
         try{
