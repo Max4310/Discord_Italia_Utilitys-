@@ -44,6 +44,9 @@ function acquisti (interaction){
           msg.delete()
         })
     })
+    .catch(()=>{
+      return
+    })
   }catch(err){
     console.log(err)
     try{

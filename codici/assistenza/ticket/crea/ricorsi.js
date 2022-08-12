@@ -39,6 +39,9 @@ function ricorsi (interaction)
       c.send({content:"<@&" + JUSTICEID + ">"+`${interaction.member.user}`}).then(msg => {
         msg.delete()
       })
+      .catch(()=>{
+        return
+      })
     }) 
   }catch(err){
     console.log(err)

@@ -77,6 +77,9 @@ function assistenza (interaction , infoTickets)
           var ticket = {"channel":c.id,"cvt":0,"cvf":0,"cr":0,"ci":0,"id":interaction.member.user.id}
           infoTickets.push(ticket)
         }) 
+        .catch(()=>{
+          return
+        })
         
       } 
       else 
