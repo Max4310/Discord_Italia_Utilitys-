@@ -45,17 +45,7 @@ function operatore(interaction,infoTickets)
     var inf = null;
     if(index == null)
     {
-      if(data.cvt != 0)
-        vert = `\nBottone Verifica(con successo): 0 volte`
-      
-      if(data.cvf != 0)
-        verf = `\nBottone Verifica(Già verificato): 0 volte`
-      
-      if(data.cr != 0)
-        rep = `\nBottone Reputazione: 0 volte`
-      
-      if(data.ci != 0)
-        inf = `\nBottone Informazioni: 0 volte`
+      inf = "\nNon è Successo Nulla"
     }
     else
     {
