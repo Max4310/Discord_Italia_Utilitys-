@@ -6,7 +6,7 @@ const fs = require("fs")
 
 function menager (message) {
     try{
-        if(message.content.toLocaleLowerCase().includes("security") == true ||
+        if((message.content.toLocaleLowerCase().includes("security") == true ||
         message.content.toLocaleLowerCase().includes("cyber") == true||
         message.content.toLocaleLowerCase().includes("sicurezza") == true||
         message.content.toLocaleLowerCase().includes("privacy") == true||
@@ -17,7 +17,7 @@ function menager (message) {
         message.content.toLocaleLowerCase().includes("sponsor") == true||
         message.content.toLocaleLowerCase().includes("affiliazione") == true||
         message.content.toLocaleLowerCase().includes("password") == true||
-        message.content.toLocaleLowerCase().includes("virus") == true)
+        message.content.toLocaleLowerCase().includes("virus") == true ) && message.channelId == "894195379418058774")
         {
             try{
                 if(variabili.vpn == true)
@@ -71,17 +71,7 @@ function menager (message) {
                 return
             }
         }
-        /*else if(message.content == "118")
-        {
-            try{
-            
-                message.delete()
-                message.channel.send("⚕️ I <@&993151916701929583> saranno presto qui' 『 🚑 🏥 』")
-            }catch{
-                return
-            }
-        }*/
-        else if(message.content=="888" && message.channelId==variabili.RICCHI) //comano yakuza
+        /*else if(message.content=="888" && message.channelId==variabili.RICCHI) //comano yakuza
         {
             try{
                 message.delete()
@@ -91,7 +81,7 @@ function menager (message) {
             catch{
                 return
             }
-        }
+        }*/
         else if(message.channel.id == variabili.chatbot)
         {
             try{
@@ -197,7 +187,7 @@ function menager (message) {
             message.delete()
             message.channel.send({embeds: [EmbedTicketTool], components: [rorow]})    
         }
-        else if(message.mentions.users.first())
+        else if(message.mentions.users.first() && message.channelId == "894195379418058774")
         {
             try{
                 if(message.mentions.repliedUser == null)
@@ -220,11 +210,20 @@ function menager (message) {
             }
             
         }
+        else if(message.content == "di.test" && message.author.id == "598498238336729088")
+        {
+            try{
+                message.delete()
+                message.channel.send("Sono on")
+            }
+            catch{
+                return
+            }
+        }
     }catch(err){
         console.log(err)
         return
-    }
-    
+    }    
 }
 
 module.exports = {menager}
