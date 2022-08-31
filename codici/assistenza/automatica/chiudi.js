@@ -18,15 +18,16 @@ function findIndex(id, infoTickets)
 function chiudi (interaction, infoTickets)
 {
   try{
-    interaction.reply({content : "👍 Il Ticket Verrà Eliminato Tra 5 Secondi" , ephemeral : true})
-
     setTimeout(() =>{
       try{
         interaction.channel.delete()
       }catch{
+        interaction.reply({content : "❌ Qualcosa è Andato Storto Riprovare", ephemeral : true})
         return
       }
     },1000*5)
+
+    interaction.reply({content : "👍 Il Ticket Verrà Eliminato Tra 5 Secondi" , ephemeral : true})
 
     var index = findIndex(interaction.member.user.id,infoTickets)
     const embed = new discord.MessageEmbed()
