@@ -27,7 +27,16 @@ function reset (client)
         variabili.ContIspettori = 0
         variabili.ContAgenti = 0
         variabili.ContDelete = 0
-        variabili.vpn = true
+        variabili.vpn=false
+
+        
+        setTimeout(() => {
+            variabili.vpn = true
+            var data = JSON.stringify(variabili)
+            fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
+                if(err) console.log('error', err);
+            });
+        },1000*60*30)
 
     
         var data = JSON.stringify(variabili)
