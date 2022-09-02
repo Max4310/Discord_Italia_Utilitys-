@@ -332,3 +332,5 @@ client.on("guildMemberRemove", member => {
         console.log(err)
     }
 })
+
+process.on("unhandledRejection", async (err) => {console.log(err)})
