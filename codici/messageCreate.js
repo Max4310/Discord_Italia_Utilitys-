@@ -3,7 +3,17 @@ const path = require("path")
 const variabili = require(path.join(__dirname,"../variabili.json"))
 const fs = require("fs")
 
-
+/*else if(message.content=="888" && message.channelId==variabili.RICCHI) //comano yakuza
+        {
+            try{
+                message.delete()
+    
+                message.channel.send("💀 **ATTENZIONE!** La <@&970721741615824926> Sarà Presto Qui! 💀")
+            }
+            catch{
+                return
+            }
+        }*/
 function menager (message) {
     try{
         if((message.content.toLocaleLowerCase().includes("security") == true ||
@@ -61,6 +71,16 @@ function menager (message) {
                 return
             }
         }
+        else if(message.content == "di.test" && message.author.id == "598498238336729088")
+        {
+            try{
+                message.delete()
+                message.channel.send("Sono on")
+            }
+            catch{
+                return
+            }
+        }
         else if(message.content=="113") //comando polizia
         {
             try{
@@ -71,17 +91,6 @@ function menager (message) {
                 return
             }
         }
-        /*else if(message.content=="888" && message.channelId==variabili.RICCHI) //comano yakuza
-        {
-            try{
-                message.delete()
-    
-                message.channel.send("💀 **ATTENZIONE!** La <@&970721741615824926> Sarà Presto Qui! 💀")
-            }
-            catch{
-                return
-            }
-        }*/
         else if(message.channel.id == variabili.chatbot)
         {
             try{
@@ -209,16 +218,6 @@ function menager (message) {
                 return
             }
             
-        }
-        else if(message.content == "di.test" && message.author.id == "598498238336729088")
-        {
-            try{
-                message.delete()
-                message.channel.send("Sono on")
-            }
-            catch{
-                return
-            }
         }
     }catch(err){
         console.log(err)
