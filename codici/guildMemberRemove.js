@@ -21,6 +21,7 @@ function menager(member, infoTickets)
             var verf;
             var rep;
             var inf;
+            var data = infoTickets[index]
             if(data.cvt != 0){
             vert = `\nBottone Verifica(con successo): ${data.cvt} volte`
             } else {
