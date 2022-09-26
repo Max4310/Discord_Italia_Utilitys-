@@ -55,7 +55,14 @@ function mute (comando){
             }
             else
             {   
-                switch (grado(comando.member._roles))
+
+                if(comando.member._roles.find(id => id == "919595843802263613")){
+                    membro.timeout(1000 * 60 * 60)
+                    comando.reply({content : "👍 Utente Mutato Correttamente",ephemeral: true})
+                }
+                else
+                {
+                    switch (grado(comando.member._roles))
                 {
                     case 0:
                         if(variabili.ContCapo < Capo) //verifico se si hanno ancora i mute giornalieri
@@ -239,7 +246,9 @@ function mute (comando){
     
                         comando.reply({embeds : [embed], ephemeral : true})
                     }
+                    }
                 }
+                
             }
     
             var data = JSON.stringify(variabili)

@@ -16,12 +16,19 @@ function abbonamenti(interaction) {
                     if (u.soldi >= variabili.P_canzone) {
                         utenteCoin.remove(variabili.P_canzone)
 
-                        var links = []
+                        var links = ["https://youtu.be/A6uQoFjEhT0",
+                        "https://youtu.be/Ot4gsZk03Jg",
+                        "https://youtu.be/2y6t2rTqQ6o",
+                        "https://youtu.be/2XhgPJo-xss",
+                        "https://youtu.be/CcYn4w62Stc",
+                        "https://youtu.be/kGowSMfFLlg",
+                        "https://youtu.be/ZprjqfdlzOA"]
                         var numero = Math.ceil(Math.random() * links.length-1) 
                         const embed = new Discord.MessageEmbed()
                             .setTitle("Acquistato Con Successo")
                             .setThumbnail(interaction.member.user.displayAvatarURL())
-                            .setDescription(`${variabili.P_canzone}£ Sono Stati Prelevati Dal Tuo Conto Per L'acquisto Di Questa Canzone\n\n`)
+                            .setDescription(`${variabili.P_canzone}£ Sono Stati Prelevati Dal Tuo Conto Per L'acquisto Di Questa Canzone\n\n`+
+                            `[Link Cazone](${links[numero]})`)
                             .setColor("RANDOM")
 
                        
