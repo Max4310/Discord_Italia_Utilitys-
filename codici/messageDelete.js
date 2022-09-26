@@ -34,7 +34,7 @@ async function menager (message,client) {
         }).then((autore) => {
             if(autore == null) return
             var { executor, target, extra } = autore.entries.first()
-            if(target == null || extra == null) return
+            if(target == null && extra == null) return
             if(target.id == message.author.id && extra.channel.id == message.channelId)
             {
                 message.guild.members.fetch(executor.id)
@@ -109,10 +109,7 @@ async function menager (message,client) {
                     }
                        
                 })
-                .catch((err) => {
-                    console.log(err)
-                    return
-                })
+                .catch((err) => console.log(err))
             }       
         }).catch((err) => {
             console.log(err)

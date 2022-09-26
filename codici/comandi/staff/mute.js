@@ -41,215 +41,222 @@ function mute (comando){
         var reason= comando.options.getString("motivo");
         var membro = comando.guild.members.cache.get(utente.id); //prendo il membro passato dall'operatore
 
-        if(membro.bannable==false) //verifico che il bot possa bannare il membro (se non puo l'utente è un membro del governo)
+
+        if(utente != comando.user)
         {
-            var risposta = new Discord.MessageEmbed()
-                .setTitle("**DISCORD ITALIA**\n\n")
-                .setColor("#0b39db")
-                .setDescription("───────────────────────────────────────\nL'utente è Un Moderatore:  **Utente Non Modificato**")  //metto in "messaggio" il messaggio d'errore
-
-            
-        }
-        else
-        {   
-            switch (grado(comando.member._roles))
+            if(membro.bannable==false) //verifico che il bot possa bannare il membro (se non puo l'utente è un membro del governo)
             {
-                case 0:
-                    if(variabili.ContCapo < Capo) //verifico se si hanno ancora i mute giornalieri
-                    {
-                        variabili.ContCapo++
-                        membro.timeout(1000 * 60 * 60)
-                        var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
-                            .setTitle("**DISCORD ITALIA**\n\n")
-                            .setColor("#0b39db")
-                            .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
-                        
-                        
-                        comando.guild.members.fetch(utente.id, false).then((utente) => {
-                            utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
-                        });
-
-                        var campare=comando.guild.channels.cache.get(variabili.log)
-                        campare.send({
-                            "content": null,
-                            "embeds": [
-                            {
-                                "title": "**DISCORD ITALIA**",
-                                "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
-                                "color": 735707,
-                                "footer": {
-                                "text": "rimangono "+ (Capo - variabili.ContCapo) +" mute per la giornata di oggi"
-                                }
-                            }
-                            ],
-                            "attachments": []
-                        }) //mando il messaggio di log
-                        
-                        campare=comando.guild.channels.cache.get(variabili.info)
-                        campare.send("utente mutato \nrimangono "+(Capo - variabili.ContCapo)+" mute per la giornata di oggi") 
-                    }
-                    else
-                    {
-                        var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
-                        .setTitle("**DISCORD ITALIA**\n\n")
-                        .setColor("#0b39db")
-                        .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
-                    }
-                    comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
-                    break
-                case 1:
-                    if(variabili.ContCommissari < Commissari) //verifico se si hanno ancora i mute giornalieri
-                    {
-                        variabili.ContCommissari++
-                        membro.timeout(1000 * 60 * 60)
-                        var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
-                            .setTitle("**DISCORD ITALIA**\n\n")
-                            .setColor("#0b39db")
-                            .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
-                        
-                        
-                        comando.guild.members.fetch(utente.id, false).then((utente) => {
-                            utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
-                        });
-
-                        var campare=comando.guild.channels.cache.get(variabili.log)
-                        campare.send({
-                            "content": null,
-                            "embeds": [
-                            {
-                                "title": "**DISCORD ITALIA**",
-                                "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
-                                "color": 735707,
-                                "footer": {
-                                "text": "rimangono "+ (Commissari - variabili.ContCommissari) +" mute per la giornata di oggi"
-                                }
-                            }
-                            ],
-                            "attachments": []
-                        }) //mando il messaggio di log
-                        
-                        campare=comando.guild.channels.cache.get(variabili.info)
-                        campare.send("utente mutato \nrimangono "+(Commissari - variabili.ContCommissari)+" mute per la giornata di oggi") 
-                    }
-                    else
-                    {
-                        var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
-                        .setTitle("**DISCORD ITALIA**\n\n")
-                        .setColor("#0b39db")
-                        .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
-                    }
-                    comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
-                    break
-                case 2:
-                    if(variabili.ContIspettori < Ispettori) //verifico se si hanno ancora i mute giornalieri
-                    {
-                        variabili.ContIspettori++
-                        membro.timeout(1000 * 60 * 60)
-                        var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
-                            .setTitle("**DISCORD ITALIA**\n\n")
-                            .setColor("#0b39db")
-                            .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
-                        
-                        
-                        comando.guild.members.fetch(utente.id, false).then((utente) => {
-                            utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
-                        });
-
-                        var campare=comando.guild.channels.cache.get(variabili.log)
-                        campare.send({
-                            "content": null,
-                            "embeds": [
-                            {
-                                "title": "**DISCORD ITALIA**",
-                                "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
-                                "color": 735707,
-                                "footer": {
-                                "text": "rimangono "+ (Ispettori-variabili.ContIspettori) +" mute per la giornata di oggi"
-                                }
-                            }
-                            ],
-                            "attachments": []
-                        }) //mando il messaggio di log
-                        
-                        campare=comando.guild.channels.cache.get(variabili.info)
-                        campare.send("utente mutato \nrimangono "+(Ispettori-variabili.ContIspettori)+" mute per la giornata di oggi") 
-                    }
-                    else
-                    {
-                        var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
-                        .setTitle("**DISCORD ITALIA**\n\n")
-                        .setColor("#0b39db")
-                        .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
-                    }
-                    comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
-                    break
-                case 3:
-                    if(variabili.ContAgenti < Agenti) //verifico se si hanno ancora i mute giornalieri
-                    {
-                        variabili.ContAgenti++
-                        membro.timeout(1000 * 60 * 60)
-                        var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
-                            .setTitle("**DISCORD ITALIA**\n\n")
-                            .setColor("#0b39db")
-                            .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
-                        
-                        
-                        comando.guild.members.fetch(utente.id, false).then((utente) => {
-                            utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
-                        });
-
-                        var campare=comando.guild.channels.cache.get(variabili.log)
-                        campare.send({
-                            "content": null,
-                            "embeds": [
-                            {
-                                "title": "**DISCORD ITALIA**",
-                                "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
-                                "color": 735707,
-                                "footer": {
-                                "text": "rimangono "+ (Agenti - variabili.ContAgenti) +" mute per la giornata di oggi"
-                                }
-                            }
-                            ],
-                            "attachments": []
-                        }) //mando il messaggio di log
-                        
-                        campare=comando.guild.channels.cache.get(variabili.info)
-                        campare.send("utente mutato \nrimangono "+(Agenti - variabili.ContAgenti)+" mute per la giornata di oggi") 
-                    }
-                    else
-                    {
-                        var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
-                        .setTitle("**DISCORD ITALIA**\n\n")
-                        .setColor("#0b39db")
-                        .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
-                    }
-                    comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
-                    break
-                default : 
+                var risposta = new Discord.MessageEmbed()
+                    .setTitle("**DISCORD ITALIA**\n\n")
+                    .setColor("#0b39db")
+                    .setDescription("───────────────────────────────────────\nL'utente è Un Moderatore:  **Utente Non Modificato**")  //metto in "messaggio" il messaggio d'errore
+    
+                
+            }
+            else
+            {   
+                switch (grado(comando.member._roles))
                 {
-                    const embed = new Discord.MessageEmbed()
-                        .setTitle("DISCORD ITALIA")
-                        .setDescription("A Quanto Pare Tu Non Hai I Ruoli Per Mutare Le Persone")
-                        .setColor("RANDOM")
-
-
-                    comando.reply({embeds : [embed], ephemeral : true})
+                    case 0:
+                        if(variabili.ContCapo < Capo) //verifico se si hanno ancora i mute giornalieri
+                        {
+                            variabili.ContCapo++
+                            membro.timeout(1000 * 60 * 60)
+                            var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
+                                .setTitle("**DISCORD ITALIA**\n\n")
+                                .setColor("#0b39db")
+                                .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
+                            
+                            
+                            comando.guild.members.fetch(utente.id, false).then((utente) => {
+                                utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
+                            });
+    
+                            var campare=comando.guild.channels.cache.get(variabili.log)
+                            campare.send({
+                                "content": null,
+                                "embeds": [
+                                {
+                                    "title": "**DISCORD ITALIA**",
+                                    "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
+                                    "color": 735707,
+                                    "footer": {
+                                    "text": "rimangono "+ (Capo - variabili.ContCapo) +" mute per la giornata di oggi"
+                                    }
+                                }
+                                ],
+                                "attachments": []
+                            }) //mando il messaggio di log
+                            
+                            campare=comando.guild.channels.cache.get(variabili.info)
+                            campare.send("utente mutato \nrimangono "+(Capo - variabili.ContCapo)+" mute per la giornata di oggi") 
+                        }
+                        else
+                        {
+                            var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
+                            .setTitle("**DISCORD ITALIA**\n\n")
+                            .setColor("#0b39db")
+                            .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
+                        }
+                        comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
+                        break
+                    case 1:
+                        if(variabili.ContCommissari < Commissari) //verifico se si hanno ancora i mute giornalieri
+                        {
+                            variabili.ContCommissari++
+                            membro.timeout(1000 * 60 * 60)
+                            var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
+                                .setTitle("**DISCORD ITALIA**\n\n")
+                                .setColor("#0b39db")
+                                .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
+                            
+                            
+                            comando.guild.members.fetch(utente.id, false).then((utente) => {
+                                utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
+                            });
+    
+                            var campare=comando.guild.channels.cache.get(variabili.log)
+                            campare.send({
+                                "content": null,
+                                "embeds": [
+                                {
+                                    "title": "**DISCORD ITALIA**",
+                                    "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
+                                    "color": 735707,
+                                    "footer": {
+                                    "text": "rimangono "+ (Commissari - variabili.ContCommissari) +" mute per la giornata di oggi"
+                                    }
+                                }
+                                ],
+                                "attachments": []
+                            }) //mando il messaggio di log
+                            
+                            campare=comando.guild.channels.cache.get(variabili.info)
+                            campare.send("utente mutato \nrimangono "+(Commissari - variabili.ContCommissari)+" mute per la giornata di oggi") 
+                        }
+                        else
+                        {
+                            var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
+                            .setTitle("**DISCORD ITALIA**\n\n")
+                            .setColor("#0b39db")
+                            .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
+                        }
+                        comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
+                        break
+                    case 2:
+                        if(variabili.ContIspettori < Ispettori) //verifico se si hanno ancora i mute giornalieri
+                        {
+                            variabili.ContIspettori++
+                            membro.timeout(1000 * 60 * 60)
+                            var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
+                                .setTitle("**DISCORD ITALIA**\n\n")
+                                .setColor("#0b39db")
+                                .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
+                            
+                            
+                            comando.guild.members.fetch(utente.id, false).then((utente) => {
+                                utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
+                            });
+    
+                            var campare=comando.guild.channels.cache.get(variabili.log)
+                            campare.send({
+                                "content": null,
+                                "embeds": [
+                                {
+                                    "title": "**DISCORD ITALIA**",
+                                    "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
+                                    "color": 735707,
+                                    "footer": {
+                                    "text": "rimangono "+ (Ispettori-variabili.ContIspettori) +" mute per la giornata di oggi"
+                                    }
+                                }
+                                ],
+                                "attachments": []
+                            }) //mando il messaggio di log
+                            
+                            campare=comando.guild.channels.cache.get(variabili.info)
+                            campare.send("utente mutato \nrimangono "+(Ispettori-variabili.ContIspettori)+" mute per la giornata di oggi") 
+                        }
+                        else
+                        {
+                            var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
+                            .setTitle("**DISCORD ITALIA**\n\n")
+                            .setColor("#0b39db")
+                            .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
+                        }
+                        comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
+                        break
+                    case 3:
+                        if(variabili.ContAgenti < Agenti) //verifico se si hanno ancora i mute giornalieri
+                        {
+                            variabili.ContAgenti++
+                            membro.timeout(1000 * 60 * 60)
+                            var risposta = new Discord.MessageEmbed()  //metto in "messaggio" il messaggio di riuscita dell'operazione
+                                .setTitle("**DISCORD ITALIA**\n\n")
+                                .setColor("#0b39db")
+                                .setDescription("───────────────────────────────────────\nOperazione Autorizzata:  **Utente Modificato**")
+                            
+                            
+                            comando.guild.members.fetch(utente.id, false).then((utente) => {
+                                utente.send(`**Sei Stato Mutato Da Un Moderatore Per 1 Ora Minuti**\nMotivo: **`+reason+`**\nSe Hai Un Richiamo Preghiamo Di Aprire Un Ricorso Nella Chat <#893589753222545438>`); 
+                            });
+    
+                            var campare=comando.guild.channels.cache.get(variabili.log)
+                            campare.send({
+                                "content": null,
+                                "embeds": [
+                                {
+                                    "title": "**DISCORD ITALIA**",
+                                    "description": "<@"+comando.member.id+"> ha eseguito il comando mute su <@"+membro.id+">\n**Motivo: **"+ reason,
+                                    "color": 735707,
+                                    "footer": {
+                                    "text": "rimangono "+ (Agenti - variabili.ContAgenti) +" mute per la giornata di oggi"
+                                    }
+                                }
+                                ],
+                                "attachments": []
+                            }) //mando il messaggio di log
+                            
+                            campare=comando.guild.channels.cache.get(variabili.info)
+                            campare.send("utente mutato \nrimangono "+(Agenti - variabili.ContAgenti)+" mute per la giornata di oggi") 
+                        }
+                        else
+                        {
+                            var risposta = new Discord.MessageEmbed() //metto in "messaggio" un messaggio d'errore che i mute sono finiti... 
+                            .setTitle("**DISCORD ITALIA**\n\n")
+                            .setColor("#0b39db")
+                            .setDescription("───────────────────────────────────────\nOperazione Non Autorizzata:  **Sono Finiti I Mute**")
+                        }
+                        comando.reply({embeds:[risposta], ephemeral: true}) //comunico il contenuto di messaggio al poliziotto   
+                        break
+                    default : 
+                    {
+                        const embed = new Discord.MessageEmbed()
+                            .setTitle("DISCORD ITALIA")
+                            .setDescription("A Quanto Pare Tu Non Hai I Ruoli Per Mutare Le Persone")
+                            .setColor("RANDOM")
+    
+    
+                        comando.reply({embeds : [embed], ephemeral : true})
+                    }
                 }
             }
+    
+            var data = JSON.stringify(variabili)
+            fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
+                if(err) console.log('error', err);
+            });
         }
-
-        var data = JSON.stringify(variabili)
-        fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
-            if(err) console.log('error', err);
-        });
+        else
+            comando.reply({content : "❌ Non Puoi Usare Questo Comando Su Te Stesso", ephemeral : true})
+        
         return
         
     }catch (err){
         console.log(err)
         try{
             comando.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max /mute ha fallito cabbo fai")
+                member.user.send("**/mute** "+err)
             
             })  
     

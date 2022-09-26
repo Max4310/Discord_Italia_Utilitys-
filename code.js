@@ -7,18 +7,25 @@ client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXu
 const fs = require("fs")
 const path = require("path")
 
+function sleep(s){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + (s*1000)){ /* non faccio niente */ } 
+}
+
+const {membro, gestisciVisulizza, isStaff , CoinMember ,aggiona,user,aggiungi} = require("./oggetti");
+
 var infoTickets = []
 
 
 
 client.on("ready",()=>{   
 
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name: "prefissi",
         description: "mostra tutti i prefissi",
         options: null,
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name: "info",
         description: "member info",
         options: [{
@@ -28,7 +35,7 @@ client.on("ready",()=>{
             required: false
         }],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name : "pattuglie",
         description : "gestisci le pattuglie con questo comando",
         options : [
@@ -90,7 +97,7 @@ client.on("ready",()=>{
             }
         ],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name : "grado",
         description : "sistema il grando di un utente",
         options : [
@@ -102,7 +109,7 @@ client.on("ready",()=>{
             }
         ],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name : "stella" , 
         description : "dai la stella ad un utente",
         options : [
@@ -114,7 +121,7 @@ client.on("ready",()=>{
             }
         ],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name : "verifica" ,
         description : "verifica un Utente",
         options: [
@@ -126,7 +133,7 @@ client.on("ready",()=>{
             },
         ],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name : "delete",
         description : "Elimina Un Messaggio In Presentazioni",
         options: [
@@ -170,7 +177,7 @@ client.on("ready",()=>{
             }
         ],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name : "mute",
         description : "Muta Un Utente",
         options: [
@@ -188,7 +195,7 @@ client.on("ready",()=>{
             }
         ],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name: "regole",
         description: "Mostra la Regola Richiesta",
         options: [
@@ -227,7 +234,7 @@ client.on("ready",()=>{
             }
         ],
     })
-    client.guilds.cache.get("891739229846118461").commands.create({ 
+    client.guilds.cache.get(variabili.discordItalia).commands.create({ 
         name: "add",
         description: "Aggiunge un Utente al Ticket",
         options: [
@@ -239,7 +246,7 @@ client.on("ready",()=>{
             }
         ]
     })
-    client.guilds.cache.get("891739229846118461").commands.create({ 
+    client.guilds.cache.get(variabili.discordItalia).commands.create({ 
         name: "remove",
         description: "Rimuove un Utente al Ticket",
         options: [
@@ -251,7 +258,7 @@ client.on("ready",()=>{
             }
         ]
     })
-    client.guilds.cache.get("891739229846118461").commands.create({
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
         name: "close",
         description: "Chiude il Ticket",
         options: [
@@ -263,12 +270,221 @@ client.on("ready",()=>{
           }
         ]
     })
+    // /dimetti
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "dimetti",
+        description : "dimetti un utente",
+        options : [
+            {
+                name : "target",
+                description : "L'utente Da dimettere",
+                type : "USER",
+                required : true
+            }
+        ]
+    })
+
+    // /inforole
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "inforole",
+        description : "ottieni le informazioni dei temp role",
+        options : [{
+            name : "target",
+            description : "l'utente target",
+            type : "USER",
+            required : false
+        }]
+
+    })
+
+    // /give
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "give",
+        description : "dai un ruolo ad un utente",
+        options : [
+            {
+                name : "target",
+                description : "l'utente a cui aggiungere il ruolo",
+                type : "USER",
+                required : true
+            },
+            {
+                name : "role",
+                description : "il ruolo da aggiungere",
+                type : "ROLE",
+                required : true
+            },
+            {
+                name : "fine",
+                description : "sintassi: AAAA-MM-GG (es. 2022-08-08)",
+                type : "STRING",
+                required : false
+            }
+        ]
+    })
+
+    // /boost
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "boost",
+        description : "visualizza i boost di un utente",
+        options : [{
+            name : "target",
+            description : "l'utente target",
+            type : "USER",
+            required : false
+        }]
+    })
+
+    // /coins
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "coins",
+        description : "visualizza il profilo di un utente",
+        options : [{
+            name  : "target",
+            description : "l'utente da visualizzare",
+            type : "USER",
+            required : false  
+        }]
+    })
+
+    // /manage coin
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "managecoin",
+        description : "modifica i soldi di un utente",
+        options : [
+            {
+                name : "target",
+                description : "l'utente a cui modificare i soldi",
+                required : true,
+                type : "USER"
+            },
+            {
+                name : "azione",
+                description : "modifica i soldi di un utente",
+                required : true,
+                type : "STRING",
+                choices : [
+                    {
+                        name : "Aggiungi",
+                        value : "+"
+                    },
+                    {
+                        name : "Rimuovi",
+                        value : "-"
+                    },
+                    {
+                        name : "Resetta",
+                        value : "0"
+                    },
+                    {
+                        name : "Stoppa I Guadagni",
+                        value : "stop"
+                    },
+                    {
+                        name : "Abilita I Guadagni",
+                        value : "on"
+                    }
+                ]
+            },
+            {
+                name : "quantità",
+                description : "il quantitativo di soldi da modificare",
+                required : false,
+                type : "INTEGER"
+            }
+        ]
+    })
+
+    // /warn
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "warn",
+        description : "Assegna Un Warn Ad Un Utente",
+        options :[
+            {
+                name : "target",
+                description : "L'utente Da Warnare",
+                required : true,
+                type : "USER"
+            },
+            {
+                name : "livello",
+                description : "Il Livello Del Warn Da Assegnare",
+                type : "STRING",
+                choices : [
+                    {
+                        name : "⚠️ Warn Livello 1",
+                        value : `${variabili.warn1}:7`
+                    },
+                    {
+                        name : "⚠️ Warn Livello 2",
+                        value : `${variabili.warn2}:14`
+                    },
+                    {
+                        name : "⚠️ Warn Livello 3",
+                        value : `${variabili.warn3}:21`
+                    },
+                    {
+                        name : "⚠️ Warn Livello 4",
+                        value : `${variabili.warn4}:28`
+                    },
+                    {
+                        name : "👮 Rimuovi",
+                        value : "leva"
+                    }
+                ],
+                required : true
+            }
+        ] 
+
+    })
+
+    // /infowarn
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "infowarn",
+        description : "visualizza il warn di un utente",
+        options :[{
+            name : "target",
+            description : "la persona da visualizzare",
+            required : false,
+            type : "USER"
+        }]
+    })
+
+    // /proprieta
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "proprieta",
+        description : "visualizza le proprietà di un utente",
+        options : [{
+            name : "target",
+            description : "persona di cui visualizzare le proprietà",
+            type :  "USER",
+            required : false 
+        }]
+
+    })
+
+    // /assumi
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "assumi",
+        description : "assumi o promuovi un utente",
+        options : [
+            {
+                name : "target",
+                description : "L'utente Da Assumere/Promuovere",
+                type : "USER",
+                required : true
+            }
+        ]
+    })
     
     try{
+        const data = new Date
         const reset = require (path.join(__dirname,"/codici/reset.js"))
-        reset.reset(client)
+        reset.reset(client, data.getMonth()+1)
+
     }catch(err){
         console.log(err)
+        return
     }
     
     console.log("bot online")
@@ -333,4 +549,17 @@ client.on("guildMemberRemove", member => {
     }
 })
 
-process.on("unhandledRejection", async (err) => {console.log(err)})
+client.on("guildMemberUpdate", (old, nuovo) => {
+    try{
+        const guildMemberUpdate = require (path.join(__dirname,"/codici/guildMemberUpdate.js"))
+        guildMemberUpdate.menager(old,nuovo)
+    }catch(err){
+        console.log(err)
+    }
+})
+
+process.on("unhandledRejection", async (err) => {
+    interaction.guild.members.fetch("598498238336729088").then(member => {
+        member.user.send(`**Err **${err}`)
+    })
+})

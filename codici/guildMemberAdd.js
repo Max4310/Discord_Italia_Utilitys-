@@ -3,8 +3,16 @@ const path = require("path")
 const variabili = require(path.join(__dirname,"../variabili.json"))
 
 async function menager (member) {
+
     try{
-        
+        member.guild.channels.cache.get("944240250862059610").setName(`🌍 Membri: ${member.guild.memberCount}`)
+        user("warn").then((members) => {
+            var x = members.findIndex(u => u.memberId == member.id)
+            if(x > -1)
+                member.roles.add(member.guild.roles.cache.get(members[x].lvl))
+        }).catch((err) => console.log(err))
+
+
         var channel = await member.guild.channels.fetch("982337314900545576")
         channel.send(`ghostPing ${member}`).then(message => {message.delete()})
         channel = await member.guild.channels.fetch("906925387878129684")
@@ -17,7 +25,17 @@ async function menager (member) {
         channel.send({content: `<:patpat:958408567369633803> ${member}, ***Benvenuto/a su Discord Italia*** <:cilindro:958408567919104100>`, embeds: [embed]})
 
     }catch{
-        return
+        try{
+            var embed = new Discord.MessageEmbed()
+            .setTitle("Member Join")
+            .setDescription(err)
+            .setColor("RED")
+
+            client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.errLog).send({embeds : [embed]})
+            return
+        }catch{
+            return
+        }
     }
 }
 

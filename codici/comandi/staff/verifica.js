@@ -24,25 +24,42 @@ function verifica (comando){
         var utente = comando.options.getUser("target");
         var membro = comando.guild.members.cache.get(utente.id) //prendo il membro da per metterli abitante
 
-        if(membro.user.bot==false) // verifcio se sia un bot 
+        if(utente != comando.user)
         {
-            if(is_verificato(membro)==false) // verifico che non sia gia verificato 
+            if(membro.user.bot==false) // verifcio se sia un bot 
             {
-                var role = comando.guild.roles.cache.get(variabili.abitante)
-                membro.roles.add(role) //gli metto abitante se tutte le condizioni sono verificate 
-                // ho scelto di fare cosi invece che di usare && per poter classificare i vari messaggi da inviare all'operatore
-
-                comando.reply({
-                    "content": null,
-                    "embeds": [
-                    {
-                        "title": "**"+membro.user.tag+" è Verificato**",
-                        "description": "",
-                        "color": 15871
-                    }
-                    ],
-                    "attachments": []
-                }) //tutto è riusito 
+                if(is_verificato(membro)==false) // verifico che non sia gia verificato 
+                {
+                    var role = comando.guild.roles.cache.get(variabili.abitante)
+                    membro.roles.add(role) //gli metto abitante se tutte le condizioni sono verificate 
+                    // ho scelto di fare cosi invece che di usare && per poter classificare i vari messaggi da inviare all'operatore
+    
+                    comando.reply({
+                        "content": null,
+                        "embeds": [
+                        {
+                            "title": "**"+membro.user.tag+" è Verificato**",
+                            "description": "",
+                            "color": 15871
+                        }
+                        ],
+                        "attachments": []
+                    }) //tutto è riusito 
+                }
+                else
+                {
+                    comando.reply({
+                        "content": null,
+                        "embeds": [
+                        {
+                            "title": "Discord Italia",
+                            "description": "───────────────────────────────────────\nImpossibile Verificare L'utente: **L'utente è Verificato**",
+                            "color": 15871
+                        }
+                        ],
+                        "attachments": []
+                    }) //l'utetne è verificato 
+                }
             }
             else
             {
@@ -51,38 +68,28 @@ function verifica (comando){
                     "embeds": [
                     {
                         "title": "Discord Italia",
-                        "description": "───────────────────────────────────────\nImpossibile Verificare L'utente: **L'utente è Verificato**",
+                        "description": "───────────────────────────────────────\nImpossibile Verificare L'utente: **L'utente è Un Bot**",
                         "color": 15871
                     }
                     ],
                     "attachments": []
-                }) //l'utetne è verificato 
+                }) //l'utente è un bot 
             }
+    
+            var canale = comando.guild.channels.cache.get(variabili.log)
+    
+            canale.send("<@"+comando.member+"> ha usato il comando verifica su <@"+membro.id+">") //messaggio di log 
         }
         else
-        {
-            comando.reply({
-                "content": null,
-                "embeds": [
-                {
-                    "title": "Discord Italia",
-                    "description": "───────────────────────────────────────\nImpossibile Verificare L'utente: **L'utente è Un Bot**",
-                    "color": 15871
-                }
-                ],
-                "attachments": []
-            }) //l'utente è un bot 
-        }
+            comando.reply({content : "❌ Non Puoi Usare Questo Comando Su Te Stesso"})
 
-        var canale = comando.guild.channels.cache.get(variabili.log)
-
-        canale.send("<@"+comando.member+"> ha usato il comando verifica su <@"+membro.id+">") //messaggio di log 
+        
         return
     }catch(err){
         console.log(err)
         try{
             comando.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max /verifica ha fallito cabbo fai")
+                member.user.send("**/verifica** "+err)
             
             })  
     

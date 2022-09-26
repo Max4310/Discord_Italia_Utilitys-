@@ -27,9 +27,11 @@ function elimina (interaction,client){
         var idMessage=interaction.options.getString("message")
 
         canale.messages.fetch(idMessage)
-            .then(message => {
-                variabili.ContDelete++
+        .then(message => {
 
+            if(message.author.id != interaction.member.user.id)
+            {
+                variabili.ContDelete++
                 var data = JSON.stringify(variabili)
                 fs.writeFile(path.join(__dirname,"../../../variabili.json"), data,function(err, result) {
                     if(err) console.log('error', err);
@@ -135,26 +137,24 @@ function elimina (interaction,client){
 
                     interaction.reply({embeds:[risposta], ephemeral: true})
                 }
-                
-            })
-            .catch(() => {
-                const risposta = new Discord.MessageEmbed()
-                    .setTitle("Messaggio Non Eliminato")
-                    .setColor("RED")
-                    .setDescription("L'id Del Messaggio Non è Valido")
-                    .setFooter({text : "Assicurati Che Che Il Messaggio Sia Presente Nella Chat"})
-                    
-                
-                interaction.reply({embeds:[risposta], ephemeral: true}); 
-                
-            })
+            }
+            else
+                interaction.reply({content : "❌ Non Puoi Usare Questo Comando Su Un Tuo Messaggio"})  
+        }).catch(() => {
+            const risposta = new Discord.MessageEmbed()
+                .setTitle("Messaggio Non Eliminato")
+                .setColor("RED")
+                .setDescription("L'id Del Messaggio Non è Valido")
+                .setFooter({text : "Assicurati Che Che Il Messaggio Sia Presente Nella Chat"})
+            interaction.reply({embeds:[risposta], ephemeral: true});          
+        })
 
         return;
     }catch(err){
         console.log(err)
         try{
             comando.guild.members.fetch("598498238336729088").then(member =>{
-                member.user.send("max /delete ha fallito cabbo fai")
+                member.user.send("**/delete** "+ err)
             
             })  
     

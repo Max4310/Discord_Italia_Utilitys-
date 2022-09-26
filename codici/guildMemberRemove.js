@@ -1,5 +1,7 @@
 const { GOVERNO, JUSTICEID, YAKUZAID, EMOJIMAKER, BIGBRAIN, PROPOSTE, CEMOJI, ASSISTENZAID, RICORSIID, ACQUISTIID, TRANSCRIPTSID, OPENTICKET, HELPERID, LOGCHANNEL, MUTATOID, ABITANTEID, GUILD } = require("./config.json")
 const discord = require("discord.js")
+const path = require("path")
+const {membro, gestisciVisulizza, isStaff , CoinMember ,aggiona,user,aggiungi} = require(path.join(__dirname,"../oggetti.js"));
 
 function findIndex(id, infoTickets)
 {
@@ -12,9 +14,10 @@ function findIndex(id, infoTickets)
   return null
 }
 
-function menager(member, infoTickets)
+async function menager(member, infoTickets)
 {
     try{
+        member.guild.channels.cache.get("944240250862059610").setName(`🌍 Membri: ${member.guild.memberCount}`)
         var index = findIndex(member.user.id,infoTickets)
         if(index != null){
             var vert;
@@ -58,6 +61,74 @@ function menager(member, infoTickets)
             x.delete()
             infoTickets.splice(index)
         }
+
+        let coinUser = await user("coinMember")
+        let booster = await user("boost")
+        let tempRoles = await user("role")
+        let proprieta = await user("proprietà")
+
+        if(coinUser != null)
+        {
+            let indexCoin = coinUser.findIndex(userx => userx.id == member.user.id)
+            
+            if(indexCoin > -1)
+                coinUser.splice(indexCoin,1)
+
+            aggiona(coinUser,"coinMember")
+        }
+
+        if(booster != null)
+        {
+            let boosterIndex = booster.findIndex(userx => userx.id == member.user.id)
+
+            if(boosterIndex > -1)
+                booster.splice(boosterIndex,1)
+
+            aggiona(booster,"boost")
+        }
+
+        if(tempRoles != null)
+        {
+            let tempRolesIndex = tempRoles.findIndex(userx => userx.member == member.user.id)
+
+            if(tempRolesIndex > -1)
+                tempRoles.splice(tempRolesIndex, 1)
+
+            aggiona(tempRoles,"role")
+        }
+
+        if(proprieta != null)
+        {
+            let proprietaIndex = proprieta.findIndex(userx => userx.id == member.user.id)
+
+            if(proprietaIndex > -1)
+            {
+                if(proprieta[proprietaIndex].voc != null)
+                    member.guild.channels.cache.get(proprieta[proprietaIndex].voc).delete()
+
+                if(proprieta[proprietaIndex].testuale != null)
+                    member.guild.channels.cache.get(proprieta[proprietaIndex].testuale).delete()
+
+                if(proprieta[proprietaIndex].ruolo != null)
+                {
+                    let role = null
+
+                    if(proprieta[proprietaIndex].ruolo.roleId == null)
+                        role = proprieta[proprietaIndex].ruolo
+                    else
+                        role = proprieta[proprietaIndex].ruolo.roleId
+
+                    member.guild.roles.cache.get(role).delete()
+                }
+
+
+                proprieta.splice(proprietaIndex, 1)
+
+                aggiona(proprieta,"proprietà")
+            }
+        }
+
+
     }catch(err){
         console.log(err)
         try{

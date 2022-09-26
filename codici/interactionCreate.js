@@ -3,9 +3,12 @@ const variabili = require(path.join(__dirname,"../variabili.json"))
 const fs = require("fs")
 const { Client } = require("discord.js")
 const Discord = require("discord.js")
+const {membro, gestisciVisulizza, isStaff , CoinMember ,aggiona,user,aggiungi} = require(path.join(__dirname,"../oggetti.js"))
+
 
 function menager (interaction,client,infoTickets)
 {
+    gestisciVisulizza(interaction)
     if(interaction.isCommand())
     {
         if(interaction.commandName == "regole"){ // comandi / generici / regole.js
@@ -81,6 +84,51 @@ function menager (interaction,client,infoTickets)
             const close = require (path.join(__dirname,"/assistenza/commands/close.js"))
 
             close.close(interaction)
+        }
+        else if(interaction.commandName == "managecoin")//comandi/coin/managecoin
+        {
+            const managecoin = require (path.join(__dirname,"/comandi/coin/managecoin.js"))
+            managecoin.managecoin(interaction)
+        }
+        else if(interaction.commandName == "warn")//comandi/coin/warn.comando
+        {
+            const warn = require (path.join(__dirname,"/comandi/coin/warn.js"))
+            warn.comando(interaction)
+        }
+        else if(interaction.commandName == "infowarn")//comandi/coin/warn.info
+        {
+            const warn = require (path.join(__dirname,"/comandi/coin/warn.js"))
+            warn.info(interaction)
+        }
+        else if(interaction.commandName == "proprieta")//comandi/coin/proprietà
+        {
+            const proprieta = require (path.join(__dirname,"/comandi/coin/proprieta.js"))
+            proprieta.proprieta(interaction)
+        }
+        else if(interaction.commandName == "boost")//comandi/coin/boost
+        {
+            const boost = require (path.join(__dirname,"/comandi/coin/boost.js"))
+            boost.boost(interaction)
+        }
+        else if(interaction.commandName == "give")//comandi/coin/role.give
+        {
+            const role = require (path.join(__dirname,"/comandi/coin/role.js"))
+            role.give(interaction)
+        }
+        else if(interaction.commandName == "inforole")//comandi/coin/role.info
+        {
+            const role = require (path.join(__dirname,"/comandi/coin/role.js"))
+            role.info(interaction)
+        }
+        else if(interaction.commandName == "assumi")//comandi/coin/lavori.assumi
+        {
+            const lavori = require (path.join(__dirname,"/comandi/coin/lavori.js"))
+            lavori.assumi(interaction)
+        }
+        else if(interaction.commandName == "dimetti")//comandi/coin/lavori.dimetti
+        {
+            const lavori = require (path.join(__dirname,"/comandi/coin/lavori.js"))
+            lavori.dimetti(interaction)
         }
     }
     else if(interaction.isModalSubmit()){ 
@@ -245,6 +293,31 @@ function menager (interaction,client,infoTickets)
 
             close.close(interaction)
         }
+        else if (interaction.customId == "CR_assistenza") //coin/cr.assistenza
+        {
+            const cr = require (path.join(__dirname,"/coin/CR"))
+            cr.assistenza(interaction)
+        }
+        else if(interaction.customId == "CR_close") //coin/cr.close
+        {
+            const cr = require (path.join(__dirname,"/coin/CR"))
+            cr.close(interaction)
+        }
+        else if (interaction.customId == "CP_origami")//coin/cp.origami
+        {
+            const CP = require (path.join(__dirname,"/coin/CP"))
+            CP.origami(interaction)
+        }
+        else if (interaction.customId == "CP_buddha")//coin/cp.buddha
+        {
+            const CP = require (path.join(__dirname,"/coin/CP"))
+            CP.buddha(interaction)
+        }
+        else if (interaction.customId == "CP_shinigami")//coin/cp.shinigami
+        {
+            const CP = require (path.join(__dirname,"/coin/CP"))
+            CP.shinigami(interaction)
+        }
     }
     else if(interaction.isSelectMenu())
     {
@@ -254,6 +327,21 @@ function menager (interaction,client,infoTickets)
 
             profilo.profilo(interaction)
         }
+        else if(interaction.customId == "abbonamentiMenu")//coin/abbonamenti
+        {
+            const abbonamentiMenu = require (path.join(__dirname,"/coin/abbonamenti"))
+            abbonamentiMenu.abbonamenti(interaction)
+        }
+        else if(interaction.customId.split(",")[0] == "Assumi")//coin/lavoro.assumi
+        {
+            const lavoro = require (path.join(__dirname,"/coin/lavoro"))
+            lavoro.assumi(interaction)
+        }   
+        else if(interaction.customId.split(",")[0] == "Dimetti")//coin/lavoro.dimetti
+        {
+            const lavoro = require (path.join(__dirname,"/coin/lavoro"))
+            lavoro.dimetti(interaction)
+        } 
     }
 }
 module.exports = {menager}
