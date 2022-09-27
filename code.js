@@ -20,6 +20,20 @@ var infoTickets = []
 
 client.on("ready",()=>{   
 
+    // /assumi
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "assumi",
+        description : "assumi o promuovi un utente",
+        options : [
+            {
+                name : "target",
+                description : "L'utente Da Assumere/Promuovere",
+                type : "USER",
+                required : true
+            }
+        ]
+    })
+
     client.guilds.cache.get(variabili.discordItalia).commands.create({
         name: "prefissi",
         description: "mostra tutti i prefissi",
@@ -463,19 +477,6 @@ client.on("ready",()=>{
 
     })
 
-    // /assumi
-    client.guilds.cache.get(variabili.discordItalia).commands.create({
-        name : "assumi",
-        description : "assumi o promuovi un utente",
-        options : [
-            {
-                name : "target",
-                description : "L'utente Da Assumere/Promuovere",
-                type : "USER",
-                required : true
-            }
-        ]
-    })
     
     try{
         const data = new Date
@@ -552,14 +553,14 @@ client.on("guildMemberRemove", member => {
 client.on("guildMemberUpdate", (old, nuovo) => {
     try{
         const guildMemberUpdate = require (path.join(__dirname,"/codici/guildMemberUpdate.js"))
-        guildMemberUpdate.menager(old,nuovo)
+        guildMemberUpdate.guildMemberUpdate(old,nuovo)
     }catch(err){
         console.log(err)
     }
 })
 
 process.on("unhandledRejection", async (err) => {
-    interaction.guild.members.fetch("598498238336729088").then(member => {
+    client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
         member.user.send(`**Err **${err}`)
-    })
+    }).catch((err) => {console.log(err)})
 })
