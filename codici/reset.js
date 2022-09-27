@@ -9,6 +9,8 @@ const { membro, gestisciVisulizza, isStaff, CoinMember, aggiona, user, aggiungi 
 function reset (client, mese)
 {
     try{
+
+        console.log("inizio")
         var data = new Date
         var mese2 = data.getMonth()+1
         var giorno = data.getDate()
@@ -49,7 +51,7 @@ function reset (client, mese)
                 return
             }
         })
-
+        console.log("dopo warn")
         //contollo gli abbonamenti
         user("coinMember").then(members => {
             if(members == null) return
@@ -617,6 +619,8 @@ function reset (client, mese)
                 return
             }
         })
+        console.log("dopo abbbo")
+
 
         //è cambiato il mese gestisco gli stipendi
         if(mese != mese2)
