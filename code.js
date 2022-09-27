@@ -1,5 +1,5 @@
 const Discord=require("discord.js");
-
+const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}
 )
