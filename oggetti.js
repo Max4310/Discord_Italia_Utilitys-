@@ -4,8 +4,8 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071}
 )
-/*client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GtmELi.77EG2LF8bAVv86f4anBQpQMRnVzsCsYXYhCrU8")*/
-client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8")
+client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GtmELi.77EG2LF8bAVv86f4anBQpQMRnVzsCsYXYhCrU8") //utility
+//client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
 
 const redis = new Redis({ //mi collego al database
     host: 'localhost',
