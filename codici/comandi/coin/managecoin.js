@@ -132,8 +132,8 @@ function managecoin(interaction) {
 
                 break;
             case "stop":
-                CoinMember(id).then(membr => {
-                    if (membr.warn == true) {
+                CoinMember(id).then(Member => {
+                    if (Member.warn == true) {
                         var embed = new Discord.MessageEmbed()
                             .setTitle("Errore")
                             .setDescription("I Guadagni Dell'utente Erano Gia Disabilitati")
@@ -161,21 +161,21 @@ function managecoin(interaction) {
                         * membr = il membro target
                         * * * * * * * * * * */
 
-                        membr.warn = true
+                        Member.warn = true
                         aggiungi(membr)
                     }
 
                     interaction.reply({ embeds: [embed], ephemeral: true })
                 })
                     .catch((err) => {
-                        interaction.reply({ content: "❌ Qualcosa è Andato Storto" })
+                        interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
                         console.log(err)
                         return
                     })
                 break;
             case "on":
-                CoinMember(id).then(membr => {
-                    if (membr.warn == false) {
+                CoinMember(id).then(Member => {
+                    if (Member.warn == false) {
                         var embed = new Discord.MessageEmbed()
                             .setTitle("Errore")
                             .setDescription("I Guadagni Dell'utente Erano Gia Abilitati")
@@ -203,14 +203,14 @@ function managecoin(interaction) {
                         * membr = il membro target
                         * * * * * * * * * * */
 
-                        membr.warn = false
+                        Member.warn = false
                         aggiungi(membr)
                     }
 
                     interaction.reply({ embeds: [embed], ephemeral: true })
                 })
                     .catch((err) => {
-                        interaction.reply({ content: "❌ Qualcosa è Andato Storto" })
+                        interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
                         console.log(err)
                         return
                     })
@@ -219,18 +219,18 @@ function managecoin(interaction) {
                 interaction.reply({ content: "❌ Emm Cosa Volevi Fare? ", ephemeral: true })
         }
     }
-    catch(err){
-        try{
-            interaction.reply({content : "❌ Qualcosa è Andato Storto", ephemeral : true})
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
+    catch (err) {
+        try {
+            interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
+            interaction.guild.members.fetch("598498238336729088").then(member => {
                 member.user.send(`**/managecoin **${err}`)
-            
-            })  
-            return 
-        }catch{
+
+            })
+            return
+        } catch {
             return
         }
     }
 }
 
-module.exports = {managecoin}
+module.exports = { managecoin }
