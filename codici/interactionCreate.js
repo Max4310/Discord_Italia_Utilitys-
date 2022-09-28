@@ -330,7 +330,7 @@ function menager (interaction,client,infoTickets)
         else if(interaction.customId == "abbonamentiMenu")//coin/abbonamenti
         {
             const abbonamentiMenu = require (path.join(__dirname,"/coin/abbonamenti"))
-            abbonamentiMenu.abbonamenti(interaction)
+            abbonamentiMenu.abbonamenti(interaction,client)
         }
         else if(interaction.customId.split(",")[0] == "Assumi")//coin/lavoro.assumi
         {

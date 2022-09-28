@@ -3,7 +3,8 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}
 )
-client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GtmELi.77EG2LF8bAVv86f4anBQpQMRnVzsCsYXYhCrU8")
+/*client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GtmELi.77EG2LF8bAVv86f4anBQpQMRnVzsCsYXYhCrU8")*/
+client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8")
 const fs = require("fs")
 const path = require("path")
 
@@ -506,7 +507,7 @@ client.on("guildMemberAdd", (member) => { //guildMemberAdd.js
 client.on("messageCreate", message =>{ // messageCreate.js
     try{
         const messageCreate = require (path.join(__dirname,"/codici/messageCreate.js"))
-        messageCreate.menager(message)
+        //messageCreate.menager(message)
     }catch(err){
         console.log(err)
     }

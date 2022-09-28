@@ -3,7 +3,7 @@ const path = require("path")
 const variabili = require(path.join(__dirname, "../../variabili.json"))
 const { membro, gestisciVisulizza, isStaff, CoinMember, aggiona, user, aggiungi } = require(path.join(__dirname, "../../oggetti.js"))
 
-function abbonamenti(interaction) {
+function abbonamenti(interaction,client) {
     try {
         if (!interaction.values[0]) return interaction.deferUpdate()
 

@@ -5,7 +5,7 @@ const variabili = require(path.join(__dirname,"../variabili.json"))
 async function menager (member) {
 
     try{
-        member.guild.channels.cache.get("944240250862059610").setName(`🌍 Membri: ${member.guild.memberCount}`)
+        //member.guild.channels.cache.get("944240250862059610").setName(`🌍 Membri: ${member.guild.memberCount}`)
         user("warn").then((members) => {
             var x = members.findIndex(u => u.memberId == member.id)
             if(x > -1)
