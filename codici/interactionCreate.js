@@ -318,6 +318,18 @@ function menager (interaction,client,infoTickets)
             const CP = require (path.join(__dirname,"/coin/CP"))
             CP.shinigami(interaction)
         }
+        else if(interaction.customId.split(",")[0] == "abbonamenti"){
+            const visualizzaCoin = require (path.join(__dirname,"/comandi/coin/visualizzaCoin.js"))
+            visualizzaCoin.abbonamenti(interaction);
+        }
+        else if(interaction.customId.split(",")[0] == "lavori"){
+            const visualizzaCoin = require (path.join(__dirname,"/comandi/coin/visualizzaCoin.js"))
+            visualizzaCoin.lavori(interaction)
+        }
+        else if(interaction.customId == "comandi"){
+            const visualizzaCoin = require (path.join(__dirname,"/comandi/coin/visualizzaCoin.js"))
+            visualizzaCoin.comando(interaction);
+        }
     }
     else if(interaction.isSelectMenu())
     {
