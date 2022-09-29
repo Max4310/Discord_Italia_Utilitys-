@@ -17,7 +17,7 @@ function findIndex(id, infoTickets)
 async function menager(member, infoTickets)
 {
     try{
-        //member.guild.channels.cache.get("944240250862059610").setName(`🌍 Membri: ${member.guild.memberCount}`)
+        member.guild.channels.cache.get("944240250862059610").setName(`🌍 Membri: ${member.guild.memberCount}`)
         var index = findIndex(member.user.id,infoTickets)
         if(index != null){
             var vert;

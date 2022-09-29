@@ -292,13 +292,13 @@ class lavoro{
                 this.paga = 900
                 break;
             case variabili.Esaminatore:
-                this.paga = 1.800;
+                this.paga = 1800;
                 break;
             case variabili.Creator:
-                this.paga = 1.600
+                this.paga = 1600
                 break;
             case variabili.Producer:
-                this.paga = 3.500
+                this.paga = 3500
                 break;
             default :
                 console.log("l'id passato non è valido")
@@ -371,8 +371,8 @@ class membro {
                 this.lavori.push(lavor)
                 this.stipendioTot = this.stipendioTot + lavor.paga
 
-                console.log("assumi\n")
-                console.log(this)
+                //console.log("assumi\n")
+                //console.log(this)
                 aggiungi(this)
             }).catch((err) => {
                 console.log(err)
@@ -389,12 +389,13 @@ class membro {
             console.log("lavoroid",lavoroID);
 
             CoinMember("romano").then(() =>{
+                let x = new lavoro(lavoroID)
                 let index = this.lavori.findIndex(l => l.id == lavoroID)
                 this.lavori.splice(index,1);
-                
+                this.stipendioTot = this.stipendioTot-x.paga
 
-                console.log("dimetti\n")
-                console.log(this)
+                //console.log("dimetti\n")
+                //console.log(this)
 
 
                 aggiungi(this)

@@ -7,18 +7,22 @@ function assumi(interaction) {
     try {
 
         if (!interaction.values[0]) return interaction.deferUpdate()
-
         let roleid = interaction.values[0]
         let userTargetId = interaction.customId.split(",")[1]
 
+        if (userTargetId == interaction.member.user.id && roleid != variabili.Governo) return interaction.reply({ content: "❌ Non Puoi Assumere Te Stesso", ephemeral: true })
 
         CoinMember(userTargetId).then(userx => {
-            if (userx == null) userx = new membro(userTargetId)
+            
             if (roleid != "altro") {
-                if (userTargetId == interaction.member.user.id && roleid != variabili.Governo) return interaction.reply({ content: "❌ Non Puoi Assumere Te Stesso", ephemeral: true })
-                let y = userx.lavori.findIndex(lavoro => lavoro.id == roleid)
-                if (y > -1) return interaction.reply({ content: "❌ L'utente Gia Possiede Questo Lavoro\n**Probabilmente Non Ha I Permessi Sul Server o Svolge Questo Lavoro In Un Altro Ministero**", ephemeral: true })
-
+                if(userx != null){
+                    let y = userx.lavori.findIndex(lavoro => lavoro.id == roleid)
+                    if (y > -1) return interaction.reply({ content: "❌ L'utente Gia Possiede Questo Lavoro\n**Probabilmente Non Ha I Permessi Sul Server o Svolge Questo Lavoro In Un Altro Ministero**", ephemeral: true })
+                }
+                else{
+                    userx = new membro(userTargetId)
+                }
+                    
 
                 if (roleid == variabili.Consigliere) //consigliere generico
                 {

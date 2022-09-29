@@ -88,7 +88,7 @@ function menager (interaction,client,infoTickets)
         else if(interaction.commandName == "managecoin")//comandi/coin/managecoin
         {
             const managecoin = require (path.join(__dirname,"/comandi/coin/managecoin.js"))
-            managecoin.managecoin(interaction)
+            managecoin.managecoin(interaction, client)
         }
         else if(interaction.commandName == "warn")//comandi/coin/warn.comando
         {
@@ -319,16 +319,16 @@ function menager (interaction,client,infoTickets)
             CP.shinigami(interaction)
         }
         else if(interaction.customId.split(",")[0] == "abbonamenti"){
-            const visualizzaCoin = require (path.join(__dirname,"/comandi/coin/visualizzaCoin.js"))
+            const visualizzaCoin = require (path.join(__dirname,"/coin/visualizzaCoin.js"))
             visualizzaCoin.abbonamenti(interaction);
         }
         else if(interaction.customId.split(",")[0] == "lavori"){
-            const visualizzaCoin = require (path.join(__dirname,"/comandi/coin/visualizzaCoin.js"))
+            const visualizzaCoin = require (path.join(__dirname,"/coin/visualizzaCoin.js"))
             visualizzaCoin.lavori(interaction)
         }
         else if(interaction.customId == "comandi"){
-            const visualizzaCoin = require (path.join(__dirname,"/comandi/coin/visualizzaCoin.js"))
-            visualizzaCoin.comando(interaction);
+            const visualizzaCoin = require (path.join(__dirname,"/coin/visualizzaCoin.js"))
+            visualizzaCoin.comandi(interaction);
         }
     }
     else if(interaction.isSelectMenu())
