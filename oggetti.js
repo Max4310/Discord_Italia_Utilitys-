@@ -4,7 +4,8 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071}
 )
-client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8")
+client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GtmELi.77EG2LF8bAVv86f4anBQpQMRnVzsCsYXYhCrU8") //utility
+//client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
 
 const redis = new Redis({ //mi collego al database
     host: 'localhost',
@@ -41,7 +42,6 @@ async function CoinMember(id)
     if(members != null) 
     {
         var userx = members.find(member => member.id == id)
-
 
         if(userx != undefined && userx != null)
             return userx
@@ -292,13 +292,13 @@ class lavoro{
                 this.paga = 900
                 break;
             case variabili.Esaminatore:
-                this.paga = 1.800;
+                this.paga = 1800;
                 break;
             case variabili.Creator:
-                this.paga = 1.600
+                this.paga = 1600
                 break;
             case variabili.Producer:
-                this.paga = 3.500
+                this.paga = 3500
                 break;
             default :
                 console.log("l'id passato non è valido")
@@ -361,15 +361,18 @@ class membro {
         }
         
     }
-    assumi(lavoroID){ //metodo per assumere un utente
+    assumi (lavoroID) { //metodo per assumere un utente
         try{
             CoinMember("romano").then(() =>{
                 //console.log(this)
+                
                 var lavor = new lavoro(lavoroID)
     
                 this.lavori.push(lavor)
                 this.stipendioTot = this.stipendioTot + lavor.paga
-                
+
+                //console.log("assumi\n")
+                //console.log(this)
                 aggiungi(this)
             }).catch((err) => {
                 console.log(err)
@@ -383,26 +386,18 @@ class membro {
     }
     dimetti(lavoroID){ //metoto per dimettere un utente
         try{
+            console.log("lavoroid",lavoroID);
+
             CoinMember("romano").then(() =>{
-                var j=0
-                var verifica = false
-    
-                while(j < this.lavori.length && verifica==false)
-                {
-                    if(this.lavori[j].id == lavoroID)
-                        verifica = true
-                    j++
-                }
-                //console.log(j)
-                for(var k=j-1; k<this.lavori.length-1 ; k++)
-                {
-                    var appoggio = this.lavori[k+1]
-                    this.lavori[k+1] = this.lavori[k]
-                    this.lavori[k] = appoggio
-                }
-                this.stipendioTot = this.stipendioTot-this.lavori[this.lavori.length-1].paga 
-                this.lavori.pop()
-    
+                let x = new lavoro(lavoroID)
+                let index = this.lavori.findIndex(l => l.id == lavoroID)
+                this.lavori.splice(index,1);
+                this.stipendioTot = this.stipendioTot-x.paga
+
+                //console.log("dimetti\n")
+                //console.log(this)
+
+
                 aggiungi(this)
             })
             .catch((err) => {
@@ -619,13 +614,13 @@ class membro {
                     embed.setColor("RED")
     
                 const lavori = new Discord.MessageButton()
-                    .setCustomId("lavori")
+                    .setCustomId("lavori,"+this.id)
                     .setEmoji("⚒️")
                     .setLabel("Lavori")
                     .setStyle("SECONDARY")
     
                 const abbonamenti = new Discord.MessageButton()
-                    .setCustomId("abbonamenti")
+                    .setCustomId("abbonamenti,"+this.id)
                     .setEmoji("🤩")
                     .setLabel("Abbonamenti")
                     .setStyle("SECONDARY")
@@ -658,104 +653,6 @@ class membro {
         }
         
     } 
-    Visulizzaabbonamenti(interaction){
-        try{
-            CoinMember("romano").then(() =>{
-                var utenteCoin = this
-                if(utenteCoin.abbonamentiPrezzo > 0)
-                {
-                    var description = ""
-                    var prezzo = ""
-                    var fine = ""
-                    for(var i=0;i<utenteCoin.abbonamenti.length;i++)    
-                    {
-                        fine = fine + utenteCoin.abbonamenti[i].fine.giorno+"/"+utenteCoin.abbonamenti[i].fine.mese+"/"+utenteCoin.abbonamenti[i].fine.anno+"\n"
-                        description = description + utenteCoin.abbonamenti[i].nome +"\n"
-                        prezzo = prezzo + utenteCoin.abbonamenti[i].prezzo + "£\n"
-                    }
-    
-                    var abbonamenti = new Discord.MessageEmbed()
-                        .setTitle(`Abbonamenti Di ${interaction.member.user.tag}`)
-                        .setColor(interaction.message.embeds[0].color)
-                        .setThumbnail(interaction.member.user.displayAvatarURL())
-                        .setDescription(`Spendi **${utenteCoin.abbonamentiPrezzo}£** Al Mese Per Gli Abbonamenti`)
-                        .setFields(
-                            {
-                                name : "Abbonamento",
-                                value : description,
-                                inline : true
-                            },
-                            {
-                                name : "Scadenza",
-                                value : fine,
-                                inline : true
-                            },
-                            {
-                                name : "Prezzo",
-                                value : prezzo,
-                                inline : true
-                            }
-                        )
-    
-    
-                    interaction.reply({embeds : [abbonamenti], ephemeral : true})
-                    
-                }
-                else
-                    interaction.reply({content : "❌ Non Hai Nessun Abbonamento", ephemeral : true})
-            })
-        }catch(err){
-            console.log(err)
-            return
-        }
-    }
-    VisualizzaLavori(interaction){
-        try{
-            CoinMember("romano").then(() =>{
-                var utenteCoin = this
-    
-                if(utenteCoin.stipendioTot > 0)
-                {
-                    var description = ""
-                    var prezzo = ""
-                    for(var i=0;i<utenteCoin.lavori.length;i++)    
-                    {
-                        description = description +"<@&"+ utenteCoin.lavori[i].id +">\n"
-                        prezzo = prezzo + utenteCoin.lavori[i].paga + "£\n"
-                    }
-    
-                    var abbonamenti = new Discord.MessageEmbed()
-                        .setTitle(`Lavori Di ${interaction.member.user.tag}`)
-                        .setColor(interaction.message.embeds[0].color)
-                        .setThumbnail(interaction.member.user.displayAvatarURL())
-                        .setDescription(`Guadagni **${utenteCoin.stipendioTot}£** Al Mese Dai Tuoi Lavori`)
-                        .setFields(
-                            {
-                                name : "Lavori: ",
-                                value : description,
-                                inline : true
-                            },
-                            {
-                                name : "Paghe: ",
-                                value : prezzo,
-                                inline : true
-                            }
-                        )
-    
-    
-                    interaction.reply({embeds : [abbonamenti], ephemeral : true})
-                    
-                }
-                else
-                    interaction.reply({content : "❌ Non Fai Nessun Lavoro", ephemeral : true})
-            
-            })
-        }catch(err){
-            console.log(err)
-            return
-        }
-        
-    }
 }
 
 function gestisciVisulizza (interaction)
@@ -778,37 +675,8 @@ function gestisciVisulizza (interaction)
 
          
     }
-    else if(interaction.customId == "abbonamenti")
-    {
-        var u = new membro(interaction.member.user.id)
-        u.Visulizzaabbonamenti(interaction)
-        return
-    } 
-    else if(interaction.customId == "lavori")
-    {
-        var u = new membro(interaction.member.user.id)
-        u.VisualizzaLavori(interaction)
-        return
-    } 
-    else if(interaction.customId == "comandi")
-    {
-        const emebed = new Discord.MessageEmbed()
-            .setTitle(`Comandi Discord Italia Coin`)
-            .setColor("GREEN")
-            .setDescription(
-                "**Visualizza Gli:** <#1001643547834982490>\n"+
-                "[Aquista I Discord Italia Coin](https://discorditalia.tebex.io/category/1952772)\n\n"+
-                "\`/coins\`"+ " *Visualizza Il Profilo Di Un Altro Utente.*\n" +
-                "\`/proprieta\`"+ " *Visualizza Le Proprietà Di Un Utente.*\n"+
-                "\`/givecoin\`"+ " *Dai Una Parte Di Denaro Ad Un Altro Utente.*\n"+
-                "\`/annulla\` *Annulla Un Tuo Abbonamento*"
-            )
-        
-        interaction.reply({embeds : [emebed], ephemeral : true})
-        return
-    }
     else
-        return   
+        return
 }
 
 module.exports = {membro , gestisciVisulizza,isStaff,CoinMember,aggiona,user,aggiungi}

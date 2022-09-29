@@ -16,7 +16,8 @@ function managecoin(interaction) {
                 if (isStaff(membr) == true) {
                     if (quantità != null) {
                         var utente = new membro(id)
-                        utente.add(quantità)
+                            utente.add(quantità)
+
                         const embed = new Discord.MessageEmbed()
                             .setColor("GREEN")
                             .setDescription(`${quantità}£ Sono Stati Aggiunti A ${interaction.options.getUser("target")}`)
@@ -24,13 +25,15 @@ function managecoin(interaction) {
 
                         interaction.reply({ embeds: [embed], ephemeral: true })
 
-                        const economyLog = new Discord.MessageEmbed()
+                        let economyLog = new Discord.MessageEmbed()
                             .setTitle("ECONOMY LOG")
                             .setDescription(`${interaction.member} ha aggiunto ${quantità} discord coin a ${membr}`)
                             .setColor("GREEN")
-                            .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007711772205121586/1486564172-finance-loan-money_81492.png" })
+                            //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007711772205121586/1486564172-finance-loan-money_81492.png" })
 
-                        client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
+                        let log = interaction.guild.channels.cache.get(variabili.logCoin)
+                        
+                        log.send({ embeds : [economyLog] })
 
                         /* * * * * * * * * * *
                         *  il comando aggiunge una quantità di soldi (passati come quantità) di un utente passato come target
@@ -68,9 +71,9 @@ function managecoin(interaction) {
                                     .setTitle("ECONOMY LOG")
                                     .setDescription(`${interaction.member} ha rimosso ${quantità} discord coin a ${membr}`)
                                     .setColor("RED")
-                                    .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007712884140277900/thief.png" })
+                                    //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007712884140277900/thief.png" })
 
-                                client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
+                                interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
 
                                 /* * * * * * * * * * *
@@ -113,9 +116,9 @@ function managecoin(interaction) {
                         .setTitle("ECONOMY LOG")
                         .setDescription(`${interaction.member} ha eseguito il comando di reset su ${membr}`)
                         .setColor("RED")
-                        .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007712281972457503/kisspng-vector-graphics-credit-card-debt-portable-network-contact-same-day-bankruptcy-714-913-6273-sa-5c0500d5582c74.8090259715438317653612.png" })
+                        //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007712281972457503/kisspng-vector-graphics-credit-card-debt-portable-network-contact-same-day-bankruptcy-714-913-6273-sa-5c0500d5582c74.8090259715438317653612.png" })
 
-                    client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
+                    interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
 
 
@@ -132,8 +135,8 @@ function managecoin(interaction) {
 
                 break;
             case "stop":
-                CoinMember(id).then(membr => {
-                    if (membr.warn == true) {
+                CoinMember(id).then(Member => {
+                    if (Member.warn == true) {
                         var embed = new Discord.MessageEmbed()
                             .setTitle("Errore")
                             .setDescription("I Guadagni Dell'utente Erano Gia Disabilitati")
@@ -149,9 +152,9 @@ function managecoin(interaction) {
                             .setTitle("ECONOMY LOG")
                             .setDescription(`${interaction.member} ha utilizzato il comando STOP su ${membr}`)
                             .setColor("ORANGE")
-                            .setThumbnail({ url: "" })
+                            
 
-                        client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
+                        interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
                         /* * * * * * * * * * 
                         * il comando stoppa i guadagni di un utente passato come target
@@ -161,21 +164,21 @@ function managecoin(interaction) {
                         * membr = il membro target
                         * * * * * * * * * * */
 
-                        membr.warn = true
-                        aggiungi(membr)
+                        Member.warn = true
+                        aggiungi(Member)
                     }
 
                     interaction.reply({ embeds: [embed], ephemeral: true })
                 })
                     .catch((err) => {
-                        interaction.reply({ content: "❌ Qualcosa è Andato Storto" })
+                        interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
                         console.log(err)
                         return
                     })
                 break;
             case "on":
-                CoinMember(id).then(membr => {
-                    if (membr.warn == false) {
+                CoinMember(id).then(Member => {
+                    if (Member.warn == false) {
                         var embed = new Discord.MessageEmbed()
                             .setTitle("Errore")
                             .setDescription("I Guadagni Dell'utente Erano Gia Abilitati")
@@ -191,9 +194,9 @@ function managecoin(interaction) {
                             .setTitle("ECONOMY LOG")
                             .setDescription(`${interaction.member} ha abilitato i guadagni di ${membr}`)
                             .setColor("GREEN")
-                            .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007711772205121586/1486564172-finance-loan-money_81492.png" })
+                            //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007711772205121586/1486564172-finance-loan-money_81492.png" })
 
-                        client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
+                        interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
                         /* * * * * * * * * * 
                         * il comando Abilita i guadagni di un utente passato come target
@@ -203,14 +206,14 @@ function managecoin(interaction) {
                         * membr = il membro target
                         * * * * * * * * * * */
 
-                        membr.warn = false
-                        aggiungi(membr)
+                        Member.warn = false
+                        aggiungi(Member)
                     }
 
                     interaction.reply({ embeds: [embed], ephemeral: true })
                 })
                     .catch((err) => {
-                        interaction.reply({ content: "❌ Qualcosa è Andato Storto" })
+                        interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
                         console.log(err)
                         return
                     })
@@ -219,18 +222,18 @@ function managecoin(interaction) {
                 interaction.reply({ content: "❌ Emm Cosa Volevi Fare? ", ephemeral: true })
         }
     }
-    catch(err){
-        try{
-            interaction.reply({content : "❌ Qualcosa è Andato Storto", ephemeral : true})
-            interaction.guild.members.fetch("598498238336729088").then(member =>{
+    catch (err) {
+        try {
+            interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
+            interaction.guild.members.fetch("598498238336729088").then(member => {
                 member.user.send(`**/managecoin **${err}`)
-            
-            })  
-            return 
-        }catch{
+
+            })
+            return
+        } catch {
             return
         }
     }
 }
 
-module.exports = {managecoin}
+module.exports = { managecoin }

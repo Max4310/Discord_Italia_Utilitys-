@@ -7,17 +7,22 @@ function assumi(interaction) {
     try {
 
         if (!interaction.values[0]) return interaction.deferUpdate()
-
         let roleid = interaction.values[0]
         let userTargetId = interaction.customId.split(",")[1]
 
-        CoinMember(userTargetId).then(userx => {
-            if (userx == null) userx = new membro(userTargetId)
-            if (roleid != "altro") {
-                if (userTargetId == interaction.member.user.id && roleid != variabili.Governo) return interaction.reply({ content: "❌ Non Puoi Assumere Te Stesso", ephemeral: true })
-                let y = userx.lavori.findIndex(lavoro => lavoro.id == roleid)
-                if (y > -1) return interaction.reply({ content: "❌ L'utente Gia Possiede Questo Lavoro\n**Probabilmente Non Ha I Permessi Sul Server o Svolge Questo Lavoro In Un Altro Ministero**", ephemeral: true })
+        if (userTargetId == interaction.member.user.id && roleid != variabili.Governo) return interaction.reply({ content: "❌ Non Puoi Assumere Te Stesso", ephemeral: true })
 
+        CoinMember(userTargetId).then(userx => {
+            
+            if (roleid != "altro") {
+                if(userx != null){
+                    let y = userx.lavori.findIndex(lavoro => lavoro.id == roleid)
+                    if (y > -1) return interaction.reply({ content: "❌ L'utente Gia Possiede Questo Lavoro\n**Probabilmente Non Ha I Permessi Sul Server o Svolge Questo Lavoro In Un Altro Ministero**", ephemeral: true })
+                }
+                else{
+                    userx = new membro(userTargetId)
+                }
+                    
 
                 if (roleid == variabili.Consigliere) //consigliere generico
                 {
@@ -228,8 +233,9 @@ function assumi(interaction) {
                     }
 
                     interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(roleid))
+
                     let m = new membro(userTargetId)
-                    m.assumi(roleid)
+                        m.assumi(roleid)
 
                     let appoggio = null
                     switch (roleid) {
@@ -269,8 +275,8 @@ function assumi(interaction) {
 
 
                     if (appoggio != null) {
-                        let m = new membro(userTargetId)
-                        //m.dimetti(appoggio)
+                        m.dimetti(appoggio)
+
                         interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(appoggio))
                         interaction.reply({ content: "👍 Utente Assunto Con Successo", ephemeral: true })
                     }
@@ -294,15 +300,16 @@ function assumi(interaction) {
                     let m = new membro(userTargetId)
                     m.assumi(roleid)
 
-                    if (roleid == variabili.Ispettore)
+                    if (roleid == variabili.Ispettore) {
                         interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Agente))
+                        m.dimetti(variabili.Agente)
+                    }
                     else if (roleid == variabili.Yakuza) {
-                        let m = new membro(userTargetId)
                         m.dimetti(variabili.Helper)
                     }
 
 
-                    interaction.reply({ content: "👍 Utente Assuto Con Successo", ephemeral: true })
+                    interaction.reply({ content: "👍 Utente Assunto Con Successo", ephemeral: true })
 
                     let log = new Discord.MessageEmbed()
                         .setTitle("Utente Assuto")
@@ -782,12 +789,16 @@ function assumi(interaction) {
                 else
                     interaction.reply({ content: "❌ Sembra Che Tutti I Ministeri Hanno Qualcuno Che Puo Assumere", ephemeral: true })
             }
-        }).catch(() => {
+        }).catch((err) => {
+            console.log(err)
             interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
             return
         })
     } catch (err) {
         try {
+            console.log(err)
+
+
             interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
             interaction.guild.members.fetch("598498238336729088").then(member => {
                 member.user.send(`**lavoro/assumi **${err}`)
@@ -811,17 +822,24 @@ function dimetti(interaction) {
         CoinMember(userTargetId).then(userx => {
             if (userx == null) userx = new membro(userTargetId)
 
-            if (userTargetId == interaction.member.user.id && roleid != variabili.Governo) return interaction.reply({ content: "❌ Non Puoi Assumere Te Stesso", ephemeral: true })
+            if (userTargetId == interaction.member.user.id && roleid != variabili.Governo) return interaction.reply({ content: "❌ Non Puoi Dimettere Te Stesso", ephemeral: true })
             let y = userx.lavori.findIndex(lavoro => lavoro.id == roleid)
             if (y == -1) return interaction.reply({ content: "❌ L'utente Non Possiede Questo Lavoro\n**Probabilmente Ha Solo I Permessi Sul Server**", ephemeral: true })
 
             interaction.guild.members.cache.get(userTargetId).roles.remove(roleid)
-            if (roleid == variabili.GestoreDeveloper || roleid == variabili.GestoreHelper || roleid == variabili.CapoPolizia) {
-                let m = new membro(userTargetId)
+            let m = new membro(userTargetId)
                 m.dimetti(roleid)
+
+            if (roleid == variabili.GestoreDeveloper || roleid == variabili.GestoreHelper || roleid == variabili.CapoPolizia) {
                 interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Consigliere))
             }
-
+            else if (role == variabili.Helper || role == variabili.Developer || role == variabili.Agente || role == variabili.Yakuza || role == variabili.CEO || role == variabili.Grafico || role == variabili.Rianimatore || role == variabili.Animatore || role == variabili.Apprendista || variabili.Cameraman || variabili.Creator) {
+                interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staff))
+            }
+            else if (role == variabili.HelperMaster || role == variabili.DeveloperSenior || role == variabili.commissario || role == variabili.Boss || role == variabili.GestoreCEO || role == variabili.Designer || role == variabili.EventMaster || role == variabili.Supervisor || role == variabili.Esaminatore || role == variabili.Producer) {
+                interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staffAdmin))
+            }
+            
 
             interaction.reply({ content: "👍 Comando Eseguito Con Successo", ephemeral: true })
 

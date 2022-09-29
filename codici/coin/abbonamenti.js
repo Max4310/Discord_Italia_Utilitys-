@@ -3,7 +3,7 @@ const path = require("path")
 const variabili = require(path.join(__dirname, "../../variabili.json"))
 const { membro, gestisciVisulizza, isStaff, CoinMember, aggiona, user, aggiungi } = require(path.join(__dirname, "../../oggetti.js"))
 
-function abbonamenti(interaction) {
+function abbonamenti(interaction,client) {
     try {
         if (!interaction.values[0]) return interaction.deferUpdate()
 
@@ -171,7 +171,7 @@ function abbonamenti(interaction) {
                                                 .setTitle("ECONOMY LOG")
                                                 .setDescription(`${interaction.member} ha comprato l'abbonamento Gold`)
                                                 .setColor("GREEN")
-                                                .setThumbnail({ url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png" })
+                                                //.setThumbnail({ url: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Bitcoin.svg/800px-Bitcoin.svg.png" })
 
                                             client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -242,7 +242,7 @@ function abbonamenti(interaction) {
                                     .setTitle("ECONOMY LOG")
                                     .setDescription(`${interaction.member} ha comprato l'abbonamento VIP`)
                                     .setColor("GREEN")
-                                    .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007718599210844180/1f48e.png" })
+                                    //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007718599210844180/1f48e.png" })
 
                                 client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -362,7 +362,7 @@ function abbonamenti(interaction) {
                                     .setTitle("ECONOMY LOG")
                                     .setDescription(`${interaction.member} ha comprato un Custom Role`)
                                     .setColor("GREEN")
-                                    .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007719129899356232/pngwing.com.png?width=668&height=668" })
+                                    //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007719129899356232/pngwing.com.png?width=668&height=668" })
 
                                 client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -459,7 +459,7 @@ function abbonamenti(interaction) {
                                 .setTitle("ECONOMY LOG")
                                 .setDescription(`${interction.member} ha acquistato una chiamata privata`)
                                 .setColor("GREEN")
-                                .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007719814887915580/94916.png" })
+                                //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007719814887915580/94916.png" })
 
                             client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -526,7 +526,7 @@ function abbonamenti(interaction) {
                                 .setTitle("ECONOMY LOG")
                                 .setDescription(`${interaction.member} ha acquistato l'accesso ai colori standard`)
                                 .setColor("GREEN")
-                                .setThumbnail({ url: "https://images.emojiterra.com/google/android-pie/512px/1f3a8.png" })
+                                //.setThumbnail({ url: "https://images.emojiterra.com/google/android-pie/512px/1f3a8.png" })
 
                             client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -618,7 +618,7 @@ function abbonamenti(interaction) {
                                             .setTitle("ECONOMY LOG")
                                             .setDescription(`${interaction.member} ha acquistato l'accesso ai colori standard`)
                                             .setColor("GREEN")
-                                            .setThumbnail({ url: "https://images.emojiterra.com/google/android-pie/512px/1f3a8.png" })
+                                            //.setThumbnail({ url: "https://images.emojiterra.com/google/android-pie/512px/1f3a8.png" })
 
                                         client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -734,7 +734,7 @@ function abbonamenti(interaction) {
                                             .setTitle("ECONOMY LOG")
                                             .setDescription(`${interaction.member} ha acquistato una chat testuale`)
                                             .setColor("GREEN")
-                                            .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007719814627864626/Pngtreevector_message_icon_3989732.png?width=668&height=668" })
+                                            //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007719814627864626/Pngtreevector_message_icon_3989732.png?width=668&height=668" })
 
                                         client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -819,7 +819,7 @@ function abbonamenti(interaction) {
                                 .setTitle("ECONOMY LOG")
                                 .setDescription(`${interaction.member} ha acquistato l'accesso agli spoiler`)
                                 .setColor("GREEN")
-                                .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007720746216345670/Annunci-Mostre-Scambio-depoca-icon-300x300.png" })
+                                //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007720746216345670/Annunci-Mostre-Scambio-depoca-icon-300x300.png" })
 
                             client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -887,7 +887,7 @@ function abbonamenti(interaction) {
                                 .setTitle("ECONOMY LOG")
                                 .setDescription(`${interaction.member} ha comprato l'accesso al'anteprima patch`)
                                 .setColor("GREEN")
-                                .setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007720746216345670/Annunci-Mostre-Scambio-depoca-icon-300x300.png" })
+                                //.setThumbnail({ url: "https://media.discordapp.net/attachments/962302556929945652/1007720746216345670/Annunci-Mostre-Scambio-depoca-icon-300x300.png" })
 
                             client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 
@@ -954,7 +954,7 @@ function abbonamenti(interaction) {
                                 .setTitle("ECONOMY LOG")
                                 .setDescription(`${interaction.member} ha comprato un colore+`)
                                 .setColor("GREEN")
-                                .setThumbnail({ url: "https://images-ext-1.discordapp.net/external/y-tsG7kt0S6YBFpd8hzMHRFHWkyvoliznGSatTDFCkM/https/images.emojiterra.com/google/android-pie/512px/1f3a8.png" })
+                                //.setThumbnail({ url: "https://images-ext-1.discordapp.net/external/y-tsG7kt0S6YBFpd8hzMHRFHWkyvoliznGSatTDFCkM/https/images.emojiterra.com/google/android-pie/512px/1f3a8.png" })
 
                             client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.logCoin).send({ embeds: [economyLog] })
 

@@ -88,31 +88,6 @@ function guildMemberUpdate (old,nuovo)
                     return
                 })
             }
-            //GESTIRE IL DIMETTI DA QUI
-            else if(role == variabili.Helper || role == variabili.Developer || role == variabili.Agente || role == variabili.Ispettore || role == variabili.Yakuza || role == variabili.CEO || role == variabili.Grafico || role == variabili.Rianimatore || role == variabili.Animatore || role == variabili.Apprendista || variabili.Cameraman || variabili.Creator )
-            {
-                let m = new membro(old.user.id)
-                m.dimetti(role)
-                old.roles.remove(old.guild.roles.cache.get(variabili.staff))
-            } 
-            else if(role == variabili.HelperMaster || role == variabili.DeveloperSenior || role == variabili.commissario || role == variabili.Boss || role == variabili.GestoreCEO || role == variabili.Designer || role == variabili.EventMaster || role == variabili.Supervisor || role == variabili.Esaminatore || role == variabili.Producer)
-            {
-                let m = new membro(old.user.id)
-                m.dimetti(role)
-                old.roles.remove(old.guild.roles.cache.get(variabili.staffAdmin))
-            }
-            /*else if(role == variabili.GestoreDeveloper || role == variabili.GestoreHelper || role == variabili.CapoPolizia)
-            {
-                let m = new membro(old.user.id)
-                m.dimetti(role)
-                console.log("consigleire")
-                old.roles.remove(old.guild.roles.cache.get(variabili.Consigliere))
-            }*/
-            else if(role == variabili.Governo || role == variabili.Consigliere)
-            {
-                let m = new membro(old.user.id)
-                m.dimetti(role)
-            }
         }
     }catch(err){
         try{

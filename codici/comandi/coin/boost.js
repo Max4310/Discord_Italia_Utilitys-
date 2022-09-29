@@ -18,12 +18,12 @@ function boost(interaction)
             {
                 var embed = new Discord.MessageEmbed()
                     .setTitle(`Boost Di ${target.tag}`)
-                    .setDescription(`L'utente Ha Boostato Il Server ${userBoost[x].boost}`)
+                    .setDescription(`L'utente Ha Boostato Il Server ${userBoost[x].boost} Volta`)
                     .setColor("RANDOM")
                 interaction.reply({embeds: [embed], ephemeral: true})
             }   
             else
-                interaction.reply({content: `❌     ${target} Non Boosta Il Server`, ephemeral : true})
+                interaction.reply({content: `❌ ${target} Non Boosta Il Server`, ephemeral : true})
         })
     }catch(err){
         try{

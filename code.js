@@ -3,7 +3,8 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}
 )
-client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GmayiA.8Dvpt4PA2GBfsfjDaOm4n1cQZgqhGygNXuufmQ")
+client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GtmELi.77EG2LF8bAVv86f4anBQpQMRnVzsCsYXYhCrU8") //utility
+//client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
 const fs = require("fs")
 const path = require("path")
 
@@ -19,6 +20,20 @@ var infoTickets = []
 
 
 client.on("ready",()=>{   
+
+    // /assumi
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name : "assumi",
+        description : "assumi o promuovi un utente",
+        options : [
+            {
+                name : "target",
+                description : "L'utente Da Assumere/Promuovere",
+                type : "USER",
+                required : true
+            }
+        ]
+    })
 
     client.guilds.cache.get(variabili.discordItalia).commands.create({
         name: "prefissi",
@@ -463,19 +478,6 @@ client.on("ready",()=>{
 
     })
 
-    // /assumi
-    client.guilds.cache.get(variabili.discordItalia).commands.create({
-        name : "assumi",
-        description : "assumi o promuovi un utente",
-        options : [
-            {
-                name : "target",
-                description : "L'utente Da Assumere/Promuovere",
-                type : "USER",
-                required : true
-            }
-        ]
-    })
     
     try{
         const data = new Date
@@ -552,14 +554,17 @@ client.on("guildMemberRemove", member => {
 client.on("guildMemberUpdate", (old, nuovo) => {
     try{
         const guildMemberUpdate = require (path.join(__dirname,"/codici/guildMemberUpdate.js"))
-        guildMemberUpdate.menager(old,nuovo)
+        guildMemberUpdate.guildMemberUpdate(old,nuovo)
     }catch(err){
         console.log(err)
     }
 })
 
+
+
 process.on("unhandledRejection", async (err) => {
-    interaction.guild.members.fetch("598498238336729088").then(member => {
+    console.log(err)
+    client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
         member.user.send(`**Err **${err}`)
-    })
+    }).catch((err) => {console.log(err)})
 })

@@ -56,7 +56,9 @@ function proprieta(interaction) {
                 interaction.reply({ embeds: [embed], ephemeral: true })
             }
             else
-                interaction.reply({ content: `❌   ${target} Non Ha Proprietà`, ephemeral: true })
+                interaction.reply({ content: `❌ ${target} Non Ha Proprietà`, ephemeral: true })
+        }).catch(() => {
+            interaction.reply({content : "❌ Nessuno Nel Server Ha Le Proprità", ephemeral: true})
         })
     } catch (err) {
         try{
