@@ -17,6 +17,8 @@ function assumi(interaction) {
             emoji : "🥇"
         }*/
 
+        console.log(variabili.graficoSenior)
+
         if (interaction.guild.ownerId == interaction.member.user.id) {
             assumibili.push({
                 label: "Governo",
@@ -47,10 +49,12 @@ function assumi(interaction) {
         let yakuza = false
         let boss = false
 
-        let gestoreCeo = false
-        let Ceo = false
+        let club = false
         let grafico = false
-        let desiner = false
+        let graficoPlus = false
+        let giornalista = false
+        let viceDirettore = false
+        let respClub = false
 
         let supervisor = false
         let apprendista = false
@@ -91,13 +95,20 @@ function assumi(interaction) {
                 boss = true
 
             if (ruoli[i] == variabili.CEO)
-                Ceo = true
-            if (ruoli[i] == variabili.GestoreCEO)
-                gestoreCeo = true
+                club = true
             if (ruoli[i] == variabili.Grafico)
                 grafico = true
-            if (ruoli[i] == variabili.Designer)
-                desiner == true
+            if (ruoli[i] == variabili.graficoSenior)
+                graficoPlus = true
+            
+                
+            if (ruoli[i] == variabili.Giornalista)
+                giornalista = true
+            if (ruoli[i] == variabili.ViceDirettore)
+                viceDirettore = true
+            if(ruoli[i] == variabili.GestoreCEO)
+                respClub = true
+
 
             if (ruoli[i] == variabili.Apprendista)
                 apprendista = true
@@ -357,14 +368,21 @@ function assumi(interaction) {
         if (interaction.member._roles.find(role => role == variabili.M_innovazione)) {
             if (supervisor == true) {
                 assumibili.push({
-                    label: "Consigliere",
-                    description: "Promuovi Il Target A Consigliere",
-                    value: variabili.Consigliere,
+                    label: "Designer",
+                    description: "Promuovi Il Target A Designer",
+                    value: variabili.Designer,
+                    emoji: "💡"
+                })
+
+                assumibili.push({
+                    label: "Direttore",
+                    description: "Assumi Il Target Come Direttore",
+                    value: variabili.C_innovazione,
                     emoji: "💡"
                 })
             }
 
-            if (grafico == false && desiner == false) {
+            if (grafico == false && graficoPlus == false){
                 //assumi grafico
                 assumibili.push({
                     label: "Grafico",
@@ -374,46 +392,108 @@ function assumi(interaction) {
                 })
             }
             else if (grafico == true) {
-                //desiner
                 assumibili.push({
-                    label: "Desiner",
-                    description: "Promuovi Il Target A Desiner",
-                    value: variabili.Designer,
+                    label: "Grafico Senior",
+                    description: "Promuovi Il Target A Grafico Senior",
+                    value: variabili.graficoSenior,
                     emoji: "👨‍🎨"
                 })
 
             }
-            else if (desiner == true) {
+            else if (graficoPlus == true) {
                 assumibili.push({
-                    label: "Consigliere",
-                    description: "Promuovi Il Target A Consigliere",
-                    value: variabili.Consigliere,
+                    label: "Designer",
+                    description: "Promuovi Il Target A Designer",
+                    value: variabili.Designer,
                     emoji: "💡"
                 })
             }
 
-            if (Ceo == false && gestoreCeo == false) {
+
+            //club
+            if (club == false && respClub == false) {
                 assumibili.push({
-                    label: "Ceo",
-                    description: "Assumi Il Target Come Ceo",
+                    label: "Club",
+                    description: "Assumi Il Target Come Club",
                     value: variabili.CEO,
-                    emoji: "📁"
+                    emoji: "🧩"
                 })
             }
-            else if (Ceo == true) {
+            else if(respClub == false && club == true){
                 assumibili.push({
-                    label: "Gestore Ceo",
-                    description: "Promuovi Il Target A Gestore Ceo",
+                    label: "Responsabile Del Club",
+                    description: "Promuovi Il Target A Responsabile Del Club",
                     value: variabili.GestoreCEO,
                     emoji: "🔑"
                 })
             }
-            else if (gestoreCeo == true) {
+
+
+            if (giornalista == false && viceDirettore == false) {
                 assumibili.push({
-                    label: "Consigliere",
-                    description: "Promuovi Il Target A Consigliere",
-                    value: variabili.Consigliere,
+                    label: "Giornalista",
+                    description: "Assumi Il Target Come Giornalista",
+                    value: variabili.Giornalista,
+                    emoji: "📰"
+                })
+            }
+            else if (giornalista == true) {
+                //vicedirettore
+
+                assumibili.push({
+                    label: "Vice Direttore",
+                    description: "Assumi Il Target Come ViceDirettore",
+                    value: variabili.ViceDirettore,
+                    emoji: "🗞️"
+                })
+            }
+            else if (viceDirettore == true) {
+                //direttore
+                assumibili.push({
+                    label: "Direttore",
+                    description: "Assumi Il Target Come Direttore",
+                    value: variabili.C_innovazione,
                     emoji: "💡"
+                })
+            }
+        }
+        else if (interaction.member._roles.find(role => role.id == variabili.Designer)) {
+            if (grafico == false) {
+                //assumi grafico
+                assumibili.push({
+                    label: "Grafico",
+                    description: "Assumi Il Target Come Grafico",
+                    value: variabili.Grafico,
+                    emoji: "🎨"
+                })
+            }
+            else {
+                assumibili.push({
+                    label: "Grafico Senior",
+                    description: "Promuovi Il Target A Grafico Senior",
+                    value: variabili.graficoSenior,
+                    emoji: "👨‍🎨"
+                })
+
+            }
+
+        }
+        else if (interaction.member._roles.find(role => role.id == variabili.C_innovazione)) {
+            if (giornalista == false) {
+                assumibili.push({
+                    label: "Giornalista",
+                    description: "Assumi Il Target Come Giornalista",
+                    value: variabili.Giornalista,
+                    emoji: "📰"
+                })
+            }
+            else {
+                //vicedirettore
+                assumibili.push({
+                    label: "Vice Direttore",
+                    description: "Assumi Il Target Come ViceDirettore",
+                    value: variabili.ViceDirettore,
+                    emoji: "🗞️"
                 })
             }
 
@@ -573,16 +653,14 @@ function assumi(interaction) {
             interaction.reply({ content: "❌ Sembra Che Tu Non Possa Assumere Questo Utente", ephemeral: true })
 
     } catch (err) {
-        try {
-            interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
-            interaction.guild.members.fetch("598498238336729088").then(member => {
-                member.user.send(`**/assumi **${err}`)
+        console.log(err)
+        interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
 
-            })
-            return
-        } catch {
-            return
-        }
+        interaction.guild.members.fetch("598498238336729088").then(member => {
+            member.user.send(`**/assumi **${err}`)
+
+        })
+        return
     }
 }
 
@@ -616,11 +694,14 @@ function dimetti(interaction) {
         let boss = false
         let consigliereEconomo = false
 
-        let gestoreCeo = false
-        let Ceo = false
+        let club = false
         let grafico = false
+        let graficoPlus = false
+        let giornalista = false
+        let viceDirettore = false
+        let DirettoreInno = false;
         let desiner = false
-        let consigliereInnovazione = false
+        let respClub = false
 
         let supervisor = false
         let apprendista = false
@@ -672,15 +753,22 @@ function dimetti(interaction) {
                 consigliereEconomo = true
 
             if (ruoli[i] == variabili.CEO)
-                Ceo = true
+                club = true
             if (ruoli[i] == variabili.GestoreCEO)
-                gestoreCeo = true
+                respClub = true
             if (ruoli[i] == variabili.Grafico)
                 grafico = true
+            if (ruoli[i] == variabili.graficoSenior)
+                graficoPlus = true
             if (ruoli[i] == variabili.Designer)
                 desiner == true
+            if (ruoli[i] == variabili.Giornalista)
+                giornalista = true
+            if (ruoli[i] == variabili.ViceDirettore)
+                viceDirettore = true
             if (ruoli[i] == variabili.C_innovazione)
-                consigliereInnovazione = true
+                DirettoreInno = true
+
 
             if (ruoli[i] == variabili.Apprendista)
                 apprendista = true
@@ -920,7 +1008,64 @@ function dimetti(interaction) {
                     emoji: "🎨"
                 })
             }
-
+            if (grafico == true) {
+                assumibili.push({
+                    label: "Grafico",
+                    description: "Rimuovi Il Target Dal Ruolo Di Grafico",
+                    value: variabili.Grafico,
+                    emoji: "🎨"
+                })
+            }
+            if (club == true) {
+                assumibili.push({
+                    label: "Club",
+                    description: "Rimuovi Il Target Dal Ruolo Di Club",
+                    value: variabili.CEO,
+                    emoji: "🧩"
+                })
+            }
+            if (respClub == true) {
+                assumibili.push({
+                    label: "Responsabile Dei Club",
+                    description: "Rimuovi Il Target Dal Ruolo Di Responsabile Dei Club",
+                    value: variabili.GestoreCEO,
+                    emoji: "🔑"
+                })
+            }
+            if (DirettoreInno == true) {
+                assumibili.push({
+                    label: "Direttore",
+                    description: "Rimuovi Il Target Dal Ruolo Di Direttore",
+                    value: variabili.C_innovazione,
+                    emoji: "💡"
+                })
+            }
+            if (giornalista == true) {
+                assumibili.push({
+                    label: "Giornalista",
+                    description: "Rimuovi Il Target Dal Ruolo Di Giornalista",
+                    value: variabili.Giornalista,
+                    emoji: "📰"
+                })
+            }
+            if (viceDirettore == true) {
+                assumibili.push({
+                    label: "Vice Direttore",
+                    description: "Assumi Il Target Come ViceDirettore",
+                    value: variabili.ViceDirettore,
+                    emoji: "🗞️"
+                })
+            }
+            if (graficoPlus == true) {
+                assumibili.push({
+                    label: "Grafico Senior",
+                    description: "Promuovi Il Target A Grafico Senior",
+                    value: variabili.graficoSenior,
+                    emoji: "👨‍🎨"
+                })
+            }
+        }
+        else if (interaction.member._roles.find(role => role.id == variabili.Designer)) {
             if (grafico == true) {
                 assumibili.push({
                     label: "Grafico",
@@ -930,30 +1075,30 @@ function dimetti(interaction) {
                 })
             }
 
-            if (Ceo == true) {
+            if (graficoPlus == true) {
                 assumibili.push({
-                    label: "CEO",
-                    description: "Rimuovi Il Target Dal Ruolo Di CEO",
-                    value: variabili.CEO,
-                    emoji: "📁"
+                    label: "Grafico Senior",
+                    description: "Promuovi Il Target A Grafico Senior",
+                    value: variabili.graficoSenior,
+                    emoji: "👨‍🎨"
                 })
             }
-
-            if (gestoreCeo == true) {
+        }
+        else if (interaction.member._roles.find(role => role.id == variabili.C_innovazione)) {
+            if (giornalista == true) {
                 assumibili.push({
-                    label: "Gestore CEO",
-                    description: "Rimuovi Il Target Dal Ruolo Di Gestore CEO",
-                    value: variabili.GestoreCEO,
-                    emoji: "🔑"
+                    label: "Giornalista",
+                    description: "Rimuovi Il Target Dal Ruolo Di Giornalista",
+                    value: variabili.Giornalista,
+                    emoji: "📰"
                 })
             }
-
-            if (consigliereInnovazione == true) {
+            if (viceDirettore == true) {
                 assumibili.push({
-                    label: "Consigliere",
-                    description: "Rimuovi Il Target Dal Ruolo Di Consigliere",
-                    value: variabili.Consigliere,
-                    emoji: "💡"
+                    label: "Vice Direttore",
+                    description: "Assumi Il Target Come ViceDirettore",
+                    value: variabili.ViceDirettore,
+                    emoji: "🗞️"
                 })
             }
         }
@@ -1101,4 +1246,4 @@ function dimetti(interaction) {
     }
 }
 
-module.exports = {assumi, dimetti}
+module.exports = { assumi, dimetti }

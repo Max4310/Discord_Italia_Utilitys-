@@ -130,6 +130,22 @@ function menager (interaction,client,infoTickets)
             const lavori = require (path.join(__dirname,"/comandi/coin/lavori.js"))
             lavori.dimetti(interaction)
         }
+        else if(interaction.commandName == "multa"){
+            const multa = require (path.join(__dirname,"/comandi/coin/multa.js"))
+            multa.multa(interaction)  
+        }
+        else if(interaction.commandName == "abbonati"){
+            const abbonati = require (path.join(__dirname,"/comandi/coin/abbonati.js"))
+            abbonati.command(interaction)
+        }
+        else if(interaction.commandName == "annulla"){
+            if(interaction.member.user.id == "598498238336729088"){
+
+            }
+            else{
+                interaction.reply({content:  "😁 Stiamo Ancora Testando Questo Comando A Breve Sarà Disponibile", ephemeral : true})
+            }
+        }
     }
     else if(interaction.isModalSubmit()){ 
         if(interaction.customId == "modulorecensioni"){ // recensioni / modulo.js

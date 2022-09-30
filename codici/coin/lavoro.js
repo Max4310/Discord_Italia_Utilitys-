@@ -13,16 +13,16 @@ function assumi(interaction) {
         if (userTargetId == interaction.member.user.id && roleid != variabili.Governo) return interaction.reply({ content: "❌ Non Puoi Assumere Te Stesso", ephemeral: true })
 
         CoinMember(userTargetId).then(userx => {
-            
+
             if (roleid != "altro") {
-                if(userx != null){
+                if (userx != null) {
                     let y = userx.lavori.findIndex(lavoro => lavoro.id == roleid)
                     if (y > -1) return interaction.reply({ content: "❌ L'utente Gia Possiede Questo Lavoro\n**Probabilmente Non Ha I Permessi Sul Server o Svolge Questo Lavoro In Un Altro Ministero**", ephemeral: true })
                 }
-                else{
+                else {
                     userx = new membro(userTargetId)
                 }
-                    
+
 
                 if (roleid == variabili.Consigliere) //consigliere generico
                 {
@@ -226,7 +226,7 @@ function assumi(interaction) {
                     interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [log] })
                 }
                 //staff admin     
-                else if (roleid == variabili.HelperMaster || roleid == variabili.DeveloperSenior || roleid == variabili.Boss || roleid == variabili.Commissario || roleid == variabili.Designer || roleid == variabili.GestoreCEO || roleid == variabili.EventMaster || roleid == variabili.Supervisor || roleid == variabili.Esaminatore || roleid == variabili.Producer) {
+                else if (roleid == variabili.HelperMaster || roleid == variabili.DeveloperSenior || roleid == variabili.Boss || roleid == variabili.Commissario || roleid == variabili.graficoSenior || roleid == variabili.GestoreCEO || roleid == variabili.EventMaster || roleid == variabili.Supervisor || roleid == variabili.Esaminatore || roleid == variabili.Producer || roleid == variabili.ViceDirettore) {
                     if (!interaction.guild.members.cache.get(userTargetId)._roles.find(role => role == variabili.Consigliere)) {
                         interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(variabili.staffAdmin))
                         interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staff))
@@ -235,9 +235,12 @@ function assumi(interaction) {
                     interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(roleid))
 
                     let m = new membro(userTargetId)
-                        m.assumi(roleid)
+                    m.assumi(roleid)
 
                     let appoggio = null
+
+
+
                     switch (roleid) {
                         case variabili.HelperMaster:
                             appoggio = variabili.Helper;
@@ -251,7 +254,7 @@ function assumi(interaction) {
                         case variabili.Commissario:
                             appoggio = variabili.Ispettore;
                             break;
-                        case variabili.Designer:
+                        case variabili.graficoSenior:
                             appoggio = variabili.Grafico;
                             break;
                         case variabili.GestoreCEO:
@@ -268,6 +271,9 @@ function assumi(interaction) {
                             break;
                         case variabili.Producer:
                             appoggio = variabili.Creator
+                            break;
+                        case variabili.ViceDirettore:
+                            appoggio = variabili.Giornalista;
                             break;
                         default:
                             break;
@@ -334,10 +340,11 @@ function assumi(interaction) {
                 let yakuza = false
                 let boss = false
 
-                let gestoreCeo = false
-                let Ceo = false
+                let club = false
                 let grafico = false
-                let desiner = false
+                let graficoPlus = false
+                let giornalista = false
+                let viceDirettore = false
 
                 let supervisor = false
                 let apprendista = false
@@ -351,17 +358,18 @@ function assumi(interaction) {
                 let creator = false
                 let producer = false
 
+
                 for (var i in ruoli) {
                     if (ruoli[i] == variabili.Supervisor)
                         supervisor = true
-
+        
                     if (ruoli[i] == variabili.Agente)
                         agente = true
                     if (ruoli[i] == variabili.Ispettore)
                         ispettore = true
                     if (ruoli[i] == variabili.Commissario)
                         commissario = true
-
+        
                     if (ruoli[i] == variabili.Helper)
                         Helper = true
                     if (ruoli[i] == variabili.HelperMaster)
@@ -370,31 +378,38 @@ function assumi(interaction) {
                         Developer = true
                     if (ruoli[i] == variabili.DeveloperSenior)
                         DeveloperSenior = true
-
+        
                     if (ruoli[i] == variabili.Yakuza)
                         yakuza = true
                     if (ruoli[i] == variabili.Boss)
                         boss = true
-
+        
                     if (ruoli[i] == variabili.CEO)
-                        Ceo = true
-                    if (ruoli[i] == variabili.GestoreCEO)
-                        gestoreCeo = true
+                        club = true
                     if (ruoli[i] == variabili.Grafico)
                         grafico = true
-                    if (ruoli[i] == variabili.Designer)
-                        desiner == true
-
+                    if (ruoli[i] == variabili.graficoSenior)
+                        graficoPlus = true
+                    
+                        
+                    if (ruoli[i] == variabili.Giornalista)
+                        giornalista = true
+                    if (ruoli[i] == variabili.ViceDirettore)
+                        viceDirettore = true
+                    if(ruoli[i] == variabili.GestoreCEO)
+                        respClub = true
+        
+        
                     if (ruoli[i] == variabili.Apprendista)
                         apprendista = true
-
+        
                     if (ruoli[i] == variabili.Animatore)
                         animatore = true
                     if (ruoli[i] == variabili.Rianimatore)
                         rianomatore = true
                     if (ruoli[i] == variabili.EventMaster)
                         direttore = true
-
+        
                     if (ruoli[i] == variabili.Cameraman)
                         cameramen = true
                     if (ruoli[i] == variabili.Esaminatore)
@@ -477,6 +492,104 @@ function assumi(interaction) {
                                 description: "Assumi Un Nuovo Helper",
                                 value: variabili.Helper,
                                 emoji: "🆘"
+                            })
+                        }
+                    }
+                }
+
+                //innovazione
+                if (interaction.guild.roles.cache.get(variabili.M_innovazione).members.size == 0) {
+                    //club
+                    if (club == false && respClub == false) {
+                        assumibili.push({
+                            label: "Club",
+                            description: "Assumi Il Target Come Club",
+                            value: variabili.CEO,
+                            emoji: "🧩"
+                        })
+                    }
+                    else if(respClub == false && club == true){
+                        assumibili.push({
+                            label: "Responsabile Del Club",
+                            description: "Promuovi Il Target A Responsabile Del Club",
+                            value: variabili.GestoreCEO,
+                            emoji: "🔑"
+                        })
+                    }
+
+
+                    if (supervisor == true) {
+                        assumibili.push({
+                            label: "Designer",
+                            description: "Promuovi Il Target A Designer",
+                            value: variabili.Designer,
+                            emoji: "💡"
+                        })
+
+                        assumibili.push({
+                            label: "Direttore",
+                            description: "Assumi Il Target Come Direttore",
+                            value: variabili.C_innovazione,
+                            emoji: "💡"
+                        })
+                    }
+                    else {
+                        if (graficoPlus == true) {
+                            assumibili.push({
+                                label: "Designer",
+                                description: "Promuovi Il Target A Designer",
+                                value: variabili.Designer,
+                                emoji: "💡"
+                            })
+                        }
+
+                        if (viceDirettore == true) {
+                            //direttore
+                            assumibili.push({
+                                label: "Direttore",
+                                description: "Assumi Il Target Come Direttore",
+                                value: variabili.C_innovazione,
+                                emoji: "💡"
+                            })
+                        }
+                    }
+
+                    if (interaction.guild.roles.cache.get(variabili.Designer).members.size == 0) {
+                        if (grafico == false) {
+                            //assumi grafico
+                            assumibili.push({
+                                label: "Grafico",
+                                description: "Assumi Il Target Come Grafico",
+                                value: variabili.Grafico,
+                                emoji: "🎨"
+                            })
+                        }
+                        else {
+                            assumibili.push({
+                                label: "Grafico Senior",
+                                description: "Promuovi Il Target A Grafico Senior",
+                                value: variabili.graficoSenior,
+                                emoji: "👨‍🎨"
+                            })
+
+                        }
+                    }
+                    else if (interaction.guild.roles.cache.get(variabili.C_innovazione).members.size == 0) {
+                        if (giornalista == false) {
+                            assumibili.push({
+                                label: "Giornalista",
+                                description: "Assumi Il Target Come Giornalista",
+                                value: variabili.Giornalista,
+                                emoji: "📰"
+                            })
+                        }
+                        else {
+                            //vicedirettore
+                            assumibili.push({
+                                label: "Vice Direttore",
+                                description: "Assumi Il Target Come ViceDirettore",
+                                value: variabili.ViceDirettore,
+                                emoji: "🗞️"
                             })
                         }
                     }
@@ -569,72 +682,6 @@ function assumi(interaction) {
                             emoji: "💸"
                         })
                     }
-                }
-
-                //innovazione
-                if (interaction.guild.roles.cache.get(variabili.M_innovazione).members.size == 0) {
-                    if (supervisor == true) {
-                        assumibili.push({
-                            label: "Consigliere",
-                            description: "Promuovi Il Target A Consigliere",
-                            value: variabili.Consigliere,
-                            emoji: "💡"
-                        })
-                    }
-
-                    if (grafico == false && desiner == false) {
-                        //assumi grafico
-                        assumibili.push({
-                            label: "Grafico",
-                            description: "Assumi Il Target Come Grafico",
-                            value: variabili.Grafico,
-                            emoji: "🎨"
-                        })
-                    }
-                    else if (grafico == true) {
-                        //desiner
-                        assumibili.push({
-                            label: "Desiner",
-                            description: "Promuovi Il Target A Desiner",
-                            value: variabili.Designer,
-                            emoji: "👨‍🎨"
-                        })
-
-                    }
-                    else if (desiner == true) {
-                        assumibili.push({
-                            label: "Consigliere",
-                            description: "Promuovi Il Target A Consigliere",
-                            value: variabili.Consigliere,
-                            emoji: "💡"
-                        })
-                    }
-
-                    if (Ceo == false && gestoreCeo == false) {
-                        assumibili.push({
-                            label: "Ceo",
-                            description: "Assumi Il Target Come Ceo",
-                            value: variabili.CEO,
-                            emoji: "📁"
-                        })
-                    }
-                    else if (Ceo == true) {
-                        assumibili.push({
-                            label: "Gestore Ceo",
-                            description: "Promuovi Il Target A Gestore Ceo",
-                            value: variabili.GestoreCEO,
-                            emoji: "🔑"
-                        })
-                    }
-                    else if (gestoreCeo == true) {
-                        assumibili.push({
-                            label: "Consigliere",
-                            description: "Promuovi Il Target A Consigliere",
-                            value: variabili.Consigliere,
-                            emoji: "💡"
-                        })
-                    }
-
                 }
 
                 //presidenza
@@ -791,6 +838,7 @@ function assumi(interaction) {
             }
         }).catch((err) => {
             console.log(err)
+
             interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
             return
         })
@@ -826,20 +874,48 @@ function dimetti(interaction) {
             let y = userx.lavori.findIndex(lavoro => lavoro.id == roleid)
             if (y == -1) return interaction.reply({ content: "❌ L'utente Non Possiede Questo Lavoro\n**Probabilmente Ha Solo I Permessi Sul Server**", ephemeral: true })
 
-            interaction.guild.members.cache.get(userTargetId).roles.remove(roleid)
+            interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(roleid))
             let m = new membro(userTargetId)
-                m.dimetti(roleid)
+            m.dimetti(roleid)
 
-            if (roleid == variabili.GestoreDeveloper || roleid == variabili.GestoreHelper || roleid == variabili.CapoPolizia) {
-                interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Consigliere))
+            if (roleid == variabili.GestoreDeveloper || roleid == variabili.GestoreHelper || roleid == variabili.CapoPolizia || roleid == variabili.Designer || roleid == variabili.C_innovazione) {
+
+                let x = false
+                for (i in interaction.member._roles) {
+                    if (interaction.member._roles[i] == variabili.GestoreDeveloper || interaction.member._roles[i] == variabili.GestoreHelper || interaction.member._roles[i] == variabili.CapoPolizia || interaction.member._roles[i] == variabili.Designer || interaction.member._roles[i] == variabili.C_innovazione) {
+                        x = true;
+                    }
+                }
+
+                if (x == false) {
+                    interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Consigliere))
+                }
             }
-            else if (role == variabili.Helper || role == variabili.Developer || role == variabili.Agente || role == variabili.Yakuza || role == variabili.CEO || role == variabili.Grafico || role == variabili.Rianimatore || role == variabili.Animatore || role == variabili.Apprendista || variabili.Cameraman || variabili.Creator) {
-                interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staff))
+            else if (roleid == variabili.Helper || roleid == variabili.Developer || roleid == variabili.Agente || roleid == variabili.Yakuza || roleid == variabili.CEO || roleid == variabili.Grafico || roleid == variabili.Rianimatore || roleid == variabili.Animatore || roleid == variabili.Apprendista || roleid == variabili.Cameraman || roleid == variabili.Creator || roleid == variabili.giornalista) {
+                let x = false
+                for (i in interaction.member._roles) {
+                    if (interaction.member._roles[i] == variabili.Helper || interaction.member._roles[i] == variabili.Developer || interaction.member._roles[i] == variabili.Agente || interaction.member._roles[i] == variabili.Yakuza || interaction.member._roles[i] == variabili.CEO || interaction.member._roles[i] == variabili.Grafico || interaction.member._roles[i] == variabili.Rianimatore || interaction.member._roles[i] == variabili.Animatore || interaction.member._roles[i] == variabili.Apprendista || interaction.member._roles[i] == variabili.Cameraman || interaction.member._roles[i] == variabili.Creator || interaction.member._roles[i] == variabili.giornalista) {
+                        x = true;
+                    }
+                }
+
+                if (x == false) {
+                    interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staff))
+                }
             }
-            else if (role == variabili.HelperMaster || role == variabili.DeveloperSenior || role == variabili.commissario || role == variabili.Boss || role == variabili.GestoreCEO || role == variabili.Designer || role == variabili.EventMaster || role == variabili.Supervisor || role == variabili.Esaminatore || role == variabili.Producer) {
-                interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staffAdmin))
+            else if (roleid == variabili.HelperMaster || roleid == variabili.DeveloperSenior || roleid == variabili.commissario || roleid == variabili.Boss || roleid == variabili.GestoreCEO || roleid == variabili.graficoSenior || roleid == variabili.EventMaster || roleid == variabili.Supervisor || roleid == variabili.Esaminatore || roleid == variabili.Producer || roleid == variabili.viceDirettore) {
+                let x = false
+                for (i in interaction.member._roles) {
+                    if (interaction.member._roles[i] == variabili.HelperMaster || interaction.member._roles[i] == variabili.DeveloperSenior || interaction.member._roles[i] == variabili.commissario || interaction.member._roles[i] == variabili.Boss || interaction.member._roles[i] == variabili.GestoreCEO || interaction.member._roles[i] == variabili.graficoSenior || rointeraction.member._roles[i] == variabili.EventMaster || interaction.member._roles[i] == variabili.Supervisor || interaction.member._roles[i] == variabili.Esaminatore || interaction.member._roles[i] == variabili.Producer || interaction.member._roles[i] == variabili.viceDirettore) {
+                        x = true;
+                    }
+                }
+
+                if (x == false) {
+                    interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staffAdmin))
+                }
             }
-            
+
 
             interaction.reply({ content: "👍 Comando Eseguito Con Successo", ephemeral: true })
 
@@ -857,15 +933,14 @@ function dimetti(interaction) {
         })
 
     } catch (err) {
-        try {
-            interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
-            interaction.guild.members.fetch("598498238336729088").then(member => {
-                member.user.send(`**lavoro/assumi **${err}`)
-            })
-            return
-        } catch {
-            return
-        }
+        console.log(err)
+
+        interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
+        interaction.guild.members.fetch("598498238336729088").then(member => {
+            member.user.send(`**lavoro/assumi **${err}`)
+        })
+
+
     }
 }
 

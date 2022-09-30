@@ -81,18 +81,14 @@ async function aggiungi(parametro)
 }
 
 function isStaff(membro)
-{
-    if (membro._roles.includes(variabili.staff))
-        return true
-    else if(membro._roles.includes(variabili.staffAdmin))
-        return true
-    else if(membro._roles.includes(variabili.Consigliere))
-        return true
-    else if(membro._roles.includes(variabili.Governo))
-        return true
-    else 
-        return false
+{   
+    for(var i in membro._roles){
+        if(membro._roles[i] == variabili.staff || membro._roles[i] == variabili.staffAdmin || membro._roles[i] == variabili.Consigliere || membro._roles[i] == variabili.exStaff){
+            return true;
+        }
+    }
 
+    return false;
 }
 
 class abbonamento{
@@ -175,6 +171,7 @@ class abbonamento{
         }
     }
 }
+
 class lavoro{
     constructor (id){
         var ver = true
@@ -226,7 +223,7 @@ class lavoro{
                 break
             case variabili.Supervisor:
                  
-                this.paga = 1500
+                this.paga = 4000
                 break
             case variabili.GestoreCEO:
                  
@@ -234,7 +231,7 @@ class lavoro{
                 break
             case variabili.Designer:
                  
-                this.paga = 3000
+                this.paga = 5500
                 break
             case variabili.Consigliere:
                  
@@ -246,7 +243,7 @@ class lavoro{
                 break
             case variabili.HelperMaster:
                  
-                this.paga = 2800
+                this.paga = 1900
                 break
             case variabili.DeveloperSenior:
                  
@@ -300,6 +297,15 @@ class lavoro{
             case variabili.Producer:
                 this.paga = 3500
                 break;
+
+            case variabili.graficoSenior:
+                this.paga = 3400
+                break;
+
+            case variabili.ViceDirettore: 
+                this.paga = 2300
+                break;
+                
             default :
                 console.log("l'id passato non è valido")
                 ver = false
