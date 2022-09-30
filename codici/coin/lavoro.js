@@ -161,32 +161,50 @@ function assumi(interaction) {
                     m.assumi(roleid)
 
                     if (interaction.guild.roles.cache.get(roleid).members.size > 1) {
+
                         interaction.guild.roles.cache.get(roleid).members.forEach(membr => {
                             console.log(membr.user.id)
                             if (membr.user.id != userTargetId) {
                                 membr.roles.remove(interaction.guild.roles.cache.get(roleid))
                                 membr.roles.remove(interaction.guild.roles.cache.get(variabili.Consigliere))
+                                var m = new membro(membr.user.id)
+                                m.dimetti(roleid)
                             }
                         })
                     }
 
+                    var sottostante = null
                     if (roleid == variabili.CapoPolizia) {
-                        let x = userx.lavori.findIndex(lavoro => lavoro.id == variabili.Commissario)
-                        if (x > -1)
-                            interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Commissario))
-
+                        interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Commissario))
+                        sottostante = variabili.Commissario
                     }
                     else if (roleid == variabili.GestoreHelper) {
-                        let x = userx.lavori.findIndex(lavoro => lavoro.id == variabili.HelperMaster)
-                        if (x > -1)
-                            interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.HelperMaster))
-
+                        interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.HelperMaster))
+                        sottostante = variabili.HelperMaster
                     }
                     else if (roleid == variabili.GestoreDeveloper) {
-                        let x = userx.lavori.findIndex(lavoro => lavoro.id == variabili.DeveloperSenior)
-                        if (x > -1)
-                            interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.DeveloperSenior))
+
+                        interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.DeveloperSenior))
+                        sottostante = variabili.DeveloperSenior
+
                     }
+                    else if(roleid == variabili.C_innovazione){
+                        interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.C_innovazione))
+                        sottostante = variabili.C_innovazione
+                    }
+                    else if(roleid == variabili.Designer){
+                        interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.graficoSenior))
+                        sottostante = variabili.graficoSenior
+                    }
+
+
+                    if(sottostante != null){
+                        let x = userx.lavori.findIndex(lavoro => lavoro.id == sottostante)
+                        if (x > -1){
+                            userx.dimetti(sottostante)
+                        }
+                    }
+                    
 
                     interaction.reply({ content: "👍 Utente Assuto Con Successo", ephemeral: true })
 
