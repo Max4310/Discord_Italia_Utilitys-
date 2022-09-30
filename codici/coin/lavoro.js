@@ -43,8 +43,6 @@ function assumi(interaction) {
                             economia = true
                         if (ruoli[i] == variabili.M_esteri)
                             esteri = true
-                        if (ruoli[i] == variabili.M_innovazione)
-                            innovazione = true
                     }
 
 
@@ -125,32 +123,6 @@ function assumi(interaction) {
                             .setColor("GREEN")
                         interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [log] })
                     }
-                    else if (innovazione == true) {
-                        interaction.guild.members.cache.get(userTargetId).roles.add(variabili.C_innovazione)
-                        let m = new membro(userTargetId)
-                        m.assumi(variabili.Consigliere)
-
-                        let roles = interaction.guild.members.cache.get(userTargetId)._roles //qui cambia SICURO    
-
-                        for (var i in roles) {
-                            if (roles[i] == variabili.Designer)
-                                interaction.guild.members.cache.get(userTargetId).roles.remove(variabili.Designer)
-                            if (roles[i] == variabili.GestoreCEO)
-                                interaction.guild.members.cache.get(userTargetId).roles.remove(variabili.GestoreCEO)
-                        }
-
-
-                        let embed = new Discord.MessageEmbed()
-                            .setTitle("Utente Promosso")
-                            .setColor("RANDOM")
-                        interaction.reply({ embeds: [embed], ephemeral: true })
-
-                        let log = new Discord.MessageEmbed()
-                            .setTitle("Utente Assunto")
-                            .setDescription(`<@${userTargetId}> è Stato Assunto Come Consigliere Da ${interaction.member}`)
-                            .setColor("GREEN")
-                        interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [log] })
-                    }
                     else {
                         interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(variabili.staffAdmin))
                         interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Consigliere))
@@ -178,7 +150,7 @@ function assumi(interaction) {
 
                     interaction.guild.channels.cache.get(variabili.logCoin).send({ embeds: [log] })
                 }
-                else if (roleid == variabili.CapoPolizia || roleid == variabili.GestoreHelper || roleid == variabili.GestoreDeveloper) //consigliere specifico
+                else if (roleid == variabili.CapoPolizia || roleid == variabili.GestoreHelper || roleid == variabili.GestoreDeveloper || roleid == variabili.C_innovazione || roleid == variabili.Designer) //consigliere specifico
                 {
                     interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(variabili.Consigliere))
                     interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(roleid))
