@@ -345,6 +345,7 @@ function assumi(interaction) {
                 let graficoPlus = false
                 let giornalista = false
                 let viceDirettore = false
+                let respClub
 
                 let supervisor = false
                 let apprendista = false
@@ -390,6 +391,8 @@ function assumi(interaction) {
                         grafico = true
                     if (ruoli[i] == variabili.graficoSenior)
                         graficoPlus = true
+                    if(ruoli[i] == variabili.GestoreCEO)
+                        respClub = true
                     
                         
                     if (ruoli[i] == variabili.Giornalista)
