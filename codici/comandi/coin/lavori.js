@@ -381,6 +381,7 @@ function assumi(interaction) {
                     emoji: "💡"
                 })
             }
+            //
 
             if (grafico == false && graficoPlus == false){
                 //assumi grafico
