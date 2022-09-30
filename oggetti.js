@@ -305,6 +305,10 @@ class lavoro{
             case variabili.ViceDirettore: 
                 this.paga = 2300
                 break;
+
+            case variabili.C_innovazione:
+                this.paga = 4000
+                break;
                 
             default :
                 console.log("l'id passato non è valido")
