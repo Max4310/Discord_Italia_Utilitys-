@@ -83,7 +83,7 @@ async function aggiungi(parametro)
 function isStaff(membro)
 {   
     for(var i in membro._roles){
-        if(membro._roles[i] == variabili.staff || membro._roles[i] == variabili.staffAdmin || membro._roles[i] == variabili.Consigliere || membro._roles[i] == variabili.exStaff){
+        if(membro._roles[i] == variabili.staff || membro._roles[i] == variabili.staffAdmin || membro._roles[i] == variabili.Consigliere || membro._roles[i] == variabili.exStaff || membro._roles[i] == variabili.Governo ){
             return true;
         }
     }
