@@ -623,6 +623,8 @@ function reset (client, mese)
         //è cambiato il mese gestisco gli stipendi
         if(giorno == 1)
         {
+            console.log("sono dentro")
+
             user("coinMember").then(members =>{
                 if (members == null) return
 
@@ -645,9 +647,12 @@ function reset (client, mese)
                         members[i].warn = ver
                     }
                     else
-                        members[i].soldi = members[i].soldi + members[i].stipendioTot  
+                        members[i].soldi = members[i].soldi + members[i].stipendioTot 
+                        
+                    
                 }
 
+                aggiona(members,"coinMember")
             })
             .catch((err) => {
                 try{
