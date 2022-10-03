@@ -84,6 +84,24 @@ function menager (message) {
                 return
             }
         }
+        else if(message.content == "115"){
+            try{
+                message.delete()
+
+                message.channel.send("<:helper:1026057751299899432> Presto Un <@&902956109915099176> Sarà Qui Per Aiutarti <:helper:1026057751299899432>")
+            }catch{
+                return
+            }
+        }
+        else if(message.content == "112"){
+            try{
+                message.delete()
+
+                message.channel.send("<@598498238336729088> Sarà Presto Qui")
+            }catch{
+                return
+            }
+        }
         else if(message.content=="di.verifica" && message.author.id == "598498238336729088")
         {
             var emebed = new Discord.MessageEmbed()

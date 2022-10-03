@@ -14,6 +14,7 @@ function sleep(s){
 }
 
 const {membro, gestisciVisulizza, isStaff , CoinMember ,aggiona,user,aggiungi} = require("./oggetti");
+const { ifError } = require("assert");
 
 var infoTickets = []
 
@@ -608,6 +609,8 @@ client.on("guildMemberUpdate", (old, nuovo) => {
 
 process.on("unhandledRejection", async (err) => {
     console.log(err)
+    
+    
     client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
         member.user.send(`**Err **${err}`)
     }).catch((err) => {console.log(err)})
