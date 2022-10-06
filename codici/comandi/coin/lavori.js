@@ -329,7 +329,7 @@ function assumi(interaction) {
 
         //economia
         if (interaction.member._roles.find(role => role == variabili.M_economia)) {
-            if (Helper == true) {
+            if (yakuza == false && boss == false) {
                 assumibili.push({
                     label: "Yakuza",
                     description: "Assumi Il Target Come Yakuza",
@@ -337,7 +337,7 @@ function assumi(interaction) {
                     emoji: "🎴"
                 })
             }
-            else if (yakuza == true) {
+            else if (yakuza == true && boss == false) {
                 assumibili.push({
                     label: "Boss",
                     description: "Promuovi Il Target A Boss",
@@ -345,7 +345,8 @@ function assumi(interaction) {
                     emoji: "🚬"
                 })
             }
-            else if (boss == true) {
+
+            if (boss == true && yakuza == false) {
                 assumibili.push({
                     label: "Consigliere",
                     description: "Promuovi Il Target A Consigliere",

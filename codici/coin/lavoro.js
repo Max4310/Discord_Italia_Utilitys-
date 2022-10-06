@@ -273,7 +273,10 @@ function assumi(interaction) {
                     if (appoggio != null) {
                         m.dimetti(appoggio)
 
-                        interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(appoggio))
+                        if(appoggio != variabili.Helper){
+                            interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(appoggio))
+                        }
+                        
                         interaction.reply({ content: "👍 Utente Assunto Con Successo", ephemeral: true })
                     }
                     else
@@ -299,9 +302,6 @@ function assumi(interaction) {
                     if (roleid == variabili.Ispettore) {
                         interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Agente))
                         m.dimetti(variabili.Agente)
-                    }
-                    else if (roleid == variabili.Yakuza) {
-                        m.dimetti(variabili.Helper)
                     }
 
 
@@ -894,6 +894,7 @@ function dimetti(interaction) {
 
                 if (x == false) {
                     interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.staff))
+                    interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(variabili.exStaff))
                 }
             }
             else if (roleid == variabili.HelperMaster || roleid == variabili.DeveloperSenior || roleid == variabili.commissario || roleid == variabili.Boss || roleid == variabili.GestoreCEO || roleid == variabili.graficoSenior || roleid == variabili.EventMaster || roleid == variabili.Supervisor || roleid == variabili.Esaminatore || roleid == variabili.Producer || roleid == variabili.viceDirettore) {

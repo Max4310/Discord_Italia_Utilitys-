@@ -283,7 +283,7 @@ class lavoro{
                 break
             case variabili.Governo:
                  
-                this.paga = 10000
+                this.paga = 15000
                 break
             case variabili.Cameraman:
                 this.paga = 900
