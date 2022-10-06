@@ -346,6 +346,10 @@ function menager (interaction,client,infoTickets)
             const visualizzaCoin = require (path.join(__dirname,"/coin/visualizzaCoin.js"))
             visualizzaCoin.comandi(interaction);
         }
+        else if(interaction.customId == "pula_concedi"){
+            const concediPula = require (path.join(__dirname,"/comandi/staff/concediPula.js"))
+            concediPula.romano(interaction)
+        }
     }
     else if(interaction.isSelectMenu())
     {
