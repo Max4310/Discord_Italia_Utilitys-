@@ -179,9 +179,14 @@ function menager (message) {
                 if(message.mentions.repliedUser == null)
                 {
                     var users = message.guild.members.cache.get(message.mentions.users.first().id)
-                    if(users._roles.includes(/*"893851166239252530"*/"981694340009177119") || users._roles.includes("893844096957952017") )
+                    if(users == "445262123598086147"){
+                        message.react("🪐")
+                    }
+                    else if(users._roles.includes(/*"893851166239252530"*/"981694340009177119") || users._roles.includes("893844096957952017") ){
                         message.react("👑")
+                    }
                 }
+                
             }catch{
                 return
             }
