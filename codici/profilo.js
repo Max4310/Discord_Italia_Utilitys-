@@ -20,9 +20,6 @@ function profilo(interaction)
                     }
                     i++
                 }
-                
-                
-                
                 if(interaction.values[0] != null)
                     interaction.member.roles.add(interaction.guild.roles.cache.get(interaction.values[0]))
                 break;
@@ -128,7 +125,7 @@ function profilo(interaction)
                 break;
             case "notifiche": //
                 interaction.deferUpdate()
-                const notifiche = ["898331041893343282","944596815708307486","944595871717265438","904306184268419102","916634967130378270","901367919458533376","902282134390198274","955518863573930094","955518884310564994","1002555397296627782"]
+                const notifiche = ["898331041893343282","944596815708307486","944595871717265438","904306184268419102","916634967130378270","901367919458533376","1028651951740682272","955518863573930094","955518884310564994","1002555397296627782"]
                 
                 
                 if(interaction.values.length != notifiche.length)

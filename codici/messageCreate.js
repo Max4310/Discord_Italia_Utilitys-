@@ -800,6 +800,446 @@ function menager (message) {
             }
             
         }
+        else if(message.content == "di.profilo" && message.author.id == "598498238336729088")
+        {
+            message.delete()
+            const genere = new Discord.MessageEmbed()
+                .setTitle("Qual'è Il Tuo Genere?")
+                .setDescription(
+                    ":male_sign:▸ Genere Maschile\n\n"+
+                    ":female_sign:▸ Genere Femminile\n\n"+
+                    "<:nobinary:1003022326276829214>▸ Genere Non Binario\n\n"+
+                    ":transgender_symbol:▸ Genere Transgender\n\n"+
+                    ":rainbow:▸ Altro"
+                )
+                .setColor("#2f3136")
+    
+            const genereMenu = new Discord.MessageSelectMenu()
+                .setCustomId("profilo:genere")
+                .setMaxValues(1)
+                .setMinValues(0)
+                .setPlaceholder("Qual'è Il Tuo Genere?")
+                .setOptions([
+                    {
+                        label : "Genere Maschile",
+                        emoji : "♂️",
+                        value : "896061685880729681"
+                    },
+                    {
+                        label : "Genere Femminile",
+                        emoji : "♀️",
+                        value : "896062246491394068"
+                    },
+                    {
+                        label : "Genere Non Binario",
+                        emoji : "::nobinary:1003022326276829214",
+                        value : "896062660708294686"
+                    },
+                    {
+                        label : "Genere Transgender",
+                        emoji : "⚧",
+                        value : "896062507750404156"
+                    },
+                    {
+                        label : "Altro",
+                        emoji : "🌈",
+                        value : "896063618452447293"
+                    }
+                ])
+            
+            const genereRow = new Discord.MessageActionRow()
+                .addComponents(genereMenu)
+                
+            
+            const pronomi = new Discord.MessageEmbed()
+                .setTitle("Quali Sono I Tuoi Pronomi?")
+                .setDescription(
+                    ":blue_circle:▸ He/Him\n\n"   +
+                    ":purple_circle:▸ She/Her\n\n"+   
+                    ":white_circle:▸ They/Them\n\n"+   
+                    ":green_circle:▸ Xe/Xem\n\n"  +
+                    ":brown_circle:▸ Qualsiasi Pronome\n\n"+  
+                    ":yellow_circle:▸ Chiedere i Pronomi"
+                )
+                .setColor("#2f3136")
+            
+            const pronomiMenu = new Discord.MessageSelectMenu()
+                .setCustomId("profilo:pronomi")
+                .setMaxValues(1)
+                .setMinValues(0)
+                .setPlaceholder("Quali Sono I Tuoi Pronomi?")
+                .setOptions([
+                    {
+                        label : "He/Him",
+                        emoji : "🔵",
+                        value : "896067712164454451"
+                    },
+                    {
+                        label : "She/Her",
+                        emoji : "🟣",
+                        value : "896064079779729409"
+                    },
+                    {
+                        label : "They/Them",
+                        emoji : "⚪",
+                        value : "896067889730301982"
+                    },
+                    {
+                        label : "Xe/Xem",
+                        emoji : "🟢",
+                        value : "896068244799115335"
+                    },
+                    {
+                        label : "Qualsiasi Pronome",
+                        emoji : "🟤",
+                        value : "896068455659343952"
+                    },
+                    {
+                        label : "Chiedere i Pronomi",
+                        emoji : "🟡",
+                        value : "896068523011489802"
+                    },
+                ])
+    
+            const pronomiRow = new Discord.MessageActionRow()
+                .addComponents(pronomiMenu)
+            
+            const segno = new Discord.MessageEmbed()
+                .setTitle("Qual'è Il Tuo Segno Zodiacale?")
+                .setDescription(
+                ":aries:▸ Ariete\n\n"+
+                ":taurus:▸ Toro\n\n"+
+                ":gemini:▸ Gemelli\n\n"+
+                ":cancer:▸ Cancro\n\n"+
+                ":leo:▸ Leone\n\n"+
+                ":virgo:▸ Vergine\n\n"+
+                ":libra:▸ Bilancia\n\n"+
+                ":scorpius:▸ Scorpione\n\n"+
+                ":sagittarius:▸ Sagittario\n\n"+
+                ":capricorn:▸ Capricorno\n\n"+
+                ":aquarius:▸ Aquario\n\n"+
+                ":pisces:▸ Pesci"
+            )
+            .setColor("#2f3136")
+    
+            const segnoMenu = new Discord.MessageSelectMenu()
+                .setCustomId("profilo:segno")
+                .setMaxValues(1)
+                .setMinValues(0)
+                .setPlaceholder("Qual è Il Tuo Segno Zodiacale?")
+                .setOptions([
+                    {
+                        label : "Ariete",
+                        emoji : "♈",
+                        value : "896069334781267989"
+                    },
+                    {
+                        label : "Toro",
+                        emoji : "♉",
+                        value : "896069435394236416"
+                    },
+                    {
+                        label : "Gemelli",
+                        emoji : "♊",
+                        value : "896069439148134420"
+                    },
+                    {
+                        label : "Cancro",
+                        emoji : "♋",
+                        value : "896069441555689502"
+                    },
+                    {
+                        label : "Leone",
+                        emoji : "♌",
+                        value : "896069442218393651"
+                    },
+                    {
+                        label : "Vergine",
+                        emoji : "♍",
+                        value : "896069443212419092"
+                    },
+                    {
+                        label : "Bilancia",
+                        emoji : "♎",
+                        value : "896069443753488434"
+                    },
+                    {
+                        label : "Scorpione",
+                        emoji : "♏",
+                        value : "896069444416208937"
+                    },
+                    {
+                        label : "Sagittario",
+                        emoji : "♐",
+                        value : "896069444768522261"
+                    },
+                    {
+                        label : "Capricorno",
+                        emoji : "♑",
+                        value : "896069445523501086"
+                    },
+                    {
+                        label : "Aquario",
+                        emoji : "♒",
+                        value : "896069446886629418"
+                    },
+                    {
+                        label : "Pesci",
+                        emoji : "♓",
+                        value : "896069447377358848"
+                    },
+                ])
+            
+            const segnoRow = new Discord.MessageActionRow()
+                .addComponents(segnoMenu)
+            
+            const social = new Discord.MessageEmbed()
+                .setTitle("Quali Sono I Social Che Utilizzi Frequentemente?")
+                .setDescription(
+                    "<:discord:1003034808311623680>▸ Discord\n\n"+
+                    "<:facebook:1003034809515397311>▸ Facebook\n\n"+
+                    "<:insta:1003034810698170379>▸ Instagram\n\n"+
+                    "<:reddit:1003027413061599332>▸ Reddit\n\n"+
+                    "<:snaprtchat:1003027414319890502>▸ Snapchat\n\n"+
+                    "<:tiktok:1003027415691436112>▸ Tiktok\n\n"+
+                    "<:twitter:1003034811927117895>▸ Twitter"
+                )
+                .setColor("#2f3136")
+    
+            const socialMenu = new Discord.MessageSelectMenu()
+                .setCustomId("profilo:social")
+                .setMaxValues(7)
+                .setMinValues(0)
+                .setPlaceholder("Quali Sono I Social Che Utilizzi Frequentemente?")
+                .setOptions([
+                    /*
+                        "<:discord:1003034808311623680>▸ Discord\n"+
+                        "<:facebook:1003034809515397311>▸ Facebook\n"+
+                        "<:insta:1003034810698170379>▸ Instagram\n"+
+                        "<:reddit:1003027413061599332>▸ Reddit\n"+
+                        "<:snaprtchat:1003027414319890502>▸ Snapchat\n"+
+                        "<:tiktok:1003027415691436112>▸ Tiktok\n"+
+                        "<:twitter:1003034811927117895>▸ Twitter"
+                    */ 
+                    {
+                        label : "Discord",
+                        emoji : "<:discord:1003034808311623680>",
+                        value : "897375656470519829"
+                    },
+                    {
+                        label : "Facebook",
+                        emoji : "<:facebook:1003034809515397311>",
+                        value : "897375649340207105"
+                    },
+                    {
+                        label : "Instagram",
+                        emoji : "<:insta:1003034810698170379>",
+                        value : "897375543446614067"
+                    },
+                    {
+                        label : "Reddit",
+                        emoji : "<:reddit:1003027413061599332>",
+                        value : "897375658659938346"
+                    },
+                    {
+                        label : "Snapchat",
+                        emoji : "<:snaprtchat:1003027414319890502>",
+                        value : "897375653425467472"
+                    },
+                    {
+                        label : "Tiktok",
+                        emoji : "<:tiktok:1003027415691436112>",
+                        value : "897375651865194556"
+                    },
+                    {
+                        label : "Twitter",
+                        emoji : "<:twitter:1003034811927117895>",
+                        value : "897375655245774848"
+                    },
+                ])
+            const socialRow = new Discord.MessageActionRow()
+                .addComponents(socialMenu)  
+    
+    
+            const luogo = new Discord.MessageEmbed()
+                .setTitle("Da Dove Vieni?")
+                .setDescription(
+                    "🔺▸ Nord Italia\n\n"+
+                    "🟥▸ Centro Italia\n\n"+
+                    "🔻▸ Sud Italia\n\n"+
+                    "🌍▸ Altro"
+                )
+                .setColor("#2f3136")
+    
+            const luogoMenu = new Discord.MessageSelectMenu()
+                .setCustomId("profilo:luogo")
+                .setMaxValues(1)
+                .setMinValues(0)
+                .setPlaceholder("Da Dove Vieni?")
+                .setOptions([
+                    {
+                        label : "Nord Italia",
+                        emoji : "🔺",
+                        value : "902922148006473758"
+                    },
+                    {
+                        label : "Centro Italia",
+                        emoji : "🟥",
+                        value : "902922176066371614"
+                    },
+                    {
+                        label : "Sud Italia",
+                        emoji : "🔻",
+                        value : "902922530795429999"
+                    },
+                    {
+                        label : "Utente Straniero",
+                        emoji : "🌍",
+                        value : "902922905917218848"
+                    }
+                ])
+            
+            const luogoRow = new Discord.MessageActionRow()
+                .addComponents(luogoMenu)  
+    
+            
+    
+            const sentimenti = new Discord.MessageEmbed()
+                .setTitle("Qual è La Tua Situazione Sentimentale?")
+                .setDescription(    
+                    "💔▸ Single\n\n"+
+                    "♥️▸ Occupato/a\n\n"+
+                    "💘▸ Innamorato/a"
+                )
+                .setColor("#2f3136")
+    
+            const sentimentiMenu = new Discord.MessageSelectMenu()
+                .setCustomId("profilo:sentimenti")
+                .setMaxValues(1)
+                .setMinValues(0)
+                .setPlaceholder("Qual è La Tua Situazione Sentimentale?")
+                .setOptions([
+                    {
+                        label : "Single",
+                        emoji : "💔",
+                        value : "955517944144752700"
+                    },
+                    {
+                        label  : "Occupato/a",
+                        emoji : "♥️",
+                        value : "955517995537551412"
+                    },
+                    {
+                        label  : "Innamorato/a",
+                        emoji : "💘",
+                        value : "955518000247754792"
+                    }
+                ])
+    
+            const sentimentiRow = new Discord.MessageActionRow()
+                .addComponents(sentimentiMenu) 
+    
+            const notifiche = new Discord.MessageEmbed()
+                .setTitle("Quali Notifiche Vuoi Attivare?")
+                .setDescription(
+                    "<:games:1003029580300423198>▸ Free games\n\n"+
+                    "🧾▸ Text\n\n"+
+                    "🔊▸ Vocal\n\n"+
+                    "🥳▸ Eventi\n\n"+
+                    "🪐▸ Update\n\n" +
+                    "<:MMINECRAFT:1003029581466456208>▸ Minecraft\n\n" +
+                    //"🧠▸ Scacchi\n\n"+
+                    "📰▸ Giornale\n\n"+
+                    "⚔️▸ World Map\n\n"+
+                    "📺▸ Promozioni\n\n"+
+                    "📢▸ Gazzetta"
+                )
+                .setColor("#2f3136")
+            
+    
+            const notificheMenu = new Discord.MessageSelectMenu()
+                .setCustomId("profilo:notifiche")
+                .setMaxValues(10)
+                .setMinValues(0)
+                .setPlaceholder("Quali Notifiche Vuoi Attivare?")
+                .setOptions([
+                    {
+                        label : "Free games",
+                        emoji :"<:games:1003029580300423198>",
+                        value : "898331041893343282"
+                    },
+                    {
+                        label : "Text",
+                        emoji :"🧾",
+                        value : "944596815708307486"
+                    },
+                    {
+                        label : "Vocal",
+                        emoji :"🔊",
+                        value : "944595871717265438"
+                    },
+                    {
+                        label : "Eventi",
+                        emoji :"🥳",
+                        value : "904306184268419102"
+                    },
+                    {
+                        label : "Update",
+                        emoji :"🪐",
+                        value : "916634967130378270"
+                    },
+                    {
+                        label : "Minecraft",
+                        emoji :"<:MMINECRAFT:1003029581466456208>",
+                        value : "901367919458533376"
+                    },
+                    /*{
+                        label : "Scacchi",
+                        emoji :"🧠",
+                        value : "902282134390198274"
+                    },*/
+                    {
+                        label : "Giornale",
+                        emoji :"📰",
+                        value : "955518863573930094"
+                    },
+                    {
+                        label : "World Map",
+                        emoji :"⚔️",
+                        value : "955518884310564994"
+                    },
+                    {
+                        label : "Promozioni",
+                        emoji :"📺",
+                        value : "1002555397296627782"
+                    },
+                    {
+                        label : "Gazzetta",
+                        emoji : "📢",
+                        value : "1028651951740682272"
+                    }
+                ])
+    
+            const notificheRow = new Discord.MessageActionRow()
+                .addComponents(notificheMenu) 
+    
+            const spazio = new Discord.MessageEmbed()
+                .setTitle("ELIMINAMI")
+    
+            message.channel.send({embeds : [genere], components : [genereRow]})
+            message.channel.send({embeds : [spazio]})
+            message.channel.send({embeds : [pronomi] , components : [pronomiRow]})
+            message.channel.send({embeds : [spazio]})
+            message.channel.send({embeds : [segno], components : [segnoRow]})
+            message.channel.send({embeds : [spazio]})
+            message.channel.send({embeds : [social], components : [socialRow]})
+            message.channel.send({embeds : [spazio]})
+            message.channel.send({embeds : [luogo], components : [luogoRow]})
+            message.channel.send({embeds : [spazio]})
+            message.channel.send({embeds : [sentimenti], components : [sentimentiRow]})
+            message.channel.send({embeds : [spazio]})
+            message.channel.send({embeds : [notifiche], components : [notificheRow]})
+        }
     }catch(err){
         console.log(err)
         return
