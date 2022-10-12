@@ -14,6 +14,17 @@ function findIndex(id, infoTickets)
   return null
 }
 
+async function is_sposato(userId) {
+    let sposati = await user("sposi");
+
+    for (i in sposati) {
+        if (sposati[i].sposo1 == userId || sposati[i].sposo2 == userId)
+            return i
+    }
+
+    return null
+}
+
 async function menager(member, infoTickets)
 {
     try{
@@ -66,6 +77,8 @@ async function menager(member, infoTickets)
         let booster = await user("boost")
         let tempRoles = await user("role")
         let proprieta = await user("proprietà")
+        let sposo = is_sposato(member.id)
+        let sposati = await user("sposi");
 
         if(coinUser != null)
         {
@@ -128,6 +141,9 @@ async function menager(member, infoTickets)
             }
         }
 
+        if(sposo != null){
+            sposati.splice(sposo,1)
+        }
 
     }catch(err){
         console.log(err)

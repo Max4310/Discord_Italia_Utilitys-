@@ -21,6 +21,8 @@ var infoTickets = []
 
 
 client.on("ready",()=>{   
+    //GENERALI
+
     // /prefissi
     client.guilds.cache.get(variabili.discordItalia).commands.create({
         name: "prefissi",
@@ -77,6 +79,40 @@ client.on("ready",()=>{
                 ]   
             }
         ],
+    })
+    
+    // /matrimonio
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name: "matrimonio",
+        description: "fai una proposta di matrimonio ad un utente",
+        options: [
+            {
+                name: "target",
+                description: "la persona che si vuole sposare",
+                required: true,
+                type: "USER"
+            }
+        ]
+    })
+    // /divorzia
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name: "divorzia",
+        description: "divorzia dal matrimonio",
+        options: null
+    })
+    // /visualizzamatrimoni
+    client.guilds.cache.get(variabili.discordItalia).commands.create({
+        name: "visualizzamatrimoni",
+        description: "vislizza il matrimonio di una persona",
+        options: [
+            {
+                name: "target",
+                description: "la persona che si vuole sposare",
+                required: false,
+                type: "USER"
+            }
+        ]
+
     })
 
 
