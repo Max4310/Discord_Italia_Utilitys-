@@ -146,6 +146,18 @@ function menager (interaction,client,infoTickets)
                 interaction.reply({content:  "😁 Stiamo Ancora Testando Questo Comando A Breve Sarà Disponibile", ephemeral : true})
             }
         }
+        else if (interaction.commandName == "matrimonio"){
+            const matrimonio = require (path.join(__dirname,"/comandi/generici/matrimonio.js"))
+            matrimonio.matrimonio(interaction)
+        }
+        else if (interaction.commandName == "divorzia") {
+            const matrimonio = require (path.join(__dirname,"/comandi/generici/matrimonio.js"))
+            matrimonio.divorzia(interaction)
+        }
+        else if(interaction.commandName == "visualizzamatrimoni"){
+            const matrimonio = require (path.join(__dirname,"/comandi/generici/matrimonio.js"))
+            matrimonio.visualizzamatrimoni(interaction)
+        }
     }
     else if(interaction.isModalSubmit()){ 
         if(interaction.customId == "modulorecensioni"){ // recensioni / modulo.js
@@ -349,6 +361,10 @@ function menager (interaction,client,infoTickets)
         else if(interaction.customId == "pula_concedi"){
             const concediPula = require (path.join(__dirname,"/comandi/staff/concediPula.js"))
             concediPula.romano(interaction)
+        }
+        else if (interaction.customId.startsWith("sposi_accetto,")){
+            const matrimonio = require (path.join(__dirname,"/comandi/generici/matrimonio.js"))
+            matrimonio.sposi_accetto(interaction)
         }
     }
     else if(interaction.isSelectMenu())

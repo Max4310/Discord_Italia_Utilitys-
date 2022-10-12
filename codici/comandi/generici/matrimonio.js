@@ -158,7 +158,7 @@ async function visualizzamatrimoni(interaction) {
     }
 }
 
-async function sposi_accetto() {
+async function sposi_accetto(interaction) {
     try {
         var matrimonio = {
             sposo1: "",
