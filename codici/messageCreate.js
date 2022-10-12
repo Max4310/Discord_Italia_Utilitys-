@@ -97,7 +97,7 @@ function menager (message) {
             try{
                 message.delete()
 
-                message.channel.send("<@598498238336729088>, <@655816872091975770> Sarà Presto Qui")
+                message.channel.send("<@598498238336729088>, <@655816872091975770> Saranno Presto Qui")
             }catch{
                 return
             }
