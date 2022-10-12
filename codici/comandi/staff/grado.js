@@ -9,7 +9,7 @@ function grado (comando){
         var membro = comando.guild.members.cache.get(utente.id)
         
 
-        if(utente != comando.user)
+        if(utente.id != comando.user.id)
         {
             Is=false
             bo=false

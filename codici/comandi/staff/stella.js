@@ -8,7 +8,7 @@ function stella (comando){
         var membro = comando.guild.members.cache.get(utente.id) //prendo il membro
 
 
-        if(utente == comando.user)
+        if(utente.id != comando.user.id)
         {
             var i=0;
             var is = false

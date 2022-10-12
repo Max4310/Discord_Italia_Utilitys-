@@ -59,7 +59,7 @@ function mute(comando) {
         var membro = comando.guild.members.cache.get(utente.id); //prendo il membro passato dall'operatore
 
 
-        if (utente != comando.user) {
+        if (utente.id != comando.user.id) {
             if (membro.bannable == false) //verifico che il bot possa bannare il membro (se non puo l'utente è un membro del governo)
             {
                 var risposta = new Discord.MessageEmbed()

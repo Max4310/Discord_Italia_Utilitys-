@@ -40,7 +40,7 @@ async function menager (message,client) {
 
 
             
-            if(target.id == message.author.id && extra.channel.id == message.channelId)
+            if(target == message.author && extra.channel.id == message.channelId)
             {
                 message.guild.members.fetch(executor.id)
                 .then(membro =>{
