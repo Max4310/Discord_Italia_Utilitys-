@@ -16,9 +16,10 @@ async function is_sposato(userId) {
 
 async function matrimonio(interaction) {
     try {
-        let indexSposi = await is_sposato(interaction.member.user.id)
         let target = interaction.options.getUser("target")
+        if(target.id == interaction.member.user.id) return interaction.reply({content : "❌ Non Puoi Sposarti Con Te Stesso"});
 
+        let indexSposi = await is_sposato(interaction.member.user.id)
         if (indexSposi == null) {
             let indexSposato = await is_sposato(target.id)
             if (indexSposato == null) {
@@ -172,7 +173,12 @@ async function sposi_accetto(interaction) {
         matrimonio.data = data.getTime()
 
         let matrimoni = await user("sposi");
-        matrimoni.push(matrimonio)
+        try{
+            matrimoni.push(matrimonio)
+        } catch {
+            matrimoni = matrimonio
+        }
+        
 
         aggiona(matrimoni, "sposi")
 
@@ -184,7 +190,7 @@ async function sposi_accetto(interaction) {
             .setThumbnail(interaction.user.displayAvatarURL())
             .setColor("WHITE")
 
-        client.guilds.cache.get(variabili.discordItalia).members.cache.get(interaction.customId.split(",")[1]).send({ embeds: [embed] })
+        interaction.client.guilds.cache.get(variabili.discordItalia).members.cache.get(interaction.customId.split(",")[1]).send({ embeds: [embed] })
             .catch(() => { x = true })
 
         let description = `**💍Il Tuo Matrimonio Con <@${interaction.customId.split(",")[1]}> è Ufficiale💍**`
@@ -196,7 +202,7 @@ async function sposi_accetto(interaction) {
         console.log(err)
         interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
 
-        interaction.guild.members.fetch("598498238336729088").then(member => {
+        client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
             member.user.send(`**/multa **${err}`)
 
         }).catch(() => { return; });
