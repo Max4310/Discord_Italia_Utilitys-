@@ -643,10 +643,13 @@ client.on("guildMemberUpdate", (old, nuovo) => {
 
 
 process.on("unhandledRejection", async (err) => {
-    console.log(err)
+    try{
+        console.log(err)
+        client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
+            member.user.send(`**Err **${err}`)
+        }).catch((err) => {console.log(err)})
+    }catch{
+        return;
+    }
     
-    
-    client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
-        member.user.send(`**Err **${err}`)
-    }).catch((err) => {console.log(err)})
 })
