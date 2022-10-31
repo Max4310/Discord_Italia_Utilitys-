@@ -22,7 +22,9 @@ function chiudi (interaction, infoTickets)
 
     setTimeout(() =>{
       interaction.channel.delete()
-    },1000*5)
+    },1000*5).then(() => {
+      return;
+    })
 
     var index = findIndex(interaction.member.user.id,infoTickets)
     const embed = new discord.MessageEmbed()

@@ -552,8 +552,7 @@ client.on("ready",()=>{
             description : "l'utente target",
             type : "USER",
             required : false
-        }]
-
+        }],
     })
 
     
