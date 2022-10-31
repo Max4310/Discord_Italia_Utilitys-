@@ -22,7 +22,7 @@ function chiudi (interaction, infoTickets)
 
     setTimeout(() =>{
       interaction.channel.delete()
-    },1000*5).then(() => {
+    },1000*5).catch(() => {
       return;
     })
 
