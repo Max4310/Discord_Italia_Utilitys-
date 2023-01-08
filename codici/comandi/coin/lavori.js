@@ -17,7 +17,7 @@ function assumi(interaction) {
             emoji : "🥇"
         }*/
 
-        console.log(variabili.graficoSenior)
+        //console.log(variabili.graficoSenior)
 
         if (interaction.guild.ownerId == interaction.member.user.id) {
             assumibili.push({
@@ -36,7 +36,9 @@ function assumi(interaction) {
                 emoji: "🔗"
             })
         }
+
         let ruoli = interaction.guild.members.cache.get(user.id)._roles
+        
         let agente = false
         let ispettore = false
         let commissario = false

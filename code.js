@@ -3,7 +3,7 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}
 )
-client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GtmELi.77EG2LF8bAVv86f4anBQpQMRnVzsCsYXYhCrU8") //utility
+client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GRRMhH.pG5E4aU7iywK6a2F6xXpTdpD5DttGdzWJ9TdEI") //utility
 //client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
 const fs = require("fs")
 const path = require("path")
@@ -17,8 +17,6 @@ const {membro, gestisciVisulizza, isStaff , CoinMember ,aggiona,user,aggiungi} =
 const { ifError } = require("assert");
 
 var infoTickets = []
-
-
 
 client.on("ready",()=>{   
     //GENERALI
