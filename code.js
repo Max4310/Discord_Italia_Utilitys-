@@ -3,7 +3,7 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}
 )
-client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GRRMhH.pG5E4aU7iywK6a2F6xXpTdpD5DttGdzWJ9TdEI") //utility
+client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GBUjnd.8-o36n8R_Ko3czy-eMuZfcazHhKl67-Mx1DMwA") //utility
 //client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
 const fs = require("fs")
 const path = require("path")
