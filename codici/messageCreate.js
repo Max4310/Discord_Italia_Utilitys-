@@ -1155,7 +1155,8 @@ function menager (message) {
                     "📰▸ Giornale\n\n"+
                     "⚔️▸ World Map\n\n"+
                     "📺▸ Promozioni\n\n"+
-                    "📢▸ Gazzetta"
+                    "📢▸ Gazzetta\n\n"+
+                    "🔘▸ Criptovalute"
                 )
                 .setColor("#2f3136")
             
@@ -1220,6 +1221,11 @@ function menager (message) {
                         label : "Gazzetta",
                         emoji : "📢",
                         value : "1028651951740682272"
+                    },
+                    {
+                        label : "Criptovalute",
+                        emoji : "🔘",
+                        value : "1062070651487256608"
                     }
                 ])
     
