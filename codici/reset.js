@@ -623,8 +623,6 @@ function reset (client, mese)
         //è cambiato il mese gestisco gli stipendi
         if(giorno == 1)
         {
-            console.log("sono dentro")
-
             user("coinMember").then(members =>{
                 if (members == null) return
 

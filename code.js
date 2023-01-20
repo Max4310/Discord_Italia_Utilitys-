@@ -3,9 +3,12 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}
 )
-client.login("OTgxOTMwMDgyNTY4MzcyMjU0.Glqcow.aNKX8Y-brvDeXnucmTogUG-3kf2KgI2erWuh3E") //utility
+//client.login("OTgxOTMwMDgyNTY4MzcyMjU0.Glqcow.aNKX8Y-brvDeXnucmTogUG-3kf2KgI2erWuh3E") //utility
 
 //client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
+
+client.login("MTAyNjA3MTc5NjMyNTI4NTkxOA.Gv9uyu.ajKhk0-zoOMc4GV671wsjL7huIDTH8emguzUwM")
+
 const fs = require("fs")
 const path = require("path")
 
@@ -593,6 +596,8 @@ client.on("messageCreate", message =>{ // messageCreate.js
 })
 
 client.on("interactionCreate", (interaction) => { //interactionCreate.js
+
+
     try{   
         const interactionCreate = require (path.join(__dirname,"/codici/interactionCreate.js"))
         interactionCreate.menager(interaction,client,infoTickets)
@@ -639,9 +644,9 @@ client.on("guildMemberUpdate", (old, nuovo) => {
     }
 })
 
+//df
 
-
-process.on("unhandledRejection", async (err) => {
+/*process.on("unhandledRejection", async (err) => {
     try{
         console.log(err)
         client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
@@ -651,4 +656,4 @@ process.on("unhandledRejection", async (err) => {
         return;
     }
     
-})
+})*/
