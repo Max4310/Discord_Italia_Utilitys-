@@ -6,8 +6,6 @@ const client = new Discord.Client(
 client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GgWB_s.cpbb4-1oG_so6-U9fdHe6KFjDzqeyXkbJtPV_k") //utility
 
 //client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
-
-
 //client.login("OTkyNzY1NzA3OTgzMDExODkx.GJ94KQ.maWGrZddoqObYjE8Q3yWc57cgtgux55Vgmpq6A")
 
 const fs = require("fs")
@@ -575,9 +573,6 @@ client.on("ready",()=>{
     console.log("bot online")
 })
 
-client.on("debug", (err)=>{
-    console.log(err)
-})
 
 client.on("guildMemberAdd", (member) => { //guildMemberAdd.js
     try{
@@ -649,7 +644,7 @@ client.on("guildMemberUpdate", (old, nuovo) => {
 
 //df
 
-/*process.on("unhandledRejection", async (err) => {
+process.on("unhandledRejection", async (err) => {
     try{
         console.log(err)
         client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
@@ -659,4 +654,4 @@ client.on("guildMemberUpdate", (old, nuovo) => {
         return;
     }
     
-})*/
+})
