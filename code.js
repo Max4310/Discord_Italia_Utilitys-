@@ -7,7 +7,8 @@ const client = new Discord.Client(
 
 //client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
 
-client.login("MTAyNjA3MTc5NjMyNTI4NTkxOA.Gv9uyu.ajKhk0-zoOMc4GV671wsjL7huIDTH8emguzUwM")
+
+client.login("OTkyNzY1NzA3OTgzMDExODkx.GJ94KQ.maWGrZddoqObYjE8Q3yWc57cgtgux55Vgmpq6A")
 
 const fs = require("fs")
 const path = require("path")
