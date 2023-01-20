@@ -3,12 +3,12 @@ const variabili = require("./variabili.json");
 const client = new Discord.Client(
     {intents: 131071, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}
 )
-//client.login("OTgxOTMwMDgyNTY4MzcyMjU0.Glqcow.aNKX8Y-brvDeXnucmTogUG-3kf2KgI2erWuh3E") //utility
+client.login("OTgxOTMwMDgyNTY4MzcyMjU0.GgWB_s.cpbb4-1oG_so6-U9fdHe6KFjDzqeyXkbJtPV_k") //utility
 
 //client.login("OTgwNzk2OTQ5NzM1Mjc2NTk0.Gpysym.aAzYr_nRux_Fulr4jN5S_0Epl_OYfzKoRhwLj8") //max prova bot
 
 
-client.login("OTkyNzY1NzA3OTgzMDExODkx.GJ94KQ.maWGrZddoqObYjE8Q3yWc57cgtgux55Vgmpq6A")
+//client.login("OTkyNzY1NzA3OTgzMDExODkx.GJ94KQ.maWGrZddoqObYjE8Q3yWc57cgtgux55Vgmpq6A")
 
 const fs = require("fs")
 const path = require("path")
@@ -575,7 +575,9 @@ client.on("ready",()=>{
     console.log("bot online")
 })
 
-
+client.on("debug", (err)=>{
+    console.log(err)
+})
 
 client.on("guildMemberAdd", (member) => { //guildMemberAdd.js
     try{
