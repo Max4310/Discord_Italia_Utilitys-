@@ -303,6 +303,11 @@ function menager (interaction,client,infoTickets)
 
             acquisti.acquisti(interaction)
         }
+        else if(interaction.customId == "ticket:affiliazioni"){
+            const affiliazioni = require (path.join(__dirname,"/assistenza/ticket/crea/affiliazioni.js"))
+
+            affiliazioni.affiliazioni(interaction)
+        }
         else if(interaction.customId == "claim") //claim degli helper
         {
             const claimHelper = require (path.join(__dirname,"/assistenza/ticket/gestione/claimHelper.js"))

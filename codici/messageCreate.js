@@ -149,7 +149,12 @@ function menager (message) {
             const EmbedTicketTool = new Discord.MessageEmbed()
             .setTitle("Assistenza di Discord Italia")
             .setColor("#2f3136")
-            .setDescription("━━━━━━━━━━━━━━━━━\n\n**Per Ricevere Assistenza ⇨ 📩\n\nPer Segnalare Un Utente ⇨ 🚔\n\nPer Assistenza Acquisti ⇨ 💳**\n\n━━━━━━━━━━━━━━━━━")
+            .setDescription("━━━━━━━━━━━━━━━━━\n\n" +
+            "**Per Ricevere Assistenza ⇨ 📩\n\n"+
+            "Per Segnalare Un Utente ⇨ 🚔\n\n"+
+            "Per Assistenza Acquisti ⇨ 💳**\n\n" +
+            "**Per Diventare Un Affiliato ⇨ 📸** " 
+            +"\n\n━━━━━━━━━━━━━━━━━")
     
             const rorow = new Discord.MessageActionRow()
             .addComponents(
@@ -168,6 +173,11 @@ function menager (message) {
                 .setEmoji('💳')
                 .setCustomId("acquisti")
                 .setStyle("SUCCESS"),
+                new Discord.MessageButton()
+                .setStyle("SECONDARY")
+                .setEmoji("📸")
+                .setLabel("Affiliazioni")
+                .setCustomId("ticket:affiliazioni")
             )
     
             message.delete()
