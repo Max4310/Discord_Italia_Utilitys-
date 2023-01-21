@@ -166,38 +166,47 @@ async function sposi_accetto(interaction) {
             sposo2: "",
             data: ""
         }
-        var data = new Date
+        var data = new Date()
+        let indexSposi1 = await is_sposato(interaction.member.user.id)
+        let indexSposi2 = await is_sposato(interaction.customId.split(",")[1])
 
-        matrimonio.sposo1 = interaction.user.id
-        matrimonio.sposo2 = interaction.customId.split(",")[1]
-        matrimonio.data = data.getTime()
+        if(indexSposi1 != null && indexSposi2 != null) {
+            matrimonio.sposo1 = interaction.user.id
+            matrimonio.sposo2 = interaction.customId.split(",")[1]
+            matrimonio.data = data.getTime()
 
-        let matrimoni = await user("sposi");
-        try{
-            matrimoni.push(matrimonio)
-        } catch {
-            matrimoni = matrimonio
+            let matrimoni = await user("sposi");
+            try{
+                matrimoni.push(matrimonio)
+            } catch {
+                matrimoni = matrimonio
+            }
+            
+
+            aggiona(matrimoni, "sposi")
+
+            let x = false
+
+            let embed = new Discord.MessageEmbed()
+                .setTitle("Proposta Di Matrimonio Accettata")
+                .setDescription(`${interaction.user} **Ha Acettato La Tua Proposta Di Matrimonio**\n\n*Sposando Un Utente Sul Server Sarà Visulizzabile Da Tutti E Non Si Portà Avere Piu Di Un Partner Contemporanemanete.*`)
+                .setThumbnail(interaction.user.displayAvatarURL())
+                .setColor("WHITE")
+
+            interaction.client.guilds.cache.get(variabili.discordItalia).members.cache.get(interaction.customId.split(",")[1]).send({ embeds: [embed] })
+                .catch(() => { x = true })
+
+            let description = `**💍Il Tuo Matrimonio Con <@${interaction.customId.split(",")[1]}> è Ufficiale💍**`
+            if (x == true)
+                description = description + "\n\n*Non è Stato Possibile Recapitare Il Messaggio Al Tuo Sposo/a Per Problemi Tecnici*"
+
+            return interaction.reply({ content: description, ephemeral : true})    
         }
+        else {
+            return interaction.reply({content : "❌ Uno Dei Due È Gia Sposato", ephemeral : true})
+        }
+
         
-
-        aggiona(matrimoni, "sposi")
-
-        let x = false
-
-        let embed = new Discord.MessageEmbed()
-            .setTitle("Proposta Di Matrimonio Accettata")
-            .setDescription(`${interaction.user} **Ha Acettato La Tua Proposta Di Matrimonio**\n\n*Sposando Un Utente Sul Server Sarà Visulizzabile Da Tutti E Non Si Portà Avere Piu Di Un Partner Contemporanemanete.*`)
-            .setThumbnail(interaction.user.displayAvatarURL())
-            .setColor("WHITE")
-
-        interaction.client.guilds.cache.get(variabili.discordItalia).members.cache.get(interaction.customId.split(",")[1]).send({ embeds: [embed] })
-            .catch(() => { x = true })
-
-        let description = `**💍Il Tuo Matrimonio Con <@${interaction.customId.split(",")[1]}> è Ufficiale💍**`
-        if (x == true)
-            description = description + "\n\n*Non è Stato Possibile Recapitare Il Messaggio Al Tuo Sposo/a Per Problemi Tecnici*"
-
-        interaction.reply({ content: description })
     }catch(err){
         console.log(err)
         interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
