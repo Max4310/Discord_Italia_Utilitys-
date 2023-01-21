@@ -8,7 +8,7 @@ function comando(interaction) {
 
     try{
         if (interaction.channelId == variabili.chatWarn) {
-            if (/*interaction.member.permissions.has("ADMINISTRATOR")*/ interaction.member.roles.cache.some(role => role.id == variabili.Governo)) {
+            if (interaction.member.permissions.has("ADMINISTRATOR") || interaction.member.roles.cache.some(role => role.id == variabili.Governo)) {
                 user("warn").then((warnati) => {
                     CoinMember(interaction.member.user.id).then(member => {
     
