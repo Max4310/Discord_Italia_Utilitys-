@@ -84,7 +84,7 @@ async function divorzia(interaction) {
         let matrimonioIndex = await is_sposato(interaction.member.user.id)
 
         if (matrimonioIndex != null) {
-            if ((new Date().getTime() - matrimoni[matrimonioIndex].data) >= 100 /*1000*60*60*24*7*/) {
+            if ((new Date().getTime() - matrimoni[matrimonioIndex].data) >= 1000*60*60*24*7) {
                 let altro = matrimoni[matrimonioIndex].sposo1
 
                 if (altro == interaction.member.user.id)
