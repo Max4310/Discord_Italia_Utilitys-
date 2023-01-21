@@ -51,7 +51,7 @@ async function matrimonio(interaction) {
 
                 const embed = new Discord.MessageEmbed()
                     .setTitle("L'utente è Gia Impegnato In Un Matrimonio!")
-                    .setDescription(`<@&${matrimonio[indexSposato].sposo1}> 💍 <@&${matrimonio[indexSposato].sposo2}>`)
+                    .setDescription(`<@${matrimonio[indexSposato].sposo1}> 💍 <@${matrimonio[indexSposato].sposo2}>`)
                     .setColor("WHITE")
 
                 interaction.reply({ embeds: [embed], ephemeral: true })
