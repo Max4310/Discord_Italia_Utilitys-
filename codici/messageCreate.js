@@ -1015,13 +1015,14 @@ function menager (message) {
                     "<:reddit:1003027413061599332>▸ Reddit\n\n"+
                     "<:snaprtchat:1003027414319890502>▸ Snapchat\n\n"+
                     "<:tiktok:1003027415691436112>▸ Tiktok\n\n"+
-                    "<:twitter:1003034811927117895>▸ Twitter"
+                    "<:twitter:1003034811927117895>▸ Twitter\n\n"+
+                    "🌟▸ Influencer"
                 )
                 .setColor("#2f3136")
     
             const socialMenu = new Discord.MessageSelectMenu()
                 .setCustomId("profilo:social")
-                .setMaxValues(7)
+                .setMaxValues(8)
                 .setMinValues(0)
                 .setPlaceholder("Quali Sono I Social Che Utilizzi Frequentemente?")
                 .setOptions([
@@ -1068,6 +1069,11 @@ function menager (message) {
                         label : "Twitter",
                         emoji : "<:twitter:1003034811927117895>",
                         value : "897375655245774848"
+                    },
+                    {
+                        label : "Influencer",
+                        emoji : "🌟",
+                        value : "1065312324535210024"
                     },
                 ])
             const socialRow = new Discord.MessageActionRow()
@@ -1160,7 +1166,7 @@ function menager (message) {
                     "🔊▸ Vocal\n\n"+
                     "🥳▸ Eventi\n\n"+
                     "🪐▸ Update\n\n" +
-                    "<:MMINECRAFT:1003029581466456208>▸ Minecraft\n\n" +
+                    //"<:MMINECRAFT:1003029581466456208>▸ Minecraft\n\n" +
                     //"🧠▸ Scacchi\n\n"+
                     "📰▸ Giornale\n\n"+
                     "⚔️▸ World Map\n\n"+
@@ -1202,11 +1208,11 @@ function menager (message) {
                         emoji :"🪐",
                         value : "916634967130378270"
                     },
-                    {
+                    /*{
                         label : "Minecraft",
                         emoji :"<:MMINECRAFT:1003029581466456208>",
                         value : "901367919458533376"
-                    },
+                    },*/
                     /*{
                         label : "Scacchi",
                         emoji :"🧠",
