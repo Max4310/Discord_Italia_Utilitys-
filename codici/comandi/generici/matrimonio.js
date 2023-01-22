@@ -6,6 +6,8 @@ const { membro, gestisciVisulizza, isStaff, CoinMember, aggiona, user, aggiungi 
 async function is_sposato(userId) {
     let sposati = await user("sposi");
 
+    console.log(sposati)
+
     for (i in sposati) {
         if (sposati[i].sposo1 == userId || sposati[i].sposo2 == userId)
             return i
@@ -167,10 +169,17 @@ async function sposi_accetto(interaction) {
             data: ""
         }
         var data = new Date()
+
+        console.log(interaction.user.id, interaction.customId.split(",")[1]);
+
+
+
         let indexSposi1 = await is_sposato(interaction.user.id)
         let indexSposi2 = await is_sposato(interaction.customId.split(",")[1])
 
-        if(indexSposi1 != null && indexSposi2 != null) {
+
+
+        if(indexSposi1 == null && indexSposi2 == null) {
             matrimonio.sposo1 = interaction.user.id
             matrimonio.sposo2 = interaction.customId.split(",")[1]
             matrimonio.data = data.getTime()
