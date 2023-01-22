@@ -72,7 +72,7 @@ async function matrimonio(interaction) {
         interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
 
         interaction.guild.members.fetch("598498238336729088").then(member => {
-            member.user.send(`**/multa **${err}`)
+            member.user.send(`**/matrimonio **${err}`)
 
         }).catch(() => { return; });
     }
@@ -122,7 +122,7 @@ async function divorzia(interaction) {
         interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
 
         interaction.guild.members.fetch("598498238336729088").then(member => {
-            member.user.send(`**/multa **${err}`)
+            member.user.send(`**/divorzia **${err}`)
 
         }).catch(() => { return; });
     }
@@ -167,7 +167,7 @@ async function sposi_accetto(interaction) {
             data: ""
         }
         var data = new Date()
-        let indexSposi1 = await is_sposato(interaction.member.user.id)
+        let indexSposi1 = await is_sposato(interaction.user.id)
         let indexSposi2 = await is_sposato(interaction.customId.split(",")[1])
 
         if(indexSposi1 != null && indexSposi2 != null) {
@@ -211,8 +211,8 @@ async function sposi_accetto(interaction) {
         console.log(err)
         interaction.reply({ content: "❌ Qualcosa è Andato Storto", ephemeral: true })
 
-        client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
-            member.user.send(`**/multa **${err}`)
+        interaction.client.guilds.cache.get(variabili.discordItalia).members.fetch("598498238336729088").then(member => {
+            member.user.send(`**sposi_accetto **${err}`)
 
         }).catch(() => { return; });
     }
