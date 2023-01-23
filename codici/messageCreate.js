@@ -66,8 +66,26 @@ function menager (message) {
         else if(message.content=="113") //comando polizia
         {
             try{
-                message.delete()
-                message.channel.send("🚨 La <@&911923177314201640> Sarà Presto Qui! 🚨")
+                if(variabili.ping){
+                    variabili.ping = false
+                    message.delete()
+                    message.channel.send("🚨 La <@&911923177314201640> Sarà Presto Qui! 🚨").then(()=>{
+                        setTimeout(() => {
+                            variabili.ping = true
+                            var data = JSON.stringify(variabili)
+                            fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
+                                if(err) console.log('error', err);
+                            });
+                        },1000*60)
+                    })
+                }
+                else{
+                    message.channel.send("Non Taggare Cosi Spesso Lo Staff").then((msg)=>{
+                        setTimeout(() => {
+                            msg.delete()
+                        },1000*30)
+                    })
+                }
             }
             catch{
                 return
@@ -86,10 +104,29 @@ function menager (message) {
         }
         else if(message.content == "115"){
             try{
-                message.delete()
+                if(variabili.ping){
+                    variabili.ping = false
+                    message.delete()
 
-                message.channel.send("<:helper:1026057751299899432> Presto Un <@&902956109915099176> Sarà Qui Per Aiutarti <:helper:1026057751299899432>")
-            }catch{
+                    message.channel.send("<:helper:1026057751299899432> Presto Un <@&902956109915099176> Sarà Qui Per Aiutarti <:helper:1026057751299899432>").then(()=>{
+                        setTimeout(() => {
+                            variabili.ping = true
+                            var data = JSON.stringify(variabili)
+                            fs.writeFile(path.join(__dirname,"../variabili.json"), data,function(err, result) {
+                                if(err) console.log('error', err);
+                            });
+                        },1000*60)
+                    })
+                }
+                else{
+                    message.channel.send("Non Taggare Cosi Spesso Lo Staff").then((msg)=>{
+                        setTimeout(() => {
+                            msg.delete()
+                        },1000*30)
+                    })
+                }
+            }
+            catch{
                 return
             }
         }
