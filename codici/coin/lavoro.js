@@ -303,6 +303,9 @@ function assumi(interaction) {
                         interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.Agente))
                         m.dimetti(variabili.Agente)
                     }
+                    else if(roleid == variabili.Agente){
+                        interaction.guild.members.cache.get(userTargetId).roles.add(interaction.guild.roles.cache.get(variabili.pula))
+                    }
 
 
                     interaction.reply({ content: "👍 Utente Assunto Con Successo", ephemeral: true })
