@@ -871,6 +871,11 @@ function dimetti(interaction) {
             if (y == -1) return interaction.reply({ content: "❌ L'utente Non Possiede Questo Lavoro\n**Probabilmente Ha Solo I Permessi Sul Server**", ephemeral: true })
 
             interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(roleid))
+
+            if(roleid == variabili.agente || roleid == variabili.Ispettore || roleid == variabili.Commissario || roleid == variabili.CAPOPULA){
+                interaction.guild.members.cache.get(userTargetId).roles.remove(interaction.guild.roles.cache.get(variabili.pula))
+            }
+
             let m = new membro(userTargetId)
             m.dimetti(roleid)
 
