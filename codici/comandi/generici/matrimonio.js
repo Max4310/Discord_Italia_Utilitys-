@@ -17,7 +17,7 @@ async function is_sposato(userId) {
 async function matrimonio(interaction) {
     try {
         let target = interaction.options.getUser("target")
-        if(target.id == interaction.member.user.id) return interaction.reply({content : "❌ Non Puoi Sposarti Con Te Stesso"});
+        if(target.id == interaction.member.user.id) return interaction.reply({content : "❌ Non Puoi Sposarti Con Te Stesso", ephemeral : true});
 
         let indexSposi = await is_sposato(interaction.member.user.id)
         if (indexSposi == null) {
