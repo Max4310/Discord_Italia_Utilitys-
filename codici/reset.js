@@ -757,7 +757,7 @@ function reset (client, mese)
             }
         })
 
-        var embed = new Discord.MessageEmbed()
+        /*var embed = new Discord.MessageEmbed()
             .setTitle("NordVPN")
             .setURL("https://go.nordvpn.net/aff_c?offer_id=615&aff_id=74241&url_id=14831")
             .setDescription(
@@ -767,7 +767,19 @@ function reset (client, mese)
                 "*<a:manss:976501011302711457> Icona del Ruolo Esclusiva!*"
             )
             .setImage("https://www.informarea.it/wp-content/uploads/2020/09/recensione-nordVPN.jpg")
-            .setColor("#fdf9f9")
+            .setColor("#fdf9f9")*/
+
+        var embed = new Discord.MessageEmbed()
+            .setTitle("NordVPN")
+            .setURL("https://go.nordvpn.net/aff_c?offer_id=615&aff_id=74241&url_id=14831")
+            .setDescription(
+                "⇒ Ogni Mese di NordVPN = 1 Mese Di <@&893851166239252530> su Discord Italia!\n"+
+                "⇒ Badge Esclusivo <@&1002543691526836224>\n"+
+                "⇒ Icona del ruolo esclusiva!\n"+
+                "⇒ Colore Custom a vita!! disponibile tra i seguenti piani a pagamento <#902903643026636860>"
+            )
+            .setImage("https://www.html.it/app/uploads/2022/06/nordvpn_cover-1060x424.jpg")
+            .setColor(/*"#0E14CD"*/ "090FAB")
             
         client.guilds.cache.get("891739229846118461").channels.cache.get("894195379418058774").send({embeds : [embed]})
 
