@@ -110,7 +110,8 @@ async function divorzia(interaction) {
                 let m = parseInt(da.getMonth()) + 1
                 let embed = new Discord.MessageEmbed()
                     .setTitle("Siete Spostati Da Troppo Poco Tempo")
-                    .setDescription("**Siete Sposati Da " + da.toDateString().split(" ")[2] + "/" + m + "/" + da.getFullYear() + "**\n\n*Deve Passare Una Settimana Prima Di Poter Divorziare*")
+                    .setDescription("**Siete Sposati Da " + da.toDateString().split(" ")[2] + "/" + m + "/" + da.getFullYear() + 
+                    "**\n\n*Deve Passare Una Settimana Prima Di Poter Divorziare*")
 
                 interaction.reply({ embeds: [embed], ephemeral: true })
             }

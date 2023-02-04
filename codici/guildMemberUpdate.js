@@ -3,7 +3,7 @@ const variabili = require(path.join(__dirname,"../variabili.json"))
 const {membro, gestisciVisulizza, isStaff , CoinMember ,aggiona,user,aggiungi} = require(path.join(__dirname,"../oggetti.js"));
 const Discord = require("discord.js")
 
-function guildMemberUpdate (old,nuovo)
+function guildMemberUpdate (old,nuovo, roleCount)
 {
     try{
         if(old._roles.length > nuovo._roles.length)
@@ -88,6 +88,8 @@ function guildMemberUpdate (old,nuovo)
                     return
                 })
             }
+
+            return 0
         }
     }catch(err){
         try{

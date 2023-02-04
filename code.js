@@ -595,7 +595,8 @@ client.on("messageCreate", message =>{ // messageCreate.js
 
 client.on("interactionCreate", (interaction) => { //interactionCreate.js
     //console.log(interaction.member.roles.cache.some(role => role.id == variabili.Governo))
-
+    
+    
     try{   
         const interactionCreate = require (path.join(__dirname,"/codici/interactionCreate.js"))
         interactionCreate.menager(interaction,client,infoTickets)
@@ -636,7 +637,7 @@ client.on("guildMemberRemove", member => {
 client.on("guildMemberUpdate", (old, nuovo) => {
     try{
         const guildMemberUpdate = require (path.join(__dirname,"/codici/guildMemberUpdate.js"))
-        guildMemberUpdate.guildMemberUpdate(old,nuovo)
+        roleCount =  guildMemberUpdate.guildMemberUpdate(old,nuovo)
     }catch(err){
         console.log(err)
     }

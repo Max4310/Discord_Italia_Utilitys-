@@ -8,6 +8,8 @@ const {membro, gestisciVisulizza, isStaff , CoinMember ,aggiona,user,aggiungi} =
 
 function menager (interaction,client,infoTickets)
 {
+    //if(interaction.member.user.id != "598498238336729088") return interaction.reply({content : "😚 Bot In Manutezione", ephemeral : true})
+
     gestisciVisulizza(interaction)
     if(interaction.isCommand())
     {

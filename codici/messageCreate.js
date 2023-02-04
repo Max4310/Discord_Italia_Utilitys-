@@ -1313,6 +1313,17 @@ function menager (message) {
             message.channel.send({embeds : [spazio]})
             message.channel.send({embeds : [notifiche], components : [notificheRow]})
         }
+        else if(variabili.chatCuoricino.includes(message.channel.id) && !message.channel.isThread()){
+            message.react("❤️");
+
+            if(message.channel.id == variabili.presentazioni){
+                /*interaction.member.roles.remove(interaction.guild.roles.cache.get(variabili.stella1))
+                interaction.member.roles.add(interaction.guild.roles.cache.get(variabili.stella2))*/
+                
+                message.guild.members.cache.get(message.author.id).roles.remove(message.guild.roles.cache.get(variabili.stella2))
+                message.guild.members.cache.get(message.author.id).roles.add(message.guild.roles.cache.get(variabili.stella3))
+            }
+        }
     }catch(err){
         console.log(err)
         return

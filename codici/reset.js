@@ -792,6 +792,7 @@ function reset (client, mese)
         variabili.ContDelete = 0
         variabili.vpn=false
         variabili.ping = true
+        variabili.profilo = false;
 
         
         setTimeout(() => {
