@@ -205,8 +205,10 @@ async function sposi_accetto(interaction) {
             let description = `**💍Il Tuo Matrimonio Con <@${interaction.customId.split(",")[1]}> è Ufficiale💍**`
             if (x == true)
                 description = description + "\n\n*Non è Stato Possibile Recapitare Il Messaggio Al Tuo Sposo/a Per Problemi Tecnici*"
-
-            return interaction.reply({ content: description, ephemeral : true})    
+            
+            
+            interaction.message.delete()
+            return interaction.reply({ content: description, ephemeral : true})  
         }
         else {
             return interaction.reply({content : "❌ Uno Dei Due È Gia Sposato", ephemeral : true})
