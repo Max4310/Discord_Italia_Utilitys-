@@ -594,7 +594,7 @@ client.on("messageCreate", message =>{ // messageCreate.js
 })
 
 client.on("interactionCreate", (interaction) => { //interactionCreate.js
-    //console.log(interaction.member.roles.cache.some(role => role.id == variabili.Governo))
+    //console.log(interaction.member.roles.cache.some(role => role.id == variabili.stella1))
     try{   
         const interactionCreate = require (path.join(__dirname,"/codici/interactionCreate.js"))
         interactionCreate.menager(interaction,client,infoTickets)
