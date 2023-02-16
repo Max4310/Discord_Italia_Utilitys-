@@ -203,7 +203,7 @@ async function  profilo(interaction)
                 interaction.reply({content : "❌ Emm Non Ho Capito Cosa Ti Serve", ephemeral : true})
         }
 
-        if(variabili.profilo>=2){
+        if(variabili.profilo>=2 && interaction.member.roles.cache.some(role => {role.id == variabili.stella1})){
             interaction.member.roles.remove(interaction.guild.roles.cache.get(variabili.stella1))
             interaction.member.roles.add(interaction.guild.roles.cache.get(variabili.stella2))  
             variabili.profilo=0;
