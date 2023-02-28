@@ -1228,7 +1228,7 @@ function menager (message) {
     
             const notificheMenu = new Discord.MessageSelectMenu()
                 .setCustomId("profilo:notifiche")
-                .setMaxValues(10)
+                .setMaxValues(11)
                 .setMinValues(0)
                 .setPlaceholder("Quali Notifiche Vuoi Attivare?")
                 .setOptions([
