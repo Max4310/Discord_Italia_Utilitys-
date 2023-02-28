@@ -1220,7 +1220,8 @@ function menager (message) {
                     "⚔️▸ World Map\n\n"+
                     "📺▸ Promozioni\n\n"+
                     "📢▸ Gazzetta\n\n"+
-                    "🔘▸ Criptovalute"
+                    "🔘▸ Criptovalute\n\n"+
+                    "📕▸ Biblioteca"
                 )
                 .setColor("#2f3136")
             
@@ -1290,6 +1291,11 @@ function menager (message) {
                         label : "Criptovalute",
                         emoji : "🔘",
                         value : "1062070651487256608"
+                    },
+                    {
+                        label : "Biblioteca",
+                        emoji : "📕",
+                        value : "1080134856568209498"
                     }
                 ])
     
