@@ -240,6 +240,9 @@ function menager (message) {
                     if(message.mentions.users.first().id == "445262123598086147"){
                         message.react("🪐")
                     }
+                    else if(users._roles.includes("1042454161125543986")){
+                        message.react("<:gorosei:1077996013249372200>")
+                    }
                     else if(users._roles.includes("893851166239252530"/*"981694340009177119"*/)){
                         message.react("👑")
                     }
