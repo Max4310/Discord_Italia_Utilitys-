@@ -11,7 +11,7 @@ function sleep(s) {
 const Capo = 15
 const Commissari = 10
 const Ispettori = 6
-const Agenti = 5
+const Agenti = 50
 
 const tempo_reset = 60000 * 60 * 24
 

@@ -69,7 +69,7 @@ function menager (interaction,client,infoTickets)
 
             pattuglie.pattuglie(interaction)
         }
-        else if(interaction.commandName == "add")  //gestione dello /add
+        /*else if(interaction.commandName == "add")  //gestione dello /add
         {
             const add = require (path.join(__dirname,"/assistenza/commands/add.js"))
 
@@ -159,7 +159,7 @@ function menager (interaction,client,infoTickets)
         else if(interaction.commandName == "visualizzamatrimoni"){
             const matrimonio = require (path.join(__dirname,"/comandi/generici/matrimonio.js"))
             matrimonio.visualizzamatrimoni(interaction)
-        }
+        }*/
     }
     else if(interaction.isModalSubmit()){ 
         if(interaction.customId == "modulorecensioni"){ // recensioni / modulo.js
@@ -222,7 +222,7 @@ function menager (interaction,client,infoTickets)
 
             pulaLevaSI.pulaLevaSI(interaction)
         }
-        else if(interaction.customId == "assistenzaverifica") // sistema la verifica
+        /*else if(interaction.customId == "assistenzaverifica") // sistema la verifica
         {
             const verifica = require (path.join(__dirname,"/assistenza/automatica/verifica.js"))
 
@@ -364,7 +364,7 @@ function menager (interaction,client,infoTickets)
         else if(interaction.customId == "comandi"){
             const visualizzaCoin = require (path.join(__dirname,"/coin/visualizzaCoin.js"))
             visualizzaCoin.comandi(interaction);
-        }
+        }*/
         else if(interaction.customId == "pula_concedi"){
             const concediPula = require (path.join(__dirname,"/comandi/staff/concediPula.js"))
             concediPula.romano(interaction)
@@ -382,7 +382,7 @@ function menager (interaction,client,infoTickets)
 
             profilo.profilo(interaction)
         }
-        else if(interaction.customId == "abbonamentiMenu")//coin/abbonamenti
+        /*else if(interaction.customId == "abbonamentiMenu")//coin/abbonamenti
         {
             const abbonamentiMenu = require (path.join(__dirname,"/coin/abbonamenti"))
             abbonamentiMenu.abbonamenti(interaction,client)
@@ -396,7 +396,7 @@ function menager (interaction,client,infoTickets)
         {
             const lavoro = require (path.join(__dirname,"/coin/lavoro"))
             lavoro.dimetti(interaction)
-        } 
+        }*/ 
     }
 }
 module.exports = {menager}

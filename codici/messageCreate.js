@@ -1333,6 +1333,9 @@ function menager (message) {
                 message.guild.members.cache.get(message.author.id).roles.add(message.guild.roles.cache.get(variabili.stella3))
             }
         }
+        else if(message.content == "free"){
+            message.reply("#freeMax")
+        }
     }catch(err){
         console.log(err)
         return

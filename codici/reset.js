@@ -21,7 +21,7 @@ function reset (client, mese)
 
         //controllo i warn
         user("warn").then(warnati => {
-            if(warnati == null) return
+            /*if(warnati == null) return
 
             var n = warnati.length-1
             for(var i=n ; i>=0 ; i--)
@@ -34,10 +34,10 @@ function reset (client, mese)
                     
                     aggiona(warnati, "warn")
                 }
-            }
+            }*/
         })
         .catch((err) => {
-            try{
+            /*try{
                 var embed = new Discord.MessageEmbed()
                 .setTitle("WARN ERROR")
                 .setDescription(err)
@@ -47,12 +47,12 @@ function reset (client, mese)
                 return
             }catch{
                 return
-            }
+            }*/
         })
 
         //contollo gli abbonamenti
         user("coinMember").then(members => {
-            if(members == null) return
+            /*if(members == null) return
             for(var i in members)
             {   
                 if(members[i].abbonamenti.length > 0)
@@ -114,7 +114,7 @@ function reset (client, mese)
                                         *
                                         * members[i].id = l'id del membro
                                         *  client.guilds.cache.get(variabili.discordItalia) = guild
-                                        * * * * * * * * * */
+                                        * * * * * * * * * 
 
                                         break;
                                     case variabili.A_customRole: //customRole
@@ -147,7 +147,7 @@ function reset (client, mese)
                                                 *
                                                 * members[i].id = l'id del membro
                                                 *  client.guilds.cache.get(variabili.discordItalia) = guild
-                                                * * * * * * * * * */
+                                                * * * * * * * * * 
                                             }
                                             else
                                             {
@@ -167,7 +167,7 @@ function reset (client, mese)
                                                 * 
                                                 * members[i].id = l'id del membro
                                                 * client.guilds.cache.get(variabili.discordItalia) = guild
-                                                * * * * * * * * * * */
+                                                * * * * * * * * * * 
                                             }
 
                                             aggiona(usersPropetis , "proprietà")
@@ -250,7 +250,7 @@ function reset (client, mese)
                                         *
                                         * members[i].id = l'id del membro
                                         * client.guilds.cache.get(variabili.discordItalia) = guild 
-                                        * * * * * * * * * */
+                                        * * * * * * * * * 
                             
                                         break;
                                     case variabili.A_colore: //colore normale
@@ -309,7 +309,7 @@ function reset (client, mese)
                                         * un utente non ha piu accesso ai colori "speciali" 
                                         *
                                         * membrox = membro
-                                        * * * * * * * * * */
+                                        * * * * * * * * * 
                                         break;
                                     case variabili.A_casa: //chat priavata
                                     user("proprietà").then(usersPropetis => {
@@ -348,7 +348,7 @@ function reset (client, mese)
                                             *
                                             * members[i].id = l'id del membro
                                             *  client.guilds.cache.get(variabili.discordItalia) = guild
-                                            * * * * * * * * * */
+                                            * * * * * * * * * 
                                         }
                                         else
                                         {
@@ -368,7 +368,7 @@ function reset (client, mese)
                                             * 
                                             * members[i].id = l'id del membro
                                             * client.guilds.cache.get(variabili.discordItalia) = guild
-                                            * * * * * * * * * * */
+                                            * * * * * * * * * * 
                                         }
                                         aggiona(usersPropetis , "proprietà")
                                     })
@@ -411,7 +411,7 @@ function reset (client, mese)
                                             *
                                             * members[i].id = l'id del membro
                                             *  client.guilds.cache.get(variabili.discordItalia) = guild
-                                            * * * * * * * * * */
+                                            * * * * * * * * * 
                                         }
                                         else
                                         {
@@ -431,7 +431,7 @@ function reset (client, mese)
                                             * 
                                             * members[i].id = l'id del membro
                                             * client.guilds.cache.get(variabili.discordItalia) = guild
-                                            * * * * * * * * * * */
+                                            * * * * * * * * * * 
                                         }
                                         aggiona(usersPropetis , "proprietà")
                                     })
@@ -488,7 +488,7 @@ function reset (client, mese)
                                         *
                                         * members[i].id = l'id del membro
                                         * client.guilds.cache.get(variabili.discordItalia) = guild 
-                                        * * * * * * * * * */
+                                        * * * * * * * * * 
                                         break;
                                     case variabili.A_anteprima: //accesso all'ateprima
                                         client.guilds.cache.get(variabili.discordItalia).channels.cache.get(variabili.C_anteprima).permissionOverwrites.edit(members[i].id,
@@ -540,7 +540,7 @@ function reset (client, mese)
                                         *
                                         * members[i].id = l'id del membro
                                         * client.guilds.cache.get(variabili.discordItalia) = guild 
-                                        * * * * * * * * * */
+                                        * * * * * * * * * 
                                         break;
                                     case variabili.A_colorePlus: //colori plus  
                                         
@@ -573,7 +573,7 @@ function reset (client, mese)
                                         * un utente non ha piu accesso ai colori QUELLI SGRAVI 
                                         *
                                         * membrox = membro
-                                        * * * * * * * * * */
+                                        * * * * * * * * * 
                                         
                                         break;
                                     default:
@@ -602,10 +602,10 @@ function reset (client, mese)
                         }
                     }
                 }
-            }
+            }*/
         })
         .catch((err) => {
-            try{
+            /*try{
                 var embed = new Discord.MessageEmbed()
                 .setTitle("ABBONAMENTI ERROR")
                 .setDescription(err)
@@ -615,13 +615,13 @@ function reset (client, mese)
                 return
             }catch{
                 return
-            }
+            }*/
         })
 
 
 
         //è cambiato il mese gestisco gli stipendi
-        if(giorno == 1)
+        /*if(giorno == 1)
         {
             user("coinMember").then(members =>{
                 if (members == null) return
@@ -665,11 +665,11 @@ function reset (client, mese)
                     return
                 }
             })
-        }
+        }*/
         
         //controlla se devo levare dei custom role
         user("proprietà").then(usersPropetis => {
-            if(usersPropetis == null) return
+            /*if(usersPropetis == null) return
 
             for(var i in usersPropetis)
             {
@@ -701,14 +701,14 @@ function reset (client, mese)
                             //LOG: SCADUTO IL CUSTOM ROLE 
                             /*usersPropetis[i].ruolo.roleId role 
                             * usersPropetis[i].id id membro
-                            *  * * * * * * */
+                            *  * * * * * * 
                         }
                     }
                 }
-            }
+            }*/
         })
         .catch((err) => {
-            try{
+            /*try{
                 var embed = new Discord.MessageEmbed()
                 .setTitle("PROPRIETA' ERROR")
                 .setDescription(err)
@@ -718,12 +718,12 @@ function reset (client, mese)
                 return
             }catch{
                 return
-            }
+            }*/
         })
 
         //controlla i temp role
         user("role").then(tempRoles => {
-            if(tempRoles == null) return
+            /*if(tempRoles == null) return
             
             for(var i in tempRoles)
             {
@@ -741,10 +741,10 @@ function reset (client, mese)
                         aggiona(tempRoles, "role")
                     }
                 }
-            }
+            }*/
         })
         .catch((err) => {
-            try{
+            /*try{
                 var embed = new Discord.MessageEmbed()
                 .setTitle("TEMPROLE ERROR")
                 .setDescription(err)
@@ -754,7 +754,7 @@ function reset (client, mese)
                 return
             }catch{
                 return
-            }
+            }*/
         })
 
         /*var embed = new Discord.MessageEmbed()
